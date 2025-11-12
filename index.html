@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETHAR – Mine and Rise</title>
+  <meta name="description" content="Official ETHAR App – Mine and Rise with ETHAR" />
+  <link rel="icon" href="ethar.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #bb86fc, #6a00f4);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    a.main {
+      background: #fff;
+      color: #6a00f4;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: inline-block;
+      margin-bottom: 25px;
+    }
+    a.main:hover {
+      background: #f0e7ff;
+    }
+    .store-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .store-buttons img {
+      height: 50px;
+      border-radius: 10px;
+      transition: transform 0.2s;
+    }
+    .store-buttons img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <img src="ethar.png" alt="ETHAR Icon" />
+  <h1>ETHAR</h1>
+  <p>Mine and Rise with ETHAR</p>
+
+  <a class="main" href="https://expo.dev/accounts/ethartoken/projects/app/builds/com.ethartoken.app">
+    Open App
+  </a>
+
+  <div class="store-buttons">
+    <a href="https://play.google.com/store/apps/details?id=com.ethartoken.app" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+    </a>
+    <a href="https://apps.apple.com/app/id0000000000" target="_blank">
+      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+    </a>
+  </div>
+
+  <footer>© 2025 ETHAR. All rights reserved.</footer>
+</body>
+</html>
