@@ -75,9 +75,7 @@
   <h1>ETHAR</h1>
   <p>Mine and Rise with ETHAR</p>
 
-  <a class="main" href="ethar://">
-    Open App
-  </a>
+  <a class="main" id="openApp" href="#">Open App</a>
 
   <div class="store-buttons">
     <a href="https://play.google.com/store/apps/details?id=com.ethartoken.app" target="_blank">
@@ -89,5 +87,34 @@
   </div>
 
   <footer>© 2025 ETHAR. All rights reserved.</footer>
+
+    <script>
+    const openBtn = document.getElementById('openApp');
+    openBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      const androidUrl = "https://play.google.com/store/apps/details?id=com.ethartoken.app";
+      const iosUrl = "https://apps.apple.com/app/id0000000000";
+      const appScheme = "ethar://";
+
+      const start = Date.now();
+      window.location = appScheme;
+
+      // Fallback after 2 second if app is not installed
+      setTimeout(() => {
+        const end = Date.now();
+        if (end - start < 1500) {
+          if (/iPhone|iPad|iPod/i.test(userAgent)) {
+            window.location = iosUrl;
+          } else if (/Android/i.test(userAgent)) {
+            window.location = androidUrl;
+          } else {
+            alert("Please download the ETHAR app from your app store.");
+          }
+        }
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
