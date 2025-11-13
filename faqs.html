@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ETHAR - FAQs</title>
+  <link rel="icon" href="ethar.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+    body { background:#f4f4f6; color:#212529; }
+    header { background:linear-gradient(90deg,#bb86fc,#8a3ffc); color:#fff; padding:40px 20px; text-align:center; }
+    header img { width:100px; margin-bottom:12px; }
+    header h1 { font-size:36px; font-weight:700; margin-bottom:8px; }
+    header p { font-size:18px; opacity:0.9; }
+
+    main { max-width:900px; margin:0 auto; padding:40px 20px; }
+    h2 { color:#bb86fc; font-size:28px; margin-bottom:24px; text-align:center; }
+
+    .faq-item { background:#fff; border-radius:12px; margin-bottom:16px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); transition:0.3s; }
+    .faq-question { font-weight:600; font-size:18px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
+    .faq-question i { color:#bb86fc; font-size:20px; }
+    .faq-answer { display:none; margin-top:12px; font-size:16px; color:#495057; line-height:1.6; }
+    .faq-item.active .faq-answer { display:block; }
+    .faq-item.active .faq-question i { transform: rotate(45deg); transition:0.3s; }
+
+    footer { text-align:center; padding:40px 20px; background:#f1f1f4; color:#6c757d; }
+    footer .store-links img { height:55px; margin:12px; cursor:pointer; transition:0.2s; }
+    footer .store-links img:hover { transform:scale(1.05); }
+
+    @media(max-width:600px){ h2{font-size:24px;} .faq-question{font-size:16px;} }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="ethar.png" alt="ETHAR Logo">
+  <h1>ETHAR</h1>
+  <p>Mine and Rise with ETHAR</p>
+</header>
+
+<main>
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What is ETHAR?
+      <i class="fas fa-plus"></i>
+    </div>
+    <div class="faq-answer">
+      ETHAR is a cryptocurrency mining app where users can earn ETHAR tokens through mining, referrals, and registration bonuses. It is designed to be user-friendly and secure.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How do I start mining?
+      <i class="fas fa-plus"></i>
+    </div>
+    <div class="faq-answer">
+      Log in to the app, go to the Home page, and click "Start Mining." You must watch an ad to activate mining, which runs for 24 hours automatically. Tokens accumulate every second.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How is my mining rate calculated?
+      <i class="fas fa-plus"></i>
+    </div>
+    <div class="faq-answer">
+      Base rate: 0.2 ETHAR/hour. It increases by +0.05 ETHAR per active referral and +0.05 ETHAR per ad boost (max 2 boosts active at a time). There is no maximum mining rate.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What is the mining pool?
+      <i class="fas fa-plus"></i>
+    </div>
+    <div class="faq-answer">
+      The mining pool starts at 80 million ETHAR tokens. Tokens are distributed via mining, referral bonuses, and successful registrations.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Can I mine all the time?
+      <i class="fas fa-plus"></i>
+    </div>
+    <div class="faq-answer">
+      Mining lasts 24 hours per session. After the session ends, click "Start Mining" again. Mining stops on sign-out but continues if the app is closed.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How do referrals work?
+      <i class="fas fa-plus"></i>
+    </div>
+    <div class="faq-answer">
+      Every user has a unique referral code. Share it with friends to earn 5 ETHAR when they sign up. Active referrals are those currently mining.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How do I manage my profile?
+      <i class="fas fa-plus"></i>
+    </div>
+    <div class="faq-answer">
+      Update your email, phone, password, and profile photo. First and last names and country cannot be changed. KYC and account deletion options are in the Profile page.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      When does mining end?
+      <i class="fas fa-plus"></i>
+    </div>
+    <div class="faq-answer">
+      Mining ends on March 20, 2026. Make sure to mine regularly to maximize your ETHAR tokens.
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Download the ETHAR App:</p>
+  <div class="store-links">
+    <a href="https://play.google.com/store/apps/details?id=com.ethartoken.app" target="_blank">
+      <img src="google-play-badge.png" alt="Google Play Store">
+    </a>
+    <a href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank">
+      <img src="app-store-badge.png" alt="App Store">
+    </a>
+  </div>
+  <p>&copy; 2025 ETHAR. All rights reserved.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      item.classList.toggle('active');
+    });
+  });
+</script>
+
+</body>
+</html>
