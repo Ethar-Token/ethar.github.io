@@ -8,12 +8,12 @@
   <link rel="icon" href="ethar.png" />
   <style>
     :root{
-      --primary:#6a00f4;
-      --accent:#bb86fc;
-      --bg:#ffffff;
-      --card:#f9f9ff;
-      --muted:#555;
-      --border:#e0e0e0;
+      --primary:#bb86fc;
+      --accent:#6a00f4;
+      --bg: #f8f8fb;
+      --card: #ffffff;
+      --muted: #555;
+      --glass: rgba(0,0,0,0.04);
       --max-width:1000px;
       color-scheme: light;
     }
@@ -21,8 +21,8 @@
     body{
       margin:0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background: var(--bg);
-      color:#222;
+      background: linear-gradient(180deg, #ffffff 0%, #f8f8fb 40%, #f2f1f8 100%);
+      color:#111;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       padding:48px 20px;
@@ -34,38 +34,39 @@
       max-width:var(--max-width);
     }
     header{display:flex;gap:20px;align-items:center;margin-bottom:28px}
-    header img{width:64px;height:64px;border-radius:12px;box-shadow:0 6px 18px rgba(106,0,244,0.15)}
+    header img{width:64px;height:64px;border-radius:12px;box-shadow:0 6px 18px rgba(106,0,244,0.25)}
     header h1{font-size:24px;margin:0}
     header p{margin:0;color:var(--muted);font-size:14px}
 
-    .hero{background:linear-gradient(180deg, rgba(187,134,252,0.08), rgba(106,0,244,0.04));padding:28px;border-radius:14px;margin-bottom:20px;border:1px solid var(--border)}
+    .hero{background:linear-gradient(180deg, rgba(187,134,252,0.06), rgba(106,0,244,0.03));padding:28px;border-radius:14px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.03)}
     .hero h2{margin:0 0 8px;font-size:20px}
     .hero .meta{color:var(--muted);font-size:13px}
 
     nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
-    nav.toc a{background:#f3f1ff;padding:8px 12px;border-radius:8px;color:var(--accent);text-decoration:none;font-size:13px;border:1px solid var(--border)}
+    nav.toc a{background:var(--glass);padding:8px 12px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:13px}
 
-    .card{background:var(--card);padding:24px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border)}
-    h3{margin-top:0;color:var(--accent)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:24px;border-radius:12px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.03)}
+    h3{margin-top:0}
     p.lead{color:var(--muted);margin-top:6px}
 
     section {line-height:1.6}
     .grid{display:grid;grid-template-columns:1fr 300px;gap:20px}
-    aside{background:#fafaff;padding:16px;border-radius:8px;border:1px solid var(--border)}
+    aside{background:rgba(255,255,255,0.02);padding:16px;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
     table{width:100%;border-collapse:collapse;margin-top:8px}
-    td,th{padding:8px;border-bottom:1px dashed var(--border);font-size:14px;text-align:left}
+    td,th{padding:8px;border-bottom:1px dashed rgba(255,255,255,0.03);font-size:14px}
     .muted{color:var(--muted)}
 
     footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 
+    /* Responsive */
     @media (max-width:900px){
       .grid{grid-template-columns:1fr}
       header h1{font-size:18px}
     }
 
-    .cta{display:inline-block;background:var(--primary);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;margin-top:12px}
+    .cta{display:inline-block;background:var(--primary);color:#111;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;margin-top:12px}
     .small{font-size:13px;color:var(--muted)}
-    .code{background:#f2f0ff;padding:10px;border-radius:8px;font-family:monospace;font-size:13px;color:#333}
+    .code{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;font-family:monospace;font-size:13px;color:#dfe}
   </style>
 </head>
 <body>
@@ -100,15 +101,92 @@
 
     <div class="grid">
       <main>
-        <!-- All sections unchanged -->
-        <section id="vision" class="card"><h3>1. Vision & rationale</h3><p>ETHAR makes token ownership easy: simple ad-activated mobile mining sessions, a transparent referral program, and short session durations that encourage repeat engagement. Ads fund platform costs while referrals and boosts drive organic growth and retention.</p></section>
-        <section id="tokenomics" class="card"><h3>2. Tokenomics</h3><p>Key parameters:</p><ul><li><strong>Max supply:</strong> 100,000,000 ETHAR (fixed)</li><li><strong>Initial mining pool:</strong> 80,000,000 ETHAR</li><li><strong>Team allocation:</strong> 10,000,000 ETHAR (vested)</li><li><strong>Treasury / liquidity / marketing:</strong> 10,000,000 ETHAR</li><li><strong>Registration bonus:</strong> 5 ETHAR to both referrer and referee</li></ul><p class="small muted">Distribution and vesting details are configurable but recommended to include long-form vesting for team allocation and gradual treasury use for liquidity.</p></section>
-        <section id="mining" class="card"><h3>3. Mining mechanics</h3><p>Mining is off-chain in the app (virtual balances) and follows simple rules:</p><ul><li><strong>Activation:</strong> Watch an ad to completion → 24-hour mining session starts.</li><li><strong>Base rate:</strong> 0.2 ETHAR / hour.</li><li><strong>Referral bonus:</strong> +0.05 ETHAR / hour per active referral.</li><li><strong>Ad boosts:</strong> +0.05 ETHAR / hour for 6h (max 2).</li><li><strong>Session:</strong> Continues if app backgrounded; stops on logout.</li></ul><p><strong>Rate formula:</strong></p><div class="code">rate = 0.2 + (active_referrals × 0.05) + (active_ad_boosts × 0.05)</div></section>
-        <section id="antidump" class="card"><h3>4. Anti-dump & lockups</h3><ol><li>50% default lockup for 3–12 months at migration.</li><li>Incentives for longer lockups.</li><li>Team vesting: 24 months, 6-month cliff.</li><li>Gradual liquidity release.</li></ol></section>
-        <section id="revenue" class="card"><h3>5. Revenue & sustainability</h3><ul><li>60% operations & development</li><li>25% liquidity & buybacks</li><li>15% marketing & community</li></ul></section>
-        <section id="kyc" class="card"><h3>6. KYC & mainnet migration</h3><p>KYC will begin before March 20, 2026, to prepare for migration and ensure AML compliance.</p><ol><li>KYC rollout</li><li>Smart contract audit</li><li>Snapshot & migration</li><li>Exchange listings</li></ol></section>
-        <section id="roadmap" class="card"><h3>7. Roadmap</h3><ul><li><strong>Now:</strong> User acquisition</li><li><strong>Q4 2025:</strong> KYC tooling</li><li><strong>Q1 2026:</strong> Migration prep</li><li><strong>Mar 20, 2026:</strong> Mining ends</li><li><strong>Q2 2026:</strong> Mainnet + listings</li></ul></section>
-        <section id="appendix" class="card"><h3>8. Appendix — example math</h3><p><strong>Example:</strong> 0.2 + 3×0.05 + 2×0.05 = 0.45/hr → 10.8 ETHAR/day.</p></section>
+        <section id="vision" class="card">
+          <h3>1. Vision & rationale</h3>
+          <p>ETHAR makes token ownership easy: simple ad‑activated mobile mining sessions, a transparent referral program, and short session durations that encourage repeat engagement. Ads fund platform costs while referrals and boosts drive organic growth and retention.</p>
+        </section>
+
+        <section id="tokenomics" class="card">
+          <h3>2. Tokenomics</h3>
+          <p>Key parameters:</p>
+          <ul>
+            <li><strong>Max supply:</strong> 100,000,000 ETHAR (fixed)</li>
+            <li><strong>Initial mining pool:</strong> 80,000,000 ETHAR</li>
+            <li><strong>Team allocation:</strong> 10,000,000 ETHAR (vested)</li>
+            <li><strong>Treasury / liquidity / marketing:</strong> 10,000,000 ETHAR</li>
+            <li><strong>Registration bonus:</strong> 5 ETHAR to both referrer and referee</li>
+          </ul>
+          <p class="small muted">Distribution and vesting details are configurable but recommended to include long‑form vesting for team allocation and gradual treasury use for liquidity.</p>
+        </section>
+
+        <section id="mining" class="card">
+          <h3>3. Mining mechanics</h3>
+          <p>Mining is off-chain in the app (virtual balances) and follows simple rules:</p>
+          <ul>
+            <li><strong>Activation:</strong> Watch an ad to completion → 24‑hour mining session starts.</li>
+            <li><strong>Base rate:</strong> 0.2 ETHAR / hour.</li>
+            <li><strong>Referral bonus:</strong> +0.05 ETHAR / hour per active referral (an active referral is a referee who is currently in a mining session).</li>
+            <li><strong>Ad boosts:</strong> Each ad boost adds +0.05 ETHAR / hour for 6 hours. Max 2 active boosts.</li>
+            <li><strong>Session behaviour:</strong> Mining continues if the app is backgrounded; it stops on logout.</li>
+          </ul>
+
+          <p><strong>Rate formula (per hour):</strong></p>
+          <div class="code">rate = 0.2 + (active_referrals × 0.05) + (active_ad_boosts × 0.05)</div>
+
+          <p class="small muted">Tokens mined are deducted from the mining pool in real time. Pool balances are shown in human friendly form (e.g. 80.0M, 79.6M, 21.3K).</p>
+        </section>
+
+        <section id="antidump" class="card">
+          <h3>4. Anti-dump & lockups</h3>
+          <p>To protect value at migration we recommend:</p>
+          <ol>
+            <li>Default migration lockup (e.g., 50% locked for 3–12 months) applied to mined balances at mainnet conversion.</li>
+            <li>Lockup incentives: bonuses for choosing longer or larger lockups.</li>
+            <li>Team vesting: 24 months with a 6-month cliff.</li>
+            <li>Gradual liquidity provisioning from treasury to reduce price shocks.</li>
+          </ol>
+        </section>
+
+        <section id="revenue" class="card">
+          <h3>5. Revenue & sustainability</h3>
+          <p>Ads fund platform operations. Suggested splits:</p>
+          <ul>
+            <li>60% operations & development</li>
+            <li>25% liquidity & buybacks</li>
+            <li>15% marketing & community</li>
+          </ul>
+          <p class="small muted">Ad-driven sessions are intentionally lightweight — the user value (24h mining) is higher than the ad interruption cost, encouraging retention.</p>
+        </section>
+
+        <section id="kyc" class="card">
+          <h3>6. KYC & mainnet migration</h3>
+          <p>We will roll out KYC before March 20, 2026 to comply with AML requirements and to prepare for on-chain migration. KYC enables secure token transfer to user-supplied wallet addresses, participation in listings, and regulatory compliance.</p>
+          <p>Migration plan (high level):</p>
+          <ol>
+            <li>KYC roll-out and completion</li>
+            <li>Smart contract audit and security review</li>
+            <li>Snapshot & migration with lockups applied</li>
+            <li>Liquidity provisioning & exchange listing coordination</li>
+          </ol>
+        </section>
+
+        <section id="roadmap" class="card">
+          <h3>7. Roadmap</h3>
+          <ul>
+            <li><strong>Now:</strong> User acquisition, product polish.</li>
+            <li><strong>Q4 2025:</strong> KYC tooling, audit prep.</li>
+            <li><strong>Q1 2026:</strong> KYC roll-out, audit of migration contracts.</li>
+            <li><strong>Mar 20, 2026:</strong> Mining scheduled end (app balances ready for migration).</li>
+            <li><strong>Q2 2026:</strong> Target mainnet migration and initial exchange listings.</li>
+          </ul>
+        </section>
+
+        <section id="appendix" class="card">
+          <h3>8. Appendix — example math & notes</h3>
+          <p><strong>Example:</strong> User with base 0.2/hr + 3 active referrals + 2 boosts = 0.2 + 0.15 + 0.10 = 0.45/hr → 24h = 10.8 ETHAR.</p>
+          <p class="small muted">Technical recommendations: ERC‑20 on Ethereum or L2 (Arbitrum/Optimism) for lower gas; smart contracts audited; treasury in multisig (Gnosis Safe).</p>
+        </section>
+
       </main>
 
       <aside>
@@ -118,18 +196,26 @@
           <tr><td>Max supply</td><td>100,000,000 ETHAR</td></tr>
           <tr><td>Mining pool</td><td>80,000,000 ETHAR</td></tr>
           <tr><td>Base rate</td><td>0.2 ETHAR/hr</td></tr>
-          <tr><td>Referral bonus</td><td>+0.05/hr</td></tr>
-          <tr><td>Ad boost</td><td>+0.05/hr (6h)</td></tr>
-          <tr><td>Signup reward</td><td>5 ETHAR</td></tr>
+          <tr><td>Referral bonus</td><td>+0.05/hr per active</td></tr>
+          <tr><td>Ad boost</td><td>+0.05/hr (6h) — max 2</td></tr>
+          <tr><td>Registration reward</td><td>5 ETHAR</td></tr>
         </table>
-        <div style="margin-top:12px"><a class="cta" href="#kyc">KYC & Migration</a></div>
-        <div style="margin-top:18px" class="small muted">© <span id="year"></span> ETHAR • Mine and Rise with ETHAR</div>
+
+        <div style="margin-top:12px">
+          <a class="cta" href="#kyc">KYC & Migration</a>
+        </div>
+
+        <div style="margin-top:18px" class="small muted">
+          © <span id="year"></span> ETHAR • Mine and Rise with ETHAR
+        </div>
       </aside>
     </div>
 
-    <footer class="small muted">This whitepaper is a draft and subject to change. It does not constitute financial or legal advice.</footer>
+    <footer class="small muted">This whitepaper is a draft and subject to change. It does not constitute financial or legal advice. All schedules and figures are targets, not guarantees.</footer>
   </div>
 
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
