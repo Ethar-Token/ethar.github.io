@@ -190,6 +190,62 @@ color:#999;
 
 }
 
+.footer{
+background:#12131c;
+margin-top:80px;
+padding:60px 8% 25px;
+}
+
+.footer-container{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:40px;
+
+}
+
+.footer-column h3{
+
+color:#f4b400;
+margin-bottom:18px;
+font-size:18px;
+
+}
+
+.footer-column a{
+
+display:block;
+text-decoration:none;
+color:#cfcfcf;
+margin-bottom:12px;
+transition:.3s;
+
+}
+
+.footer-column a:hover{
+
+color:#f4b400;
+
+}
+
+.footer-column p{
+
+color:#999;
+margin-bottom:8px;
+
+}
+
+.copyright{
+
+margin-top:40px;
+padding-top:20px;
+border-top:1px solid #2a2c36;
+text-align:center;
+color:#888;
+font-size:14px;
+
+}
+
 </style>
 
 </head>
@@ -299,11 +355,63 @@ No complicated rules. Just rewards.
 
 </section>
 
-<footer>
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-column">
+
+<h3>Company</h3>
+
+<a href="about.html">About Us</a>
+<a href="careers.html">Careers</a>
+<a href="contact.html">Contact Us</a>
+
+</div>
+
+<div class="footer-column">
+
+<h3>Legal</h3>
+
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms & Conditions</a>
+<a href="cookies.html">Cookie Policy</a>
+
+</div>
+
+<div class="footer-column">
+
+<h3>Support</h3>
+
+<p>Email:</p>
+
+<a href="mailto:support@ethartoken.com">
+support@ethartoken.com
+</a>
+
+</div>
+
+<div class="footer-column">
+
+<h3>Social</h3>
+
+<a href="#">Facebook</a>
+<a href="#">X</a>
+<a href="#">TikTok</a>
+<a href="#">Instagram</a>
+<a href="#">Telegram</a>
+<a href="#">Discord</a>
+
+</div>
+
+</div>
+
+<div class="copyright">
 
 © 2026 ETHAR. All Rights Reserved.
 
-</footer>
+</div>
 
+</footer>
 </body>
 </html>
