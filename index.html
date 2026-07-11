@@ -1,120 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ETHAR – Mine and Rise</title>
-  <meta name="description" content="Official ETHAR App – Mine and Rise with ETHAR" />
-  <link rel="icon" href="ethar.png" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #bb86fc, #6a00f4);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-    img {
-      width: 100px;
-      height: 100px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-    }
-    a.main {
-      background: #fff;
-      color: #6a00f4;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s;
-      display: inline-block;
-      margin-bottom: 25px;
-    }
-    a.main:hover {
-      background: #f0e7ff;
-    }
-    .store-buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .store-buttons img {
-      height: 50px;
-      border-radius: 10px;
-      transition: transform 0.2s;
-    }
-    .store-buttons img:hover {
-      transform: scale(1.05);
-    }
-    footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETHAR | Watch. Earn. Win.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0c0d14;
+color:white;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:#12131c;
+position:sticky;
+top:0;
+}
+
+.logo{
+font-size:30px;
+font-weight:700;
+color:#f4b400;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:30px;
+font-size:15px;
+}
+
+.hero{
+
+padding:90px 8%;
+text-align:center;
+
+}
+
+.hero h1{
+font-size:60px;
+margin-bottom:15px;
+}
+
+.hero p{
+
+font-size:20px;
+color:#bfbfbf;
+margin-bottom:40px;
+
+}
+
+.buttons{
+
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+padding:16px 35px;
+border-radius:10px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+
+}
+
+.primary{
+
+background:#f4b400;
+color:#111;
+
+}
+
+.primary:hover{
+
+background:#ffd65c;
+
+}
+
+.secondary{
+
+border:2px solid #f4b400;
+color:#f4b400;
+
+}
+
+.secondary:hover{
+
+background:#f4b400;
+color:#111;
+
+}
+
+.stats{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+padding:60px 8%;
+
+}
+
+.card{
+
+background:#181a25;
+padding:30px;
+border-radius:15px;
+text-align:center;
+
+}
+
+.card h2{
+
+font-size:18px;
+color:#c9c9c9;
+margin-bottom:12px;
+
+}
+
+.card p{
+
+font-size:34px;
+font-weight:700;
+color:#f4b400;
+
+}
+
+.section{
+
+padding:70px 8%;
+
+}
+
+.section h2{
+
+font-size:40px;
+margin-bottom:40px;
+text-align:center;
+
+}
+
+.steps{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+
+}
+
+.step{
+
+background:#181a25;
+padding:30px;
+border-radius:15px;
+
+}
+
+.step h3{
+
+margin-bottom:15px;
+color:#f4b400;
+
+}
+
+footer{
+
+padding:35px;
+text-align:center;
+color:#999;
+
+}
+
+</style>
+
 </head>
+
 <body>
-  <img src="ethar.png" alt="ETHAR Icon" />
-  <h1>ETHAR</h1>
-  <p>Mine and Rise with ETHAR</p>
 
-  <a class="main" id="openApp" href="#">Open App</a>
+<header>
 
-  <div class="store-buttons">
-    <a href="https://play.google.com/store/apps/details?id=com.ethartoken.app" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
-    </a>
-    <a href="https://apps.apple.com/app/id0000000000" target="_blank">
-      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
-    </a>
-  </div>
+<div class="logo">ETHAR</div>
 
-  <footer>© 2025 ETHAR. All rights reserved.</footer>
+<nav>
 
-    <script>
-    const openBtn = document.getElementById('openApp');
-    openBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+<a href="#">Home</a>
+<a href="#">Login</a>
+<a href="#">Sign Up</a>
 
-      const androidUrl = "https://play.google.com/store/apps/details?id=com.ethartoken.app";
-      const iosUrl = "https://apps.apple.com/app/id0000000000";
-      const appScheme = "ethar://";
+</nav>
 
-      const start = Date.now();
-      window.location = appScheme;
+</header>
 
-      // Fallback after 2 second if app is not installed
-      setTimeout(() => {
-        const end = Date.now();
-        if (end - start < 1500) {
-          if (/iPhone|iPad|iPod/i.test(userAgent)) {
-            window.location = iosUrl;
-          } else if (/Android/i.test(userAgent)) {
-            window.location = androidUrl;
-          } else {
-            alert("Please download the ETHAR app from your app store.");
-          }
-        }
-      }, 2000);
-    });
-  </script>
+<section class="hero">
+
+<h1>Watch. Earn. Win.</h1>
+
+<p>
+Watch ads, earn tickets, and enter our hourly prize draws.
+No complicated rules. Just rewards.
+</p>
+
+<div class="buttons">
+
+<a href="#" class="btn primary">Join Free</a>
+
+<a href="#" class="btn secondary">Login</a>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="card">
+
+<h2>Current Prize Pool</h2>
+
+<p>$0.00</p>
+
+</div>
+
+<div class="card">
+
+<h2>Next Draw</h2>
+
+<p>59:59</p>
+
+</div>
+
+<div class="card">
+
+<h2>Today's Winners</h2>
+
+<p>10</p>
+
+</div>
+
+<div class="card">
+
+<h2>Active Members</h2>
+
+<p>0</p>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>How It Works</h2>
+
+<div class="steps">
+
+<div class="step">
+
+<h3>1. Sign Up</h3>
+
+<p>Create your free ETHAR account.</p>
+
+</div>
+
+<div class="step">
+
+<h3>2. Watch Ads</h3>
+
+<p>Earn tickets by watching ads.</p>
+
+</div>
+
+<div class="step">
+
+<h3>3. Join Hourly Draws</h3>
+
+<p>Use your tickets for a chance to win cash prizes.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 ETHAR. All Rights Reserved.
+
+</footer>
+
 </body>
 </html>
