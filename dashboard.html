@@ -7,7 +7,7 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px s
 <div class="side"><h2>ETHAR</h2><a>🏠 Dashboard</a><a>👛 Wallet</a><a>👤 Profile</a><a>🪙 ETHAR Token</a><a>👥 Referrals</a><a>❓ Help</a><a>ℹ️ About</a><a>💼 Careers</a></div>
 <div class="main">
 <header><h1>Dashboard</h1><div>🔔 &nbsp; $0.00 &nbsp; 👤</div></header>
-<div class="cards"><div class="card"><small>Prize Pool</small><h2>$1,248.42</h2></div><div class="card"><small>Your Tickets</small><h2>8/10</h2></div><div class="card"><small>Total Tickets</small><h2>42,518</h2></div><div class="card"><small>Next Draw</small><h2 id="c">00:38:24</h2></div></div>
+<div class="cards"><div class="card"><small>Prize Pool</small><h2>$1,248.42</h2></div><div class="card"><small>Your Tickets in the Draw</small><h2>12</h2></div><div class="card"><small>Total Tickets in the Draw</small><h2>42,518</h2></div><div class="card"><small>Next Draw</small><h2 id="c">00:38:24</h2></div></div>
 
 <div class="panel watchwrap">
 <div class="circle"><h2 id="cc">38:24</h2><small>Hourly Draw</small></div>
@@ -16,12 +16,71 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px s
 <p><b>Date:</b> 12 Jul 2026</p>
 <p><b>Time:</b> 3:00 PM UTC</p>
 </div>
-<div class="watch">
+<div class="watch"> </div>
+  
+<div class="panel enter-tickets">
+
+    <h2>🎟 Enter Tickets Into This Draw</h2>
+
+    <p>Available Tickets: <strong>28</strong></p>
+
+    <div class="ticket-controls">
+
+        <input type="number" min="1" max="8" value="1">
+
+        <button class="btn">ENTER DRAW</button>
+
+    </div>
+
+</div>
+  
 <h2>🎟 WATCH AN AD & GET 1 TICKET</h2>
 <p>Ads watched this hour: <b>0/10</b></p><br>
 <button class="btn">WATCH AD</button>
 </div>
 </div>
+
+<style>
+  
+.enter-tickets{
+
+    margin-top:20px;
+    text-align:center;
+
+}
+
+.ticket-controls{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    margin-top:20px;
+
+}
+
+.ticket-controls input{
+
+    width:120px;
+    padding:12px;
+    font-size:18px;
+    text-align:center;
+    border:none;
+    border-radius:8px;
+    background:#0b1220;
+    color:white;
+    border:1px solid #2d3b57;
+
+}
+
+.ticket-controls input:focus{
+
+    outline:none;
+    border-color:#f4b400;
+
+}
+  
+</style>
 
 <div class="panel" style="margin-top:20px"><h2>🏆 Last Hour Winners</h2>
 <table>
