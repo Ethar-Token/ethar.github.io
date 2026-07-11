@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ETHAR Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#0b1220;color:#fff;display:flex}
+.sidebar{width:240px;background:#151e2f;height:100vh;position:fixed;padding:25px}
+.sidebar h2{color:#f4b400;margin-bottom:25px}
+.sidebar a{display:block;color:#d0d5dd;text-decoration:none;padding:14px;border-radius:10px;margin:6px 0}
+.sidebar a:hover,.active{background:#f4b400;color:#111}
+.main{margin-left:240px;width:calc(100% - 240px);padding:30px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+.top{display:flex;gap:20px;align-items:center}
+.avatar{width:40px;height:40px;border-radius:50%;background:#f4b400;color:#111;display:flex;align-items:center;justify-content:center;font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card,.panel{background:#151e2f;border-radius:15px;padding:22px}
+.card small{color:#98a2b3}
+.card h2{margin-top:10px;color:#f4b400}
+.watch{text-align:center;margin-top:25px}
+.watch button,.ref button{margin-top:15px;background:#f4b400;color:#111;border:none;padding:15px 30px;border-radius:10px;font-weight:700;cursor:pointer}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{padding:12px;border-bottom:1px solid #283246;text-align:left}
+th{color:#f4b400}
+.section{margin-top:25px}
+.ref{text-align:center}
+@media(max-width:900px){
+body{display:block}
+.sidebar{position:relative;width:100%;height:auto}
+.main{margin:0;width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+<h2>ETHAR</h2>
+<a class="active" href="#">🏠 Dashboard</a>
+<a href="#">👛 Wallet</a>
+<a href="#">👤 Profile</a>
+<a href="#">🪙 ETHAR Token</a>
+<a href="#">👥 Referrals</a>
+<a href="#">❓ Help</a>
+<a href="#">ℹ️ About</a>
+<a href="#">💼 Careers</a>
+</div>
+
+<div class="main">
+<header>
+<div><h1>Dashboard</h1></div>
+<div class="top">
+<span>🔔</span>
+<strong>$0.00</strong>
+<div class="avatar">A</div>
+</div>
+</header>
+
+<div class="cards">
+<div class="card"><small>Prize Pool</small><h2>$1,248.42</h2></div>
+<div class="card"><small>Your Tickets</small><h2>8 / 10</h2></div>
+<div class="card"><small>Total Tickets</small><h2>42,518</h2></div>
+<div class="card"><small>Next Draw</small><h2 id="countdown">00:38:24</h2></div>
+</div>
+
+<div class="panel watch section">
+<h2>🎟 WATCH AN AD & GET 1 TICKET</h2>
+<p>Ads watched this hour: <b>0 / 10</b></p>
+<button>WATCH AD</button>
+</div>
+
+<div class="panel section">
+<h2>🏆 Last Hour Winners</h2>
+<table>
+<tr><th>Name</th><th>Email</th><th>Won</th></tr>
+<tr><td>Ashley</td><td>a****@gmail.com</td><td>$32</td></tr>
+<tr><td>John</td><td>j****@yahoo.com</td><td>$25</td></tr>
+<tr><td>Sarah</td><td>s****@outlook.com</td><td>$20</td></tr>
+<tr><td>Brian</td><td>b****@gmail.com</td><td>$18</td></tr>
+<tr><td>Grace</td><td>g****@gmail.com</td><td>$16</td></tr>
+<tr><td>Kevin</td><td>k****@hotmail.com</td><td>$15</td></tr>
+<tr><td>Lucy</td><td>l****@gmail.com</td><td>$12</td></tr>
+<tr><td>James</td><td>j****@icloud.com</td><td>$10</td></tr>
+<tr><td>Mary</td><td>m****@gmail.com</td><td>$8</td></tr>
+<tr><td>Peter</td><td>p****@yahoo.com</td><td>$5</td></tr>
+</table>
+</div>
+
+<div class="panel ref section">
+<h2>👥 Referrals</h2>
+<p><b>Earn 10% of your referrals' winnings for life!</b></p>
+<p>Your Referrals: <b>0</b></p>
+<button>Copy Referral Link</button>
+</div>
+</div>
+
+<script>
+let sec=2304;
+setInterval(()=>{
+if(sec>0)sec--;
+let h=String(Math.floor(sec/3600)).padStart(2,'0');
+let m=String(Math.floor((sec%3600)/60)).padStart(2,'0');
+let s=String(sec%60).padStart(2,'0');
+document.getElementById('countdown').textContent=`${h}:${m}:${s}`;
+},1000);
+</script>
+
+</body>
+</html>
