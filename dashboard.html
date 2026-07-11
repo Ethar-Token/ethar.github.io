@@ -15,7 +15,42 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px s
 <h3>Next Draw</h3>
 <p><b>Date:</b> 12 Jul 2026</p>
 <p><b>Time:</b> 3:00 PM UTC</p>
+
+<div style="flex:1;padding:0 20px;text-align:center;">
+
+    <h2 style="margin-bottom:10px;">🎟 Enter Tickets Into This Draw</h2>
+
+    <p style="color:#ccc;margin-bottom:15px;">
+        Available Tickets: <strong style="color:#f4b400;">8</strong>
+    </p>
+
+    <div style="display:flex;justify-content:center;gap:10px;align-items:center;">
+
+        <button class="btn">−</button>
+
+        <input type="number"
+               value="1"
+               min="1"
+               max="8"
+               style="width:80px;
+                      text-align:center;
+                      padding:12px;
+                      border-radius:8px;
+                      border:none;
+                      background:#0b1220;
+                      color:white;
+                      font-size:18px;">
+
+        <button class="btn">+</button>
+
+    </div>
+
+    <button class="btn" style="margin-top:20px;">
+        ENTER DRAW
+    </button>
+
 </div>
+
 <div class="watch"> </div>
   
 <div class="panel enter-tickets">
@@ -40,47 +75,6 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px s
 </div>
 </div>
 
-<style>
-  
-.enter-tickets{
-
-    margin-top:20px;
-    text-align:center;
-
-}
-
-.ticket-controls{
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
-    margin-top:20px;
-
-}
-
-.ticket-controls input{
-
-    width:120px;
-    padding:12px;
-    font-size:18px;
-    text-align:center;
-    border:none;
-    border-radius:8px;
-    background:#0b1220;
-    color:white;
-    border:1px solid #2d3b57;
-
-}
-
-.ticket-controls input:focus{
-
-    outline:none;
-    border-color:#f4b400;
-
-}
-  
-</style>
 
 <div class="panel" style="margin-top:20px"><h2>🏆 Last Hour Winners</h2>
 <table>
