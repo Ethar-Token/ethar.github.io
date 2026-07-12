@@ -579,7 +579,9 @@ const supabaseUrl = "https://ynohexdhktetiepmbwnx.supabase.co";
 
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlub2hleGRoa3RldGllcG1id254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDU5ODcsImV4cCI6MjA5OTI4MTk4N30.bOgCv0UJxYvNSXDxCFs9_6lWfm-h5RipjLzqFIC7Miw";
 
-const supabase = window.supabase.createClient(
+const { createClient} = supabase;
+    
+const createClient(
     supabaseUrl,
     supabaseKey
 );
@@ -688,7 +690,7 @@ const dob = document.getElementById("dob").value;
 const country = document.getElementById("country").value;
 const referral = document.getElementById("referral").value.trim();
 
-const { data, error } = await supabase.auth.signUp({
+const { data, error } = await client.auth.signUp({
 
 email: email,
 
