@@ -1,83 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ETHAR | Email Confirmed</title>
-  <link rel="icon" href="assets/ethar.png" />
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: #0e0e0e;
-      color: #fff;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    img {
-      width: 100px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      color: #bb86fc;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 16px;
-      color: #ccc;
-    }
-    a {
-      margin-top: 30px;
-      display: inline-block;
-      padding: 12px 28px;
-      background: #bb86fc;
-      color: #fff;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: 0.2s;
-    }
-    a:hover {
-      background: #9c6efb;
-    }
-  </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Email Verified | ETHAR</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+color:#fff;
+}
+
+.card{
+width:100%;
+max-width:550px;
+background:#151e2f;
+padding:45px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+.logo{
+font-size:42px;
+font-weight:700;
+color:#f4b400;
+margin-bottom:25px;
+}
+
+.success{
+width:110px;
+height:110px;
+margin:0 auto 25px;
+border-radius:50%;
+background:#1f9d55;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:55px;
+color:#fff;
+}
+
+h1{
+font-size:30px;
+margin-bottom:15px;
+}
+
+p{
+color:#cfcfcf;
+line-height:1.8;
+margin-bottom:30px;
+}
+
+.btn{
+display:block;
+width:100%;
+padding:16px;
+background:#f4b400;
+color:#111;
+text-decoration:none;
+font-weight:700;
+font-size:17px;
+border-radius:10px;
+transition:.3s;
+}
+
+.btn:hover{
+background:#ffd54d;
+}
+
+.note{
+margin-top:25px;
+font-size:14px;
+color:#999;
+line-height:1.7;
+}
+
+@media(max-width:600px){
+
+.card{
+padding:30px 25px;
+}
+
+.logo{
+font-size:34px;
+}
+
+.success{
+width:90px;
+height:90px;
+font-size:45px;
+}
+
+h1{
+font-size:24px;
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
-  <img src="assets/ethar.png" alt="ETHAR Logo" />
-  <h1>Email Confirmed!</h1>
-  <p>Thank you for verifying your email. You can now open the ETHAR app and start mining.</p>
-  <a class="main" id="openApp" href="#">Open App</a>
 
-  <script>
-    const openBtn = document.getElementById('openApp');
-    openBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+<div class="card">
 
-      const androidUrl = "https://play.google.com/store/apps/details?id=com.ethartoken.app";
-      const iosUrl = "https://apps.apple.com/app/id0000000000";
-      const appScheme = "ethar://";
+<div class="logo">
 
-      const start = Date.now();
-      window.location = appScheme;
+ETHAR
 
-      // Fallback after 2 second if app is not installed
-      setTimeout(() => {
-        const end = Date.now();
-        if (end - start < 1500) {
-          if (/iPhone|iPad|iPod/i.test(userAgent)) {
-            window.location = iosUrl;
-          } else if (/Android/i.test(userAgent)) {
-            window.location = androidUrl;
-          } else {
-            alert("Please download the ETHAR app from your app store.");
-          }
-        }
-      }, 2000);
-    });
-  </script>  
+</div>
+
+<div class="success">
+
+✓
+
+</div>
+
+<h1>Email Verified Successfully!</h1>
+
+<p>
+
+Your email address has been confirmed and your ETHAR account is now active.
+
+You can now log in and begin watching ads, earning tickets, entering hourly draws, and collecting ETHAR tokens.
+
+</p>
+
+<a href="login.html" class="btn">
+
+LOGIN TO YOUR ACCOUNT
+
+</a>
+
+<div class="note">
+
+If you did not create this account, you can safely ignore this email.
+
+</div>
+
+</div>
+
 </body>
+
 </html>
