@@ -30,6 +30,7 @@ padding:20px 8%;
 background:#12131c;
 position:sticky;
 top:0;
+z-index:1000;
 }
 
 .logo{
@@ -38,11 +39,76 @@ font-weight:700;
 color:#f4b400;
 }
 
+nav{
+display:flex;
+gap:30px;
+align-items:center;
+}
+
 nav a{
 color:white;
 text-decoration:none;
-margin-left:30px;
-font-size:15px;
+}
+
+.menu-btn{
+display:none;
+font-size:32px;
+cursor:pointer;
+color:#f4b400;
+}
+
+.close-btn{
+display:none;
+}
+
+@media(max-width:768px){
+
+.menu-btn{
+display:block;
+}
+
+nav{
+
+position:fixed;
+top:0;
+right:-260px;
+width:250px;
+height:100%;
+background:#151e2f;
+display:flex;
+flex-direction:column;
+padding-top:70px;
+transition:.3s;
+z-index:999;
+
+}
+
+nav.active{
+
+right:0;
+
+}
+
+nav a{
+
+padding:18px 30px;
+font-size:18px;
+border-bottom:1px solid #25344d;
+
+}
+
+.close-btn{
+
+display:block;
+position:absolute;
+top:20px;
+right:20px;
+font-size:30px;
+cursor:pointer;
+color:#f4b400;
+
+}
+
 }
 
 .hero{
@@ -256,11 +322,25 @@ font-size:14px;
 
 <div class="logo">ETHAR</div>
 
-<nav>
+<div class="menu-btn" onclick="toggleMenu()">
 
-<a href="index.html">Home</a>
-<a href="login.html">Login</a>
-<a href="signup.html">Sign Up</a>
+☰
+
+</div>
+
+<nav id="mobileMenu">
+
+<div class="close-btn" onclick="toggleMenu()">
+
+✕
+
+</div>
+
+<a href="index.html" onclick="toggleMenu()">Home</a>
+
+<a href="login.html" onclick="toggleMenu()">Login</a>
+
+<a href="signup.html" onclick="toggleMenu()">Sign Up</a>
 
 </nav>
 
@@ -413,5 +493,16 @@ support@ethartoken.com
 </div>
 
 </footer>
+
+<script>
+
+function toggleMenu(){
+
+document.getElementById("mobileMenu").classList.toggle("active");
+
+}
+
+</script>
+
 </body>
 </html>
