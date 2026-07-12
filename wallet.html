@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>ETHAR - Wallet</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+
+body{
+background:#0b1220;
+color:#fff;
+display:flex;
+}
+
+.overlay{display:none;}
+
+.side{
+width:230px;
+background:#151e2f;
+height:100vh;
+padding:25px;
+position:fixed;
+overflow-y:auto;
+z-index:1000;
+}
+
+.side h2{
+color:#f4b400;
+margin-bottom:20px;
+}
+
+.side a{
+display:block;
+padding:12px;
+text-decoration:none;
+color:#d0d5dd;
+border-radius:8px;
+margin-bottom:5px;
+}
+
+.side a:hover,
+.side .active{
+background:#f4b400;
+color:#111;
+}
+
+.main{
+margin-left:230px;
+padding:30px;
+width:100%;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.leftHeader{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.rightHeader{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.menu{
+display:none;
+font-size:32px;
+cursor:pointer;
+color:#f4b400;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+margin-bottom:20px;
+}
+
+.card,
+.panel{
+background:#151e2f;
+padding:25px;
+border-radius:15px;
+}
+
+.card small{
+color:#aaa;
+}
+
+.card h2{
+margin-top:10px;
+color:#f4b400;
+}
+
+label{
+display:block;
+margin-top:15px;
+margin-bottom:8px;
+font-weight:600;
+}
+
+input,
+select{
+width:100%;
+padding:14px;
+background:#0b1220;
+border:1px solid #2d3b57;
+color:white;
+border-radius:10px;
+}
+
+.btn{
+margin-top:20px;
+background:#f4b400;
+color:#111;
+padding:14px;
+border:none;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
+width:100%;
+}
+
+.notice{
+margin-top:20px;
+padding:18px;
+background:#0b1220;
+border-left:4px solid #f4b400;
+border-radius:8px;
+line-height:1.8;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #2b374d;
+text-align:left;
+}
+
+th{
+color:#f4b400;
+}
+
+@media(max-width:768px){
+
+body{
+display:block;
+}
+
+.menu{
+display:block;
+}
+
+.side{
+left:-250px;
+transition:.3s;
+}
+
+.side.active{
+left:0;
+}
+
+.overlay{
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+z-index:999;
+}
+
+.overlay.active{
+display:block;
+}
+
+.main{
+margin-left:0;
+padding:15px;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+table{
+display:block;
+overflow-x:auto;
+white-space:nowrap;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay" onclick="closeMenu()"></div>
+
+<div class="side">
+
+<h2>ETHAR</h2>
+
+<a href="dashboard.html">🏠 Dashboard</a>
+<a class="active" href="wallet.html">👛 Wallet</a>
+<a href="profile.html">👤 Profile</a>
+<a href="ethar-token.html">🪙 ETHAR Token</a>
+<a href="referrals.html">👥 Referrals</a>
+<a href="help.html">❓ Help</a>
+<a href="about.html">ℹ️ About</a>
+<a href="careers.html">💼 Careers</a>
+
+</div>
+
+<div class="main">
+
+<header>
+
+<div class="leftHeader">
+
+<div class="menu" id="menuBtn" onclick="toggleMenu()">☰</div>
+
+<h1>Wallet</h1>
+
+</div>
+
+<div class="rightHeader">
+
+🔔
+
+<span>$0.00</span>
+
+<a href="profile.html" style="color:white;text-decoration:none;">👤</a>
+
+</div>
+
+</header>
+
+<div class="cards">
+
+<div class="card">
+
+<small>Wallet Balance</small>
+
+<h2>$0.00</h2>
+
+</div>
+
+<div class="card">
+
+<small>Available Tickets</small>
+
+<h2>0</h2>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2 style="color:#f4b400;">Deposit</h2>
+
+<div class="notice">
+
+Deposits are <strong>coming soon.</strong>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2 style="color:#f4b400;">Withdraw Funds</h2>
+
+<label>Withdrawal Method</label>
+
+<select id="method" onchange="changeField()">
+
+<option>PayPal</option>
+
+<option>Skrill</option>
+
+<option>USDT (TRC-20)</option>
+
+</select>
+
+<label id="addressLabel">PayPal Email</label>
+
+<input
+type="text"
+placeholder="Enter email or wallet address">
+
+<label>Amount (USD)</label>
+
+<input
+type="number"
+placeholder="Minimum $5">
+
+<button class="btn">
+
+REQUEST WITHDRAWAL
+
+</button>
+
+<div class="notice">
+
+<strong>Withdrawal Information</strong>
+
+<br><br>
+
+• Minimum withdrawal: <strong>$5</strong><br>
+
+• USDT withdrawals are supported only on the <strong>TRC-20 network</strong>.<br>
+
+• Sending USDT to another network may result in permanent loss of funds.<br>
+
+• Withdrawals are reviewed before processing.
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2 style="color:#f4b400;">Transaction History</h2>
+
+<table>
+
+<tr>
+
+<th>Date</th>
+<th>Type</th>
+<th>Method</th>
+<th>Amount</th>
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td colspan="5" style="text-align:center;color:#999;padding:30px;">
+
+No transactions available.
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+function changeField(){
+
+const method=document.getElementById("method").value;
+const label=document.getElementById("addressLabel");
+
+if(method==="USDT (TRC-20)"){
+
+label.innerHTML="USDT Wallet Address";
+
+}else{
+
+label.innerHTML=method+" Email";
+
+}
+
+}
+
+function toggleMenu(){
+
+const side=document.querySelector(".side");
+const overlay=document.querySelector(".overlay");
+const menu=document.getElementById("menuBtn");
+
+side.classList.toggle("active");
+overlay.classList.toggle("active");
+
+if(side.classList.contains("active")){
+
+menu.innerHTML="✕";
+
+}else{
+
+menu.innerHTML="☰";
+
+}
+
+}
+
+function closeMenu(){
+
+document.querySelector(".side").classList.remove("active");
+document.querySelector(".overlay").classList.remove("active");
+document.getElementById("menuBtn").innerHTML="☰";
+
+}
+
+document.querySelector(".btn").addEventListener("click",function(){
+
+const amount=document.querySelectorAll("input")[1].value;
+
+if(amount==="" || Number(amount)<5){
+
+alert("Minimum withdrawal amount is $5.");
+
+return;
+
+}
+
+alert("Your withdrawal request has been submitted.\n\nOnce the backend is connected, this request will be sent for review.");
+
+});
+
+</script>
+
+</body>
+
+</html>
