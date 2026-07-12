@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ETHAR - Help</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0b1220;
+color:white;
+display:flex;
+}
+
+.overlay{
+display:none;
+}
+
+.side{
+width:230px;
+background:#151e2f;
+height:100vh;
+padding:25px;
+position:fixed;
+overflow-y:auto;
+z-index:1000;
+}
+
+.side h2{
+color:#f4b400;
+margin-bottom:20px;
+}
+
+.side a{
+display:block;
+padding:12px;
+color:#d0d5dd;
+text-decoration:none;
+border-radius:8px;
+margin-bottom:5px;
+transition:.3s;
+}
+
+.side a:hover,
+.side .active{
+background:#f4b400;
+color:#111;
+}
+
+.main{
+margin-left:230px;
+width:calc(100% - 230px);
+padding:30px;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.leftHeader{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.rightHeader{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.menu{
+display:none;
+font-size:32px;
+font-weight:bold;
+cursor:pointer;
+color:#f4b400;
+user-select:none;
+}
+
+.panel{
+background:#151e2f;
+padding:25px;
+border-radius:15px;
+margin-bottom:25px;
+}
+
+.panel h2{
+color:#f4b400;
+margin-bottom:20px;
+}
+
+.faqItem{
+background:#0b1220;
+padding:18px;
+border-radius:10px;
+margin-bottom:15px;
+border:1px solid #2d3b57;
+}
+
+.faqItem h3{
+margin-bottom:8px;
+color:#f4b400;
+}
+
+.btn{
+background:#f4b400;
+color:#111;
+padding:14px 26px;
+border:none;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+opacity:.9;
+}
+
+input,
+textarea{
+
+width:100%;
+padding:14px;
+margin-top:8px;
+margin-bottom:20px;
+
+background:#0b1220;
+border:1px solid #2d3b57;
+border-radius:10px;
+color:white;
+font-size:15px;
+
+}
+
+textarea{
+
+height:180px;
+resize:vertical;
+
+}
+
+label{
+
+font-weight:600;
+
+}
+
+@media(max-width:768px){
+
+body{
+
+display:block;
+
+}
+
+.menu{
+
+display:block;
+
+}
+
+.side{
+
+position:fixed;
+left:-250px;
+top:0;
+transition:.3s;
+
+}
+
+.side.active{
+
+left:0;
+
+}
+
+.overlay{
+
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+z-index:999;
+
+}
+
+.overlay.active{
+
+display:block;
+
+}
+
+.main{
+
+margin-left:0;
+width:100%;
+padding:15px;
+
+}
+
+header{
+
+flex-direction:column;
+align-items:flex-start;
+gap:10px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay" onclick="closeMenu()"></div>
+
+<div class="side">
+
+<h2>ETHAR</h2>
+
+<a href="dashboard.html">🏠 Dashboard</a>
+
+<a href="wallet.html">👛 Wallet</a>
+
+<a href="profile.html">👤 Profile</a>
+
+<a href="tokens.html">🪙 ETHAR Token</a>
+
+<a href="referrals.html">👥 Referrals</a>
+
+<a class="active" href="help.html">❓ Help</a>
+
+<a href="about.html">ℹ️ About</a>
+
+<a href="careers.html">💼 Careers</a>
+
+</div>
+
+<div class="main">
+
+<header>
+
+<div class="leftHeader">
+
+<div class="menu" id="menuBtn" onclick="toggleMenu()">☰</div>
+
+<h1>Help Center</h1>
+
+</div>
+
+<div class="rightHeader">
+
+🔔
+
+<span>$0.00</span>
+
+<a href="profile.html" style="color:white;text-decoration:none;">👤</a>
+
+</div>
+
+</header>
+
+<div class="panel">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faqItem">
+
+<h3>How do I earn tickets?</h3>
+
+<p>Watch rewarded advertisements to earn up to 10 tickets every hour.</p>
+
+</div>
+
+<div class="faqItem">
+
+<h3>How are winners selected?</h3>
+
+<p>Every hour a random draw selects winners from all tickets entered into that draw.</p>
+
+</div>
+
+<div class="faqItem">
+
+<h3>How do I withdraw my winnings?</h3>
+
+<p>Your winnings appear in your wallet where you can request a withdrawal.</p>
+
+</div>
+
+<div class="faqItem">
+
+<h3>What are ETHAR Tokens?</h3>
+
+<p>ETHAR Tokens are the platform's digital rewards that will have additional utility in future updates.</p>
+
+</div>
+
+<div class="faqItem">
+
+<h3>How does the referral program work?</h3>
+
+<p>Earn 10% of your referrals' winnings for life once they join using your referral link.</p>
+
+</div>
+
+<br>
+
+<a href="faqs.html">
+
+<button class="btn">
+
+VIEW ALL FAQs
+
+</button>
+
+</a>
+
+</div>
+
+<div class="panel">
+
+<h2>Send Us a Message</h2>
+
+<form>
+
+<label>Subject</label>
+
+<input
+type="text"
+placeholder="Enter subject">
+
+<label>Message</label>
+
+<textarea
+placeholder="Write your message here..."></textarea>
+
+<button
+type="submit"
+class="btn">
+
+SEND MESSAGE
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<script>
+
+function toggleMenu(){
+
+    const side=document.querySelector(".side");
+    const overlay=document.querySelector(".overlay");
+    const menu=document.getElementById("menuBtn");
+
+    side.classList.toggle("active");
+    overlay.classList.toggle("active");
+
+    if(side.classList.contains("active")){
+
+        menu.innerHTML="✕";
+
+    }else{
+
+        menu.innerHTML="☰";
+
+    }
+
+}
+
+function closeMenu(){
+
+    document.querySelector(".side").classList.remove("active");
+
+    document.querySelector(".overlay").classList.remove("active");
+
+    document.getElementById("menuBtn").innerHTML="☰";
+
+}
+
+document.querySelector("form").addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    alert(
+        "Thank you for contacting ETHAR Support.\n\n" +
+        "Your message has been prepared.\n\n" +
+        "When the backend is connected, this form will send directly to support@ethartoken.com."
+    );
+
+});
+
+</script>
+
+</body>
+
+</html>
