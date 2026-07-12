@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ETHAR - Referrals</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0b1220;
+color:#fff;
+display:flex;
+}
+
+.overlay{
+display:none;
+}
+
+.side{
+width:230px;
+background:#151e2f;
+height:100vh;
+padding:25px;
+position:fixed;
+overflow-y:auto;
+z-index:1000;
+}
+
+.side h2{
+color:#f4b400;
+margin-bottom:20px;
+}
+
+.side a{
+display:block;
+padding:12px;
+color:#d0d5dd;
+text-decoration:none;
+border-radius:8px;
+margin-bottom:5px;
+transition:.3s;
+}
+
+.side a:hover,
+.side .active{
+background:#f4b400;
+color:#111;
+}
+
+.main{
+margin-left:230px;
+width:calc(100% - 230px);
+padding:30px;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.leftHeader{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.rightHeader{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.menu{
+display:none;
+font-size:32px;
+font-weight:bold;
+cursor:pointer;
+color:#f4b400;
+}
+
+.panel{
+background:#151e2f;
+padding:25px;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+.panel h2{
+color:#f4b400;
+margin-bottom:20px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+margin-bottom:20px;
+}
+
+.card{
+background:#151e2f;
+padding:20px;
+border-radius:15px;
+}
+
+.card small{
+color:#b6bcc8;
+}
+
+.card h2{
+margin-top:10px;
+color:#f4b400;
+}
+
+.refbox{
+
+background:#0b1220;
+padding:18px;
+border-radius:10px;
+margin-bottom:15px;
+border:1px solid #2d3b57;
+
+}
+
+.btn{
+
+background:#f4b400;
+color:#111;
+padding:14px 26px;
+border:none;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+
+}
+
+th,td{
+
+padding:12px;
+border-bottom:1px solid #2b374d;
+text-align:left;
+
+}
+
+th{
+
+color:#f4b400;
+
+}
+
+.notice{
+
+background:#0b1220;
+border-left:4px solid #f4b400;
+padding:18px;
+border-radius:8px;
+margin-top:20px;
+line-height:1.7;
+
+}
+
+@media(max-width:768px){
+
+body{
+
+display:block;
+
+}
+
+.menu{
+
+display:block;
+
+}
+
+.side{
+
+position:fixed;
+left:-250px;
+top:0;
+transition:.3s;
+
+}
+
+.side.active{
+
+left:0;
+
+}
+
+.overlay{
+
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+z-index:999;
+
+}
+
+.overlay.active{
+
+display:block;
+
+}
+
+.main{
+
+margin-left:0;
+width:100%;
+padding:15px;
+
+}
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+table{
+
+display:block;
+overflow-x:auto;
+white-space:nowrap;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay" onclick="closeMenu()"></div>
+
+<div class="side">
+
+<h2>ETHAR</h2>
+
+<a href="dashboard.html">🏠 Dashboard</a>
+
+<a href="wallet.html">👛 Wallet</a>
+
+<a href="profile.html">👤 Profile</a>
+
+<a href="ethar-token.html">🪙 ETHAR Token</a>
+
+<a class="active" href="referrals.html">👥 Referrals</a>
+
+<a href="help.html">❓ Help</a>
+
+<a href="about.html">ℹ️ About</a>
+
+<a href="careers.html">💼 Careers</a>
+
+</div>
+
+<div class="main">
+
+<header>
+
+<div class="leftHeader">
+
+<div class="menu" id="menuBtn" onclick="toggleMenu()">☰</div>
+
+<h1>Referrals</h1>
+
+</div>
+
+<div class="rightHeader">
+
+🔔
+
+<span>$0.00</span>
+
+<a href="profile.html" style="color:white;text-decoration:none;">👤</a>
+
+</div>
+
+</header>
+
+<div class="panel">
+
+<h2>Your Referral Details</h2>
+
+<div class="refbox">
+
+<strong>Referral Code</strong>
+
+<br><br>
+
+ETHAR8XQ21
+
+</div>
+
+<div class="refbox">
+
+<strong>Referral Link</strong>
+
+<br><br>
+
+https://ethartoken.com/?ref=ETHAR8XQ21
+
+</div>
+
+<button class="btn">
+
+📋 Copy Referral Link
+
+</button>
+
+&nbsp;
+
+<button class="btn">
+
+📨 Invite Friends
+
+</button>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<small>Total Referrals</small>
+
+<h2>0</h2>
+
+</div>
+
+<div class="card">
+
+<small>Total Earned From Referrals</small>
+
+<h2>$0.00</h2>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>My Referrals</h2>
+
+<table>
+
+<tr>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Date Joined</th>
+
+<th>Total Won</th>
+
+<th>Your Earnings</th>
+
+</tr>
+
+<tr>
+
+<td colspan="5" style="text-align:center;color:#999;">
+
+You haven't referred anyone yet.
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="notice">
+
+<strong>Referral Rewards</strong>
+
+<br><br>
+
+Earn <strong>10%</strong> of every prize won by people who join using your referral link. There is no limit to the number of people you can refer, and you continue earning for as long as your referrals remain active on ETHAR.
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function toggleMenu(){
+
+    const side=document.querySelector(".side");
+    const overlay=document.querySelector(".overlay");
+    const menu=document.getElementById("menuBtn");
+
+    side.classList.toggle("active");
+    overlay.classList.toggle("active");
+
+    if(side.classList.contains("active")){
+
+        menu.innerHTML="✕";
+
+    }else{
+
+        menu.innerHTML="☰";
+
+    }
+
+}
+
+function closeMenu(){
+
+    document.querySelector(".side").classList.remove("active");
+    document.querySelector(".overlay").classList.remove("active");
+
+    document.getElementById("menuBtn").innerHTML="☰";
+
+}
+
+document.querySelectorAll(".btn")[0].addEventListener("click",function(){
+
+    navigator.clipboard.writeText("https://ethartoken.com/?ref=ETHAR8XQ21");
+
+    alert("Referral link copied to clipboard!");
+
+});
+
+document.querySelectorAll(".btn")[1].addEventListener("click",function(){
+
+    const link="https://ethartoken.com/?ref=ETHAR8XQ21";
+
+    if(navigator.share){
+
+        navigator.share({
+
+            title:"Join ETHAR",
+
+            text:"Join ETHAR using my referral link and start earning rewards!",
+
+            url:link
+
+        });
+
+    }else{
+
+        navigator.clipboard.writeText(link);
+
+        alert("Referral link copied. Share it with your friends!");
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>
