@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0'>
+    <title>ETHAR Profile</title>
+<link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap' rel='stylesheet'>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}body{background:#0b1220;color:#fff;display:flex}.overlay{display:none}.side{width:230px;background:#151e2f;height:100vh;padding:25px;position:fixed;overflow:auto;z-index:1000}.side h2{color:#f4b400;margin-bottom:20px}.side a{display:block;color:#d0d5dd;text-decoration:none;padding:12px;border-radius:8px;margin-bottom:5px}.side a:hover,.side .active{background:#f4b400;color:#111}.main{margin-left:230px;width:calc(100% - 230px);padding:30px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.left,.right{display:flex;align-items:center;gap:15px}.menu{display:none;font-size:30px;color:#f4b400;cursor:pointer}.panel{background:#151e2f;padding:25px;border-radius:15px;margin-bottom:20px}h2{color:#f4b400;margin-bottom:18px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:flex;flex-direction:column}label{margin-bottom:6px}input,select{padding:12px;background:#0b1220;color:#fff;border:1px solid #2d3b57;border-radius:8px}.full{grid-column:1/-1}.btn{background:#f4b400;color:#111;border:none;padding:14px 24px;border-radius:10px;font-weight:700;cursor:pointer}
+@media(max-width:768px){body{display:block}.menu{display:block}.overlay.active{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999}.side{left:-240px;top:0;transition:.3s}.side.active{left:0}.main{margin-left:0;width:100%;padding:15px}.grid{grid-template-columns:1fr}}
+</style>
+  </head>
+  <body>
+    <div class='overlay' onclick='closeMenu()'></div>
+    <div class='side'><h2>ETHAR</h2>
+      <a href='dashboard.html'>🏠 Dashboard</a>
+      <a href='wallet.html'>👛 Wallet</a>
+      <a class='active' href='profile.html' onclick='closeMenu()'>👤 Profile</a>
+      <a href='tokens.html'>🪙 ETHAR Token</a>
+
+      <a href='referrals.html'>👥 Referrals</a>
+
+      <a href='help.html'>❓ Help</a>
+
+      <a href='about.html'>ℹ️ About</a>
+
+      <a href='careers.html'>💼 Careers</a>
+    </div>
+    <div class='main'><header><div class='left'><div class='menu' id='m' onclick='toggleMenu()'>☰</div><h1>Profile</h1></div><div class='right'>🔔 <span>$0.00</span> <a href='profile.html' style='color:#fff;text-decoration:none'>👤</a></div></header>
+<div class='panel'><h2>Profile Information</h2><div class='grid'>
+<div class='field'><label>First Name</label><input placeholder='First name'></div>
+<div class='field'><label>Last Name</label><input placeholder='Last name'></div>
+<div class='field'><label>Email</label><input type='email' placeholder='Email'></div>
+<div class='field'><label>Phone Number</label><input placeholder='+254...'></div>
+<div class='field'><label>Date of Birth</label><input type='date'></div>
+<div class='field'><label>Country</label><select><option>Kenya</option><option>Uganda</option><option>Tanzania</option><option>United Kingdom</option><option>Australia</option></select></div>
+<div class='full'><button class='btn'>SAVE CHANGES</button></div></div></div>
+<div class='panel'><h2>Security Settings</h2><div class='grid'>
+<div class='field full'><label>Current Password</label><input type='password'></div>
+<div class='field full'><label>New Password</label><input type='password'></div>
+<div class='field full'><label>Confirm Password</label><input type='password'></div>
+<div class='full'><button class='btn'>UPDATE PASSWORD</button></div></div></div></div>
+<script>
+function toggleMenu(){document.querySelector('.side').classList.toggle('active');document.querySelector('.overlay').classList.toggle('active');m.textContent=document.querySelector('.side').classList.contains('active')?'✕':'☰';}
+function closeMenu(){document.querySelector('.side').classList.remove('active');document.querySelector('.overlay').classList.remove('active');m.textContent='☰';}
+</script>
+</body>
+</html>
