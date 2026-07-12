@@ -1,175 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ETHAR - FAQs</title>
-  <link rel="icon" href="ethar.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
-    body { background:#f4f4f6; color:#212529; }
-    header { background:linear-gradient(90deg,#bb86fc,#8a3ffc); color:#fff; padding:40px 20px; text-align:center; }
-    header img { width:100px; margin-bottom:12px; }
-    header h1 { font-size:36px; font-weight:700; margin-bottom:8px; }
-    header p { font-size:18px; opacity:0.9; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    main { max-width:900px; margin:0 auto; padding:40px 20px; }
-    h2 { color:#bb86fc; font-size:28px; margin-bottom:24px; text-align:center; }
+<title>ETHAR FAQs</title>
 
-    .faq-item { background:#fff; border-radius:12px; margin-bottom:16px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); transition:0.3s; }
-    .faq-question { font-weight:600; font-size:18px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
-    .faq-question i { color:#bb86fc; font-size:20px; }
-    .faq-answer { display:none; margin-top:12px; font-size:16px; color:#495057; line-height:1.6; }
-    .faq-item.active .faq-answer { display:block; }
-    .faq-item.active .faq-question i { transform: rotate(45deg); transition:0.3s; }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    footer { text-align:center; padding:40px 20px; background:#f1f1f4; color:#6c757d; }
-    footer .store-links img { height:55px; margin:12px; cursor:pointer; transition:0.2s; }
-    footer .store-links img:hover { transform:scale(1.05); }
+<style>
 
-    @media(max-width:600px){ h2{font-size:24px;} .faq-question{font-size:16px;} }
-  </style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:#0b1220;
+color:white;
+line-height:1.7;
+
+}
+
+.container{
+
+max-width:1000px;
+margin:auto;
+padding:40px 20px;
+
+}
+
+.logo{
+
+font-size:40px;
+font-weight:700;
+color:#f4b400;
+text-align:center;
+margin-bottom:10px;
+
+}
+
+h1{
+
+text-align:center;
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+text-align:center;
+color:#b8c0cc;
+margin-bottom:40px;
+
+}
+
+.faq{
+
+background:#151e2f;
+padding:25px;
+border-radius:15px;
+margin-bottom:20px;
+
+}
+
+.faq h2{
+
+color:#f4b400;
+margin-bottom:10px;
+font-size:22px;
+
+}
+
+.faq p{
+
+color:#d9d9d9;
+
+}
+
+.contact{
+
+margin-top:50px;
+padding:30px;
+background:#151e2f;
+border-radius:15px;
+text-align:center;
+
+}
+
+.contact h2{
+
+color:#f4b400;
+margin-bottom:15px;
+
+}
+
+.contact a{
+
+color:#f4b400;
+text-decoration:none;
+font-weight:bold;
+
+}
+
+footer{
+
+margin-top:50px;
+text-align:center;
+color:#8d97a5;
+padding-bottom:30px;
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<header>
-  <img src="ethar.png" alt="ETHAR Logo">
-  <h1>ETHAR</h1>
-  <p>Mine and Rise with ETHAR</p>
-</header>
+<div class="container">
 
-<main>
-  <h2>Frequently Asked Questions</h2>
+<div class="logo">
 
-  <div class="faq-item">
-    <div class="faq-question">
-      What is ETHAR?
-      <i class="fas fa-plus"></i>
-    </div>
-    <div class="faq-answer">
-      ETHAR is a cryptocurrency mining app where users can earn ETHAR tokens through mining, referrals, and registration bonuses. It is designed to be user-friendly and secure.
-    </div>
-  </div>
+ETHAR
 
-  <div class="faq-item">
-    <div class="faq-question">
-      How do I start mining?
-      <i class="fas fa-plus"></i>
-    </div>
-    <div class="faq-answer">
-      Log in to the app, go to the Home page, and click "Start Mining." You must watch an ad to activate mining, which runs for 24 hours automatically. Tokens accumulate every second.
-    </div>
-  </div>
+</div>
 
-  <div class="faq-item">
-    <div class="faq-question">
-      How is my mining rate calculated?
-      <i class="fas fa-plus"></i>
-    </div>
-    <div class="faq-answer">
-      Base rate: 0.2 ETHAR/hour. It increases by +0.05 ETHAR per active referral and +0.05 ETHAR per ad boost (max 2 boosts active at a time and each ad boost runs for 6 hours only). There is no maximum mining rate.
-    </div>
-  </div>
+<h1>Frequently Asked Questions</h1>
 
-  <div class="faq-item">
-    <div class="faq-question">
-      What is the mining pool?
-      <i class="fas fa-plus"></i>
-    </div>
-    <div class="faq-answer">
-      The mining pool starts at 80 million ETHAR tokens. Tokens are distributed via mining, referral bonuses, and successful registrations.
-    </div>
-  </div>
+<p class="subtitle">
 
-  <div class="faq-item">
-    <div class="faq-question">
-      Can I mine all the time?
-      <i class="fas fa-plus"></i>
-    </div>
-    <div class="faq-answer">
-      Mining lasts 24 hours per session. After the session ends, click "Start Mining" again. Mining stops on sign-out but continues if the app is closed.
-    </div>
-  </div>
+Everything you need to know about ETHAR Rewards.
 
-  <div class="faq-item">
-    <div class="faq-question">
-      How do referrals work?
-      <i class="fas fa-plus"></i>
-    </div>
-    <div class="faq-answer">
-      Every user has a unique referral code. Share it with friends to earn 5 ETHAR when they sign up. Active referrals are those currently mining.
-    </div>
-  </div>
+</p>
 
-  <div class="faq-item">
-    <div class="faq-question">
-      How do I manage my profile?
-      <i class="fas fa-plus"></i>
-    </div>
-    <div class="faq-answer">
-      You can only update your email, phone, password, and profile photo. First and last names and country cannot be changed, if need be, kindly contact support in-app or email support@ethartoken.com. KYC and account deletion options are in the Profile page.
-    </div>
-  </div>
+<div class="faq">
 
-    <div class="faq-item">
-    <div class="faq-question">
-      What is KYC and why is it required?
-      <i class="fas fa-plus"></i>
-    </div>
-    <div class="faq-answer">
-      KYC (Know Your Customer) is a verification process to confirm your identity before migrating to the Mainnet. 
-      It ensures transparency and prevents fraudulent activities. 
-      The KYC process will begin soon — well before the end of the mining phase — to ensure a smooth transition to the Mainnet launch and exchange listings.
-      Users will be required to submit valid government-issued identification when KYC becomes available in the Profile section.
-    </div>
-  </div>
+<h2>What is ETHAR?</h2>
 
-  <div class="faq-item">
-    <div class="faq-question">
-      When does mining end?
-      <i class="fas fa-plus"></i>
-    </div>
-    <div class="faq-answer">
-      We are hoping for mining to end on March 20, 2026. Make sure to mine regularly to maximize your ETHAR tokens.
-    </div>
-  </div>
+<p>
 
-    <div class="faq-item">
-    <div class="faq-question">
-      When will the ETHAR Mainnet launch?
-      <i class="fas fa-plus"></i>
-    </div>
-    <div class="faq-answer">
-      The ETHAR Mainnet will launch after the KYC process begins, followed by exchange listings. 
-      This marks the transition from mining to the official blockchain network where ETHAR tokens become fully transferable.
-    </div>
-  </div>
-</main>
+ETHAR is a rewards platform where users can watch rewarded ads to earn tickets that can be entered into hourly prize draws. Winners receive real cash rewards, and users also earn ETHAR Tokens as part of the platform ecosystem.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>How do I earn tickets?</h2>
+
+<p>
+
+You earn tickets by watching rewarded ads. Every completed ad gives you one ticket.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>How do I enter the draw?</h2>
+
+<p>
+
+Watching ads earns tickets, but tickets are not entered automatically. You choose how many available tickets you would like to enter into the current hourly draw.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>How are winners selected?</h2>
+
+<p>
+
+At the end of every hourly draw, winners are selected randomly from all tickets entered into that draw.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>How many winners are there?</h2>
+
+<p>
+
+Each hourly draw currently selects 10 winners. The number of winners and prize distribution may change as the platform grows.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>How is the prize pool calculated?</h2>
+
+<p>
+
+Prize pools are funded from platform advertising revenue after operational costs have been deducted.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>How do I receive my winnings?</h2>
+
+<p>
+
+Winning amounts are credited to your ETHAR wallet. From there, you can request a withdrawal using one of the available withdrawal methods.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>Do I need to deposit money?</h2>
+
+<p>
+
+No. The current platform allows participation without making any deposits. Tickets are earned by watching rewarded advertisements.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>What are ETHAR Tokens?</h2>
+
+<p>
+
+ETHAR Tokens are the platform's digital reward token. They are earned through participation and are intended to provide additional utility as the ETHAR ecosystem expands.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>What is the referral program?</h2>
+
+<p>
+
+Invite your friends using your unique referral link. You earn 10% of every prize your referrals win for as long as they remain active on the platform.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>Is there a limit to how many people I can refer?</h2>
+
+<p>
+
+No. There is no limit to the number of referrals you can invite.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>Can I have multiple accounts?</h2>
+
+<p>
+
+No. Each person is allowed only one account. Multiple accounts may result in suspension or permanent removal from the platform.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>Can I transfer my ETHAR Tokens?</h2>
+
+<p>
+
+Token transfers and additional token utilities may become available as the ETHAR ecosystem develops.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>Can I change my personal information?</h2>
+
+<p>
+
+Yes. You can update your name, phone number, country, date of birth, and password at any time from your Profile page.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>Is my personal information secure?</h2>
+
+<p>
+
+We take reasonable measures to protect your account information and personal data. Never share your password with anyone.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>What happens if I forget my password?</h2>
+
+<p>
+
+You will be able to reset your password using your registered email address. Just click on "Forgot Password" on the login page, and you will receive an email with a link to reset your password.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>Can I watch ads on multiple devices?</h2>
+
+<p>
+
+For account security and fraud prevention, unusual activity across multiple devices may be reviewed. Always use your own account and follow the platform rules.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>Why didn't I win?</h2>
+
+<p>
+
+Each ticket entered into a draw has an equal chance of being selected. Entering more tickets increases your chances, but every draw is random.
+
+</p>
+
+</div>
+
+<div class="faq">
+
+<h2>Will ETHAR introduce new features?</h2>
+
+<p>
+
+Yes. We plan to continue improving the platform by adding new rewards, token utilities, promotions, and additional ways to participate.
+
+</p>
+
+</div>
+
+<div class="contact">
+
+<h2>Still have a question?</h2>
+
+<p>
+
+If you cannot find the answer you are looking for, our support team will be happy to assist you.
+
+</p>
+
+<br>
+
+<p>
+
+📧 <strong>Email:</strong>
+
+<a href="mailto:support@ethartoken.com">
+
+support@ethartoken.com
+
+</a>
+
+</p>
+
+<p style="margin-top:15px;">
+
+We aim to respond to all enquiries as quickly as possible.
+
+</p>
+
+</div>
 
 <footer>
-  <p>Download the ETHAR App:</p>
-  <div class="store-links">
-    <a href="https://play.google.com/store/apps/details?id=com.ethartoken.app" target="_blank">
-      <img src="google-play-badge.png" alt="Google Play Store">
-    </a>
-    <a href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank">
-      <img src="app-store-badge.png" alt="App Store">
-    </a>
-  </div>
-  <p>&copy; 2025 ETHAR. All rights reserved.</p>
+
+© 2026 ETHAR. All Rights Reserved.
+
 </footer>
 
-<script>
-  document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', () => {
-      const item = q.parentElement;
-      item.classList.toggle('active');
-    });
-  });
-</script>
+</div>
 
 </body>
+
 </html>
