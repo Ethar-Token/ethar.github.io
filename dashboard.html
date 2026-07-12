@@ -269,6 +269,21 @@ display:block;
 
 }
 
+.overlay{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.55);
+    z-index:999;
+}
+
+.overlay.active{
+    display:block;
+}
+
 .main{
     margin-left:0;
     width:100%;
@@ -314,12 +329,34 @@ input[type="number"]{
 }
 
 }
+
+.overlay{
+    display:none;
+}
+
 </style>
 
 </head>
     
 <body>
-<div class="side"><h2>ETHAR</h2><a>🏠 Dashboard</a><a>👛 Wallet</a><a>👤 Profile</a><a>🪙 ETHAR Token</a><a>👥 Referrals</a><a>❓ Help</a><a>ℹ️ About</a><a>💼 Careers</a></div>
+<div class="overlay" onclick="closeMenu()"></div>
+<div class="side"><h2>ETHAR</h2>
+    <a href="#" onclick="closeMenu()">🏠 Dashboard</a>
+    
+    <a href="#" onclick="closeMenu()">👛 Wallet</a>
+
+    <a href="#" onclick="closeMenu()">👤 Profile</a>
+
+    <a href="#" onclick="closeMenu()">🪙 ETHAR Token</a>
+
+    <a href="#" onclick="closeMenu()">👥 Referrals</a>
+
+    <a href="#" onclick="closeMenu()">❓ Help</a>
+
+    <a href="#" onclick="closeMenu()">ℹ️ About</a>
+
+    <a href="#" onclick="closeMenu()">💼 Careers</a>
+</div>
 <div class="main">
 
 <header>
@@ -423,6 +460,16 @@ let s=2304;setInterval(()=>{if(s>0)s--;let m=String(Math.floor((s%3600)/60)).pad
 function toggleMenu(){
 
 document.querySelector(".side").classList.toggle("active");
+
+document.querySelector(".overlay").classList.toggle("active");
+
+}
+
+function closeMenu(){
+
+document.querySelector(".side").classList.remove("active");
+
+document.querySelector(".overlay").classList.remove("active");
 
 }
 
