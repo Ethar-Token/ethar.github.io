@@ -185,7 +185,7 @@ font-size:32px;
 
 </div>
 
-<form id="loginForm>
+<form id="loginForm">
 
 <div class="field">
 
@@ -319,6 +319,10 @@ return;
 
 }
 
+window.location.href="dashboard.html";
+
+});
+
 document.getElementById("resendBtn").addEventListener("click", async function(){
 
 const email=document.getElementById("email").value.trim();
@@ -352,10 +356,6 @@ return;
 }
 
 alert("A new verification email has been sent.");
-
-});
-
-window.location.href="dashboard.html";
 
 });
 
