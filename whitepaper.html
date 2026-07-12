@@ -1,225 +1,985 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ETHAR — Whitepaper | Mine and Rise</title>
-  <meta name="description" content="ETHAR — Mine and Rise with ETHAR. Whitepaper: tokenomics, mining mechanics, roadmap, and migration plan." />
-  <link rel="icon" href="ethar.png" />
-  <style>
-    :root{
-      --primary:#bb86fc;
-      --accent:#6a00f4;
-      --bg: #f8f8fb;
-      --card: #ffffff;
-      --muted: #555;
-      --glass: rgba(0,0,0,0.04);
-      --max-width:1000px;
-      color-scheme: light;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background: linear-gradient(180deg, #ffffff 0%, #f8f8fb 40%, #f2f1f8 100%);
-      color:#111;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:48px 20px;
-      display:flex;
-      justify-content:center;
-    }
-    .container{
-      width:100%;
-      max-width:var(--max-width);
-    }
 
-    h1, h2, h3, h4, h5, h6 {
-      color: var(--primary);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    header{display:flex;gap:20px;align-items:center;margin-bottom:28px}
-    header img{width:64px;height:64px;border-radius:12px;box-shadow:0 6px 18px rgba(106,0,244,0.25)}
-    header h1{font-size:24px;margin:0}
-    header p{margin:0;color:var(--muted);font-size:14px}
+<title>ETHAR Whitepaper</title>
 
-    .hero{background:linear-gradient(180deg, rgba(187,134,252,0.06), rgba(106,0,244,0.03));padding:28px;border-radius:14px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.03)}
-    .hero h2{margin:0 0 8px;font-size:20px}
-    .hero .meta{color:var(--muted);font-size:13px}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
-    nav.toc a{background:var(--glass);padding:8px 12px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:13px}
+<style>
 
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:24px;border-radius:12px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.03)}
-    h3{margin-top:0}
-    p.lead{color:var(--muted);margin-top:6px}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+scroll-behavior:smooth;
+}
 
-    section {line-height:1.6}
-    .grid{display:grid;grid-template-columns:1fr 300px;gap:20px}
-    aside{background:rgba(255,255,255,0.02);padding:16px;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
-    table{width:100%;border-collapse:collapse;margin-top:8px}
-    td,th{padding:8px;border-bottom:1px dashed rgba(255,255,255,0.03);font-size:14px}
-    .muted{color:var(--muted)}
+body{
 
-    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+background:#0b1220;
+color:white;
+line-height:1.8;
 
-    /* Responsive */
-    @media (max-width:900px){
-      .grid{grid-template-columns:1fr}
-      header h1{font-size:18px}
-    }
+}
 
-    .cta{display:inline-block;background:var(--primary);color:#111;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;margin-top:12px}
-    .small{font-size:13px;color:var(--muted)}
-    .code{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;font-family:monospace;font-size:13px;color:#dfe}
-  </style>
+header{
+
+background:#151e2f;
+padding:25px;
+position:sticky;
+top:0;
+z-index:999;
+border-bottom:1px solid #25344d;
+
+}
+
+header h1{
+
+color:#f4b400;
+text-align:center;
+
+}
+
+nav{
+
+margin-top:20px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:12px;
+
+}
+
+nav a{
+
+text-decoration:none;
+color:#d7dce5;
+padding:8px 14px;
+border-radius:8px;
+transition:.3s;
+
+}
+
+nav a:hover{
+
+background:#f4b400;
+color:#111;
+
+}
+
+.container{
+
+max-width:1100px;
+margin:auto;
+padding:40px 20px;
+
+}
+
+.hero{
+
+text-align:center;
+padding:60px 20px;
+
+}
+
+.hero h2{
+
+font-size:45px;
+color:#f4b400;
+margin-bottom:20px;
+
+}
+
+.hero h3{
+
+font-weight:400;
+color:#d9d9d9;
+margin-bottom:15px;
+
+}
+
+.hero p{
+
+color:#9aa7ba;
+
+}
+
+.section{
+
+background:#151e2f;
+padding:35px;
+margin-bottom:25px;
+border-radius:15px;
+
+}
+
+.section h2{
+
+color:#f4b400;
+margin-bottom:20px;
+
+}
+
+.section h3{
+
+margin-top:20px;
+margin-bottom:10px;
+color:#f4b400;
+
+}
+
+.card{
+
+background:#0b1220;
+padding:20px;
+border-radius:12px;
+margin-top:15px;
+border:1px solid #2d3b57;
+
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:20px;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+
+}
+
+th,td{
+
+padding:12px;
+border-bottom:1px solid #2b374d;
+text-align:left;
+
+}
+
+th{
+
+color:#f4b400;
+
+}
+
+footer{
+
+text-align:center;
+padding:40px;
+color:#8f99a7;
+
+}
+
+@media(max-width:768px){
+
+.hero h2{
+
+font-size:34px;
+
+}
+
+nav{
+
+justify-content:flex-start;
+
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
-  <div class="container">
-    <header>
-      <img src="ethar.png" alt="ETHAR"/>
-      <div>
-        <h1>ETHAR — Whitepaper</h1>
-        <p class="small">Mine and Rise with ETHAR • Max supply 100,000,000 • Initial pool 80,000,000</p>
-      </div>
-    </header>
 
-    <div class="hero card">
-      <h2>Executive summary</h2>
-      <p class="lead">ETHAR is a mobile-first token distribution platform that mints virtual token balances via short, repeatable mining sessions activated by ad views. The model is designed to onboard mainstream users quickly while funding platform operations and preparing for a secure, KYC-backed migration to mainnet.</p>
-      <div style="margin-top:12px">
-        <a class="cta" href="#tokenomics">Read tokenomics</a>
-        <span style="margin-left:12px;color:var(--muted)">Target mainnet migration: Q2 2026</span>
-      </div>
-    </div>
+<header>
 
-    <nav class="toc">
-      <a href="#vision">Vision</a>
-      <a href="#tokenomics">Tokenomics</a>
-      <a href="#mining">Mining mechanics</a>
-      <a href="#antidump">Anti-dump</a>
-      <a href="#revenue">Revenue</a>
-      <a href="#kyc">KYC & migration</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#appendix">Appendix</a>
-    </nav>
+<h1>ETHAR Whitepaper</h1>
 
-    <div class="grid">
-      <main>
-        <section id="vision" class="card">
-          <h3>1. Vision & rationale</h3>
-          <p>ETHAR makes token ownership easy: simple ad‑activated mobile mining sessions, a transparent referral program, and short session durations that encourage repeat engagement. Ads fund platform costs while referrals and boosts drive organic growth and retention.</p>
-        </section>
+<nav>
 
-        <section id="tokenomics" class="card">
-          <h3>2. Tokenomics</h3>
-          <p>Key parameters:</p>
-          <ul>
-            <li><strong>Max supply:</strong> 100,000,000 ETHAR (fixed)</li>
-            <li><strong>Initial mining pool:</strong> 80,000,000 ETHAR</li>
-            <li><strong>Team allocation:</strong> 10,000,000 ETHAR (vested)</li>
-            <li><strong>Treasury / liquidity / marketing:</strong> 10,000,000 ETHAR</li>
-            <li><strong>Registration bonus:</strong> 5 ETHAR to both referrer and referee</li>
-          </ul>
-          <p class="small muted">Distribution and vesting details are configurable but recommended to include long‑form vesting for team allocation and gradual treasury use for liquidity.</p>
-        </section>
+<a href="#summary">Executive Summary</a>
 
-        <section id="mining" class="card">
-          <h3>3. Mining mechanics</h3>
-          <p>Mining is off-chain in the app (virtual balances) and follows simple rules:</p>
-          <ul>
-            <li><strong>Activation:</strong> Watch an ad to completion → 24‑hour mining session starts.</li>
-            <li><strong>Base rate:</strong> 0.2 ETHAR / hour.</li>
-            <li><strong>Referral bonus:</strong> +0.05 ETHAR / hour per active referral (an active referral is a referee who is currently in a mining session).</li>
-            <li><strong>Ad boosts:</strong> Each ad boost adds +0.05 ETHAR / hour for 6 hours. Max 2 active boosts.</li>
-            <li><strong>Session behaviour:</strong> Mining continues if the app is backgrounded; it stops on logout.</li>
-          </ul>
+<a href="#vision">Vision</a>
 
-          <p><strong>Rate formula (per hour):</strong></p>
-          <div class="code">rate = 0.2 + (active_referrals × 0.05) + (active_ad_boosts × 0.05)</div>
+<a href="#works">How ETHAR Works</a>
 
-          <p class="small muted">Tokens mined are deducted from the mining pool in real time. Pool balances are shown in human friendly form (e.g. 80.0M, 79.6M, 21.3K).</p>
-        </section>
+<a href="#token">ETHAR Token</a>
 
-        <section id="antidump" class="card">
-          <h3>4. Anti-dump & lockups</h3>
-          <p>To protect value at migration we recommend:</p>
-          <ol>
-            <li>Default migration lockup (e.g., 50% locked for 3–12 months) applied to mined balances at mainnet conversion.</li>
-            <li>Lockup incentives: bonuses for choosing longer or larger lockups.</li>
-            <li>Team vesting: 24 months with a 6-month cliff.</li>
-            <li>Gradual liquidity provisioning from treasury to reduce price shocks.</li>
-          </ol>
-        </section>
+<a href="#utility">Utility</a>
 
-        <section id="revenue" class="card">
-          <h3>5. Revenue & sustainability</h3>
-          <p>Ads fund platform operations. Suggested splits:</p>
-          <ul>
-            <li>60% operations & development</li>
-            <li>25% liquidity & buybacks</li>
-            <li>15% marketing & community</li>
-          </ul>
-          <p class="small muted">Ad-driven sessions are intentionally lightweight — the user value (24h mining) is higher than the ad interruption cost, encouraging retention.</p>
-        </section>
+<a href="#referrals">Referrals</a>
 
-        <section id="kyc" class="card">
-          <h3>6. KYC & mainnet migration</h3>
-          <p>We will roll out KYC before March 20, 2026 to comply with AML requirements and to prepare for on-chain migration. KYC enables secure token transfer to user-supplied wallet addresses, participation in listings, and regulatory compliance.</p>
-          <p>Migration plan (high level):</p>
-          <ol>
-            <li>KYC roll-out and completion</li>
-            <li>Smart contract audit and security review</li>
-            <li>Snapshot & migration with lockups applied</li>
-            <li>Liquidity provisioning & exchange listing coordination</li>
-          </ol>
-        </section>
+<a href="#draws">Draws</a>
 
-        <section id="roadmap" class="card">
-          <h3>7. Roadmap</h3>
-          <ul>
-            <li><strong>Now:</strong> User acquisition, product polish.</li>
-            <li><strong>Q4 2025:</strong> KYC tooling, audit prep.</li>
-            <li><strong>Q1 2026:</strong> KYC roll-out, audit of migration contracts.</li>
-            <li><strong>Mar 20, 2026:</strong> Mining scheduled end (app balances ready for migration).</li>
-            <li><strong>Q2 2026:</strong> Target mainnet migration and initial exchange listings.</li>
-          </ul>
-        </section>
+<a href="#roadmap">Roadmap</a>
 
-        <section id="appendix" class="card">
-          <h3>8. Appendix — example math & notes</h3>
-          <p><strong>Example:</strong> User with base 0.2/hr + 3 active referrals + 2 boosts = 0.2 + 0.15 + 0.10 = 0.45/hr → 24h = 10.8 ETHAR.</p>          
-        </section>
+<a href="#tokenomics">Tokenomics</a>
 
-      </main>
+</nav>
 
-      <aside>
-        <h4>Quick facts</h4>
-        <table>
-          <tr><th>Item</th><th class="muted">Value</th></tr>
-          <tr><td>Max supply</td><td>100,000,000 ETHAR</td></tr>
-          <tr><td>Mining pool</td><td>80,000,000 ETHAR</td></tr>
-          <tr><td>Base rate</td><td>0.2 ETHAR/hr</td></tr>
-          <tr><td>Referral bonus</td><td>+0.05/hr per active</td></tr>
-          <tr><td>Ad boost</td><td>+0.05/hr (6h) — max 2</td></tr>
-          <tr><td>Registration reward</td><td>5 ETHAR</td></tr>
-        </table>
+</header>
 
-        <div style="margin-top:12px">
-          <a class="cta" href="#kyc">KYC & Migration</a>
-        </div>
+<div class="container">
 
-        <div style="margin-top:18px" class="small muted">
-          © <span id="year"></span> ETHAR • Mine and Rise with ETHAR
-        </div>
-      </aside>
-    </div>
+<div class="hero">
 
-    <footer class="small muted">This whitepaper is a draft and subject to change. It does not constitute financial or legal advice. All schedules and figures are targets, not guarantees.</footer>
-  </div>
+<h2>ETHAR</h2>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+<h3>Reward. Earn. Grow Together.</h3>
+
+<p>
+
+Version 1.0 Draft
+
+</p>
+
+</div>
+
+<div class="section" id="summary">
+
+<h2>Executive Summary</h2>
+
+<p>
+
+ETHAR is a participation-based digital rewards platform that allows users to earn rewards by engaging with rewarded advertisements. Every completed advertisement earns tickets that users can choose to enter into hourly prize draws for the opportunity to win cash rewards.
+
+</p>
+
+<br>
+
+<p>
+
+In addition to participating in prize draws, every ticket entered earns ETHAR Tokens, creating a long-term ecosystem where participation generates both immediate and future value.
+
+</p>
+
+<br>
+
+<p>
+
+Our goal is to create one of the world's largest reward communities where users can earn without making mandatory deposits while businesses gain access to highly engaged audiences through rewarded advertising.
+
+</p>
+
+</div>
+
+<div class="section" id="vision">
+
+<h2>Vision</h2>
+
+<p>
+
+ETHAR was created to make digital rewards simple, transparent, and accessible to everyone.
+
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Reward Participation</h3>
+
+<p>
+
+Every action on ETHAR should provide value back to the community.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Global Access</h3>
+
+<p>
+
+Anyone with internet access should be able to participate regardless of location.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Fair Rewards</h3>
+
+<p>
+
+Every ticket entered has an equal opportunity of winning.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Long-Term Ecosystem</h3>
+
+<p>
+
+ETHAR Tokens create an additional layer of rewards beyond cash prizes.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section" id="works">
+
+<h2>How ETHAR Works</h2>
+
+<h3>Step 1</h3>
+
+<p>
+
+Create an ETHAR account.
+
+</p>
+
+<h3>Step 2</h3>
+
+<p>
+
+Watch rewarded advertisements to earn tickets.
+
+</p>
+
+<h3>Step 3</h3>
+
+<p>
+
+Choose how many tickets you wish to enter into the current hourly draw.
+
+</p>
+
+<h3>Step 4</h3>
+
+<p>
+
+Each ticket entered provides:
+
+</p>
+
+<ul style="margin-left:30px;margin-top:15px;line-height:2;">
+
+<li>One entry into the hourly draw.</li>
+
+<li>0.1 ETHAR Token.</li>
+
+</ul>
+
+<h3>Step 5</h3>
+
+<p>
+
+At the end of every hour, winners are selected randomly and cash prizes are credited directly to their ETHAR Wallet.
+
+</p>
+
+</div>
+
+<div class="section" id="token">
+
+<h2>ETHAR Token</h2>
+
+<p>
+
+ETHAR Token is the native digital reward token of the ETHAR ecosystem. Rather than being mined through computational power, ETHAR is earned by actively participating on the platform.
+
+</p>
+
+<br>
+
+<p>
+
+For every ticket entered into an hourly draw, users receive <strong>0.1 ETHAR</strong>. This ensures that every ticket contributes not only to the chance of winning a cash prize but also to building a growing ETHAR Token balance.
+
+</p>
+
+<div class="card">
+
+<h3>Examples</h3>
+
+<p>
+
+10 Tickets Entered = <strong>1 ETHAR</strong><br><br>
+
+100 Tickets Entered = <strong>10 ETHAR</strong><br><br>
+
+1,000 Tickets Entered = <strong>100 ETHAR</strong>
+
+</p>
+
+</div>
+
+<p style="margin-top:20px;">
+
+As platform activity grows, ETHAR Tokens are intended to become an increasingly important part of the ecosystem.
+
+</p>
+
+</div>
+
+<div class="section" id="utility">
+
+<h2>Token Utility</h2>
+
+<p>
+
+ETHAR Tokens are designed to reward participation today while providing additional functionality as the ecosystem expands.
+
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Platform Rewards</h3>
+
+<p>
+
+Earn ETHAR simply by participating in hourly prize draws.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Future Features</h3>
+
+<p>
+
+Additional utilities and platform features may become available to ETHAR holders as development continues.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Community Benefits</h3>
+
+<p>
+
+Special campaigns, promotions, and community events may include ETHAR Token incentives.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Future Listings</h3>
+
+<p>
+
+The project intends to explore exchange listings and broader ecosystem integration when appropriate.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section" id="referrals">
+
+<h2>Referral Program</h2>
+
+<p>
+
+Every ETHAR user receives a unique referral code and referral link.
+
+</p>
+
+<br>
+
+<p>
+
+When someone registers using your referral link, they become your lifetime referral.
+
+</p>
+
+<div class="card">
+
+<h3>Referral Rewards</h3>
+
+<p>
+
+You earn <strong>10%</strong> of every prize your referrals win.
+
+</p>
+
+<p style="margin-top:15px;">
+
+There is currently no limit to the number of people you can invite.
+
+</p>
+
+</div>
+
+<p style="margin-top:20px;">
+
+The referral program is designed to reward users who help grow the ETHAR community while keeping participation fair for everyone.
+
+</p>
+
+</div>
+
+<div class="section" id="draws">
+
+<h2>Hourly Prize Draws</h2>
+
+<p>
+
+ETHAR currently operates hourly prize draws where participants compete for real cash rewards.
+
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Entry</h3>
+
+<p>
+
+One ticket equals one entry into the current hourly draw.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Selection</h3>
+
+<p>
+
+Winning tickets are selected randomly after each draw closes.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Prize Pool</h3>
+
+<p>
+
+Prize pools are funded from platform advertising revenue after operational costs.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Winners</h3>
+
+<p>
+
+The platform initially selects 10 winners every hour.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Revenue Model</h2>
+
+<p>
+
+ETHAR is primarily funded through rewarded advertising.
+
+</p>
+
+<br>
+
+<p>
+
+Advertising revenue supports platform operations while funding prize pools and ongoing development. This approach allows users to participate without making mandatory deposits.
+
+</p>
+
+<div class="card">
+
+<h3>Revenue Supports</h3>
+
+<ul style="margin-left:25px;line-height:2;">
+
+<li>Prize Pools</li>
+
+<li>Platform Development</li>
+
+<li>Operations</li>
+
+<li>Infrastructure</li>
+
+<li>Marketing</li>
+
+<li>Future Ecosystem Growth</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Fairness & Transparency</h2>
+
+<p>
+
+ETHAR is committed to maintaining a fair and transparent rewards platform.
+
+</p>
+
+<div class="card">
+
+<ul style="margin-left:25px;line-height:2;">
+
+<li>Every ticket has an equal chance of winning.</li>
+
+<li>Referral count does not increase winning odds.</li>
+
+<li>No country receives preferential treatment.</li>
+
+<li>Prize draws are generated using a random selection process.</li>
+
+<li>Platform rules are applied consistently to all users.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Security</h2>
+
+<p>
+
+Protecting user accounts and maintaining platform integrity are key priorities for ETHAR.
+
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Email Verification</h3>
+
+<p>
+
+Accounts are linked to verified email addresses.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Fraud Prevention</h3>
+
+<p>
+
+Systems are designed to detect suspicious activity and abuse.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Withdrawal Reviews</h3>
+
+<p>
+
+Withdrawal requests may be reviewed before processing.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Future Verification</h3>
+
+<p>
+
+Additional verification measures may be introduced where required by law or platform policy.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section" id="roadmap">
+
+<h2>Roadmap</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Phase 1 — Launch</h3>
+
+<ul style="margin-left:25px;line-height:2;">
+<li>Platform Launch</li>
+<li>User Registration</li>
+<li>Rewarded Advertisements</li>
+<li>Hourly Prize Draws</li>
+<li>Referral System</li>
+<li>ETHAR Token Rewards</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>Phase 2 — Growth</h3>
+
+<ul style="margin-left:25px;line-height:2;">
+<li>Increase Prize Pools</li>
+<li>More Withdrawal Methods</li>
+<li>Performance Improvements</li>
+<li>Mobile App Development</li>
+<li>Community Expansion</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>Phase 3 — Ecosystem</h3>
+
+<ul style="margin-left:25px;line-height:2;">
+<li>Expanded Token Utility</li>
+<li>Community Features</li>
+<li>Strategic Partnerships</li>
+<li>Platform Integrations</li>
+<li>Whitepaper Updates</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>Phase 4 — Future</h3>
+
+<ul style="margin-left:25px;line-height:2;">
+<li>Exchange Listing Exploration</li>
+<li>Additional Reward Products</li>
+<li>Global Expansion</li>
+<li>Long-Term Ecosystem Development</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section" id="tokenomics">
+
+<h2>Tokenomics</h2>
+
+<table>
+
+<tr>
+
+<th>Item</th>
+<th>Value</th>
+
+</tr>
+
+<tr>
+
+<td>Maximum Supply</td>
+
+<td>100,000,000 ETHAR</td>
+
+</tr>
+
+<tr>
+
+<td>Reward Rate</td>
+
+<td>0.1 ETHAR per Ticket Entered</td>
+
+</tr>
+
+<tr>
+
+<td>Prize Draw Frequency</td>
+
+<td>Every Hour</td>
+
+</tr>
+
+<tr>
+
+<td>Initial Winners</td>
+
+<td>10 Winners per Draw</td>
+
+</tr>
+
+<tr>
+
+<td>Referral Reward</td>
+
+<td>10% of Referral Winnings</td>
+
+</tr>
+
+<tr>
+
+<td>Primary Revenue Source</td>
+
+<td>Rewarded Advertising</td>
+
+</tr>
+
+</table>
+
+<p style="margin-top:25px;">
+
+Token allocation details and future ecosystem releases may be updated as ETHAR continues to evolve.
+
+</p>
+
+</div>
+
+<div class="section">
+
+<h2>Disclaimer</h2>
+
+<p>
+
+ETHAR is a participation-based rewards platform. Winning prizes is never guaranteed and depends entirely on the outcome of each random draw.
+
+</p>
+
+<br>
+
+<p>
+
+ETHAR Tokens currently serve as digital reward tokens within the platform. Future utilities, exchange listings, partnerships, and additional ecosystem features are goals that remain subject to technical development, legal requirements, market conditions, and regulatory approvals.
+
+</p>
+
+<br>
+
+<p>
+
+Nothing contained in this Whitepaper should be interpreted as financial, investment, legal, or tax advice. Users should conduct their own research before participating in any digital asset ecosystem.
+
+</p>
+
+</div>
+
+<div class="section">
+
+<h2>Contact</h2>
+
+<p>
+
+<strong>Website</strong>
+
+<br>
+
+<a href="https://ethartoken.com" style="color:#f4b400;text-decoration:none;">
+
+https://ethartoken.com
+
+</a>
+
+</p>
+
+<br>
+
+<p>
+
+<strong>Email</strong>
+
+<br>
+
+<a href="mailto:support@ethartoken.com" style="color:#f4b400;text-decoration:none;">
+
+support@ethartoken.com
+
+</a>
+
+</p>
+
+</div>
+
+<footer>
+
+<h2 style="color:#f4b400;margin-bottom:10px;">
+
+ETHAR
+
+</h2>
+
+<p>
+
+Reward. Earn. Grow Together.
+
+</p>
+
+<br>
+
+<p>
+
+© 2026 ETHAR. All Rights Reserved.
+
+</p>
+
+<br>
+
+<p style="font-size:14px;color:#8f99a7;">
+
+Version 1.0 Draft — This Whitepaper may be updated periodically as the ETHAR platform, token ecosystem, and services continue to evolve.
+
+</p>
+
+</footer>
+
+</div>
+
 </body>
+
 </html>
