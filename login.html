@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ETHAR - Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:25px;
+color:#fff;
+}
+
+.container{
+width:100%;
+max-width:450px;
+background:#151e2f;
+padding:40px;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,.45);
+}
+
+.logo{
+text-align:center;
+margin-bottom:35px;
+}
+
+.logo h1{
+color:#f4b400;
+font-size:40px;
+}
+
+.logo p{
+color:#9ca5b5;
+margin-top:8px;
+}
+
+.field{
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+}
+
+input{
+width:100%;
+padding:14px;
+background:#0b1220;
+border:1px solid #2f3f5e;
+border-radius:10px;
+color:#fff;
+font-size:15px;
+outline:none;
+transition:.3s;
+}
+
+input:focus{
+border-color:#f4b400;
+}
+
+.password-box{
+position:relative;
+}
+
+.password-box input{
+padding-right:70px;
+}
+
+.show{
+position:absolute;
+right:15px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+color:#f4b400;
+font-size:14px;
+font-weight:600;
+}
+
+.forgot{
+text-align:right;
+margin-top:-10px;
+margin-bottom:25px;
+}
+
+.forgot a{
+color:#f4b400;
+text-decoration:none;
+font-size:14px;
+}
+
+.forgot a:hover{
+text-decoration:underline;
+}
+
+.btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+margin-bottom:15px;
+}
+
+.login{
+background:#f4b400;
+color:#111;
+}
+
+.login:hover{
+transform:translateY(-2px);
+}
+
+.signup{
+display:block;
+text-align:center;
+background:#0b1220;
+border:1px solid #2f3f5e;
+padding:15px;
+border-radius:10px;
+text-decoration:none;
+color:#fff;
+font-weight:600;
+transition:.3s;
+}
+
+.signup:hover{
+border-color:#f4b400;
+}
+
+@media(max-width:600px){
+
+.container{
+
+padding:28px;
+
+}
+
+.logo h1{
+
+font-size:32px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+
+<h1>ETHAR</h1>
+
+<p>Welcome Back</p>
+
+</div>
+
+<form>
+
+<div class="field">
+
+<label>Email Address</label>
+
+<input type="email" placeholder="Enter your email" required>
+
+</div>
+
+<div class="field">
+
+<label>Password</label>
+
+<div class="password-box">
+
+<input type="password" id="password" placeholder="Enter your password" required>
+
+<span class="show" onclick="togglePassword()">Show</span>
+
+</div>
+
+</div>
+
+<div class="forgot">
+
+<a href="forgot-password.html">Forgot Password?</a>
+
+</div>
+
+<button type="submit" class="btn login">
+
+LOG IN
+
+</button>
+
+<a href="signup.html" class="signup">
+
+Don't have an account? Sign Up
+
+</a>
+
+</form>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+const input=document.getElementById("password");
+const button=document.querySelector(".show");
+
+if(input.type==="password"){
+
+input.type="text";
+button.innerHTML="Hide";
+
+}else{
+
+input.type="password";
+button.innerHTML="Show";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
