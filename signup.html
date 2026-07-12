@@ -229,7 +229,7 @@ font-size:30px;
 
 </div>
 
-<form>
+<form id="signupForm">
 
 <div class="row">
 
@@ -237,7 +237,7 @@ font-size:30px;
 
 <label>First Name</label>
 
-<input type="text" placeholder="Enter first name">
+<input id="firstName" type="text" placeholder="Enter first name">
 
 </div>
 
@@ -245,7 +245,7 @@ font-size:30px;
 
 <label>Last Name</label>
 
-<input type="text" placeholder="Enter last name">
+<input id="lastName" type="text" placeholder="Enter last name">
 
 </div>
 
@@ -255,7 +255,7 @@ font-size:30px;
 
 <label>Email Address</label>
 
-<input type="email" placeholder="Enter email address">
+<input id="email" type="email" placeholder="Enter email address">
 
 </div>
 
@@ -265,7 +265,7 @@ font-size:30px;
 
 <label>Phone Number</label>
 
-<input type="tel" placeholder="+254 700 000000">
+<input id="phone" type="tel" placeholder="+1 700 000000">
 
 </div>
 
@@ -273,7 +273,7 @@ font-size:30px;
 
 <label>Date of Birth</label>
 
-<input type="date">
+<input id="dob" type="date">
 
 </div>
 
@@ -283,7 +283,7 @@ font-size:30px;
 
 <label>Country</label>
 
-<select>
+<select id="country">
 
 <option>Select your country</option>
 <option>Afghanistan</option>
@@ -531,7 +531,7 @@ font-size:30px;
 
 <label>Referral Code (Optional)</label>
 
-<input type="text" placeholder="Enter referral code">
+<input id="referral" type="text" placeholder="Enter referral code">
 
 </div>
 
@@ -571,7 +571,18 @@ Already have an account? Log In
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+const supabaseUrl = "https://ynohexdhktetiepmbwnx.supabase.co";
+
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlub2hleGRoa3RldGllcG1id254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDU5ODcsImV4cCI6MjA5OTI4MTk4N30.bOgCv0UJxYvNSXDxCFs9_6lWfm-h5RipjLzqFIC7Miw";
+
+const supabase = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
 
 function togglePass(id, el){
 
@@ -635,48 +646,83 @@ element.innerHTML="✖ "+element.innerHTML.substring(2);
 
 }
 
-document.querySelector("form").addEventListener("submit",function(e){
-
-const password=pass.value;
-
-const confirm=document.getElementById("confirm").value;
-
-if(password!==confirm){
+document.getElementById("signupForm").addEventListener("submit", async function(e){
 
 e.preventDefault();
 
-alert("Passwords do not match.");
+const password = pass.value;
+const confirm = document.getElementById("confirm").value;
 
+if(password !== confirm){
+
+alert("Passwords do not match.");
 return;
 
 }
 
-if(password.length<8 ||
+if(password.length < 8 ||
 !/([A-Z])/.test(password) ||
 !/([a-z])/.test(password) ||
 !/([0-9])/.test(password) ||
 !/[^A-Za-z0-9]/.test(password)){
 
-e.preventDefault();
-
 alert("Your password does not meet the required security requirements.");
-
 return;
 
 }
 
-const agree=document.querySelector(".checkbox input");
+const agree = document.querySelector(".checkbox input");
 
 if(!agree.checked){
 
-e.preventDefault();
-
 alert("You must agree to the Terms of Use, Privacy Policy and Cookie Policy.");
+return;
+
+}
+
+const firstName = document.getElementById("firstName").value.trim();
+const lastName = document.getElementById("lastName").value.trim();
+const email = document.getElementById("email").value.trim();
+const phone = document.getElementById("phone").value.trim();
+const dob = document.getElementById("dob").value;
+const country = document.getElementById("country").value;
+const referral = document.getElementById("referral").value.trim();
+
+const { data, error } = await supabase.auth.signUp({
+
+email: email,
+
+password: password,
+
+options:{
+
+emailRedirectTo: window.location.origin + "/login.html",
+
+data:{
+first_name: firstName,
+last_name: lastName,
+phone: phone,
+dob: dob,
+country: country,
+referral: referral
+}
 
 }
 
 });
 
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+alert("Account created! Please check your email to verify your account.");
+
+window.location.href = "login.html";
+
+});
 </script>
 
 </body>
