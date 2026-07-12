@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ETHAR - Sign Up</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0b1220;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:30px;
+color:#fff;
+}
+
+.container{
+width:100%;
+max-width:650px;
+background:#151e2f;
+padding:40px;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,.4);
+}
+
+.logo{
+text-align:center;
+margin-bottom:35px;
+}
+
+.logo h1{
+color:#f4b400;
+font-size:38px;
+}
+
+.logo p{
+color:#9fa7b7;
+margin-top:8px;
+}
+
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+margin-bottom:18px;
+}
+
+.field{
+margin-bottom:18px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+}
+
+input,
+select{
+width:100%;
+padding:14px;
+background:#0b1220;
+border:1px solid #2f3f5e;
+border-radius:10px;
+color:#fff;
+font-size:15px;
+outline:none;
+transition:.25s;
+}
+
+input:focus,
+select:focus{
+border-color:#f4b400;
+}
+
+.password-box{
+position:relative;
+}
+
+.password-box input{
+padding-right:70px;
+}
+
+.show{
+position:absolute;
+right:15px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+color:#f4b400;
+font-size:14px;
+font-weight:600;
+}
+
+.requirements{
+background:#0b1220;
+border:1px solid #2f3f5e;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+.requirements h3{
+font-size:16px;
+margin-bottom:10px;
+color:#f4b400;
+}
+
+.requirements p{
+font-size:14px;
+margin:6px 0;
+color:#c7ccd8;
+}
+
+.good{
+color:#58d68d;
+}
+
+.bad{
+color:#ff7675;
+}
+
+.checkbox{
+display:flex;
+align-items:flex-start;
+gap:12px;
+margin:25px 0;
+}
+
+.checkbox input{
+width:20px;
+height:20px;
+margin-top:2px;
+}
+
+.checkbox label{
+margin:0;
+font-weight:400;
+line-height:1.6;
+}
+
+.checkbox a{
+color:#f4b400;
+text-decoration:none;
+}
+
+.btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.signup{
+background:#f4b400;
+color:#111;
+margin-bottom:15px;
+}
+
+.signup:hover{
+transform:translateY(-2px);
+}
+
+.login{
+display:block;
+text-align:center;
+background:#0b1220;
+border:1px solid #2f3f5e;
+padding:15px;
+border-radius:10px;
+text-decoration:none;
+color:#fff;
+font-weight:600;
+}
+
+.login:hover{
+border-color:#f4b400;
+}
+
+@media(max-width:700px){
+
+.container{
+padding:25px;
+}
+
+.row{
+grid-template-columns:1fr;
+}
+
+.logo h1{
+font-size:30px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+
+<h1>ETHAR</h1>
+
+<p>Create your free account</p>
+
+</div>
+
+<form>
+
+<div class="row">
+
+<div class="field">
+
+<label>First Name</label>
+
+<input type="text" placeholder="Enter first name">
+
+</div>
+
+<div class="field">
+
+<label>Last Name</label>
+
+<input type="text" placeholder="Enter last name">
+
+</div>
+
+</div>
+
+<div class="field">
+
+<label>Email Address</label>
+
+<input type="email" placeholder="Enter email address">
+
+</div>
+
+<div class="row">
+
+<div class="field">
+
+<label>Phone Number</label>
+
+<input type="tel" placeholder="+254 700 000000">
+
+</div>
+
+<div class="field">
+
+<label>Date of Birth</label>
+
+<input type="date">
+
+</div>
+
+</div>
+
+<div class="field">
+
+<label>Country</label>
+
+<select>
+
+<option>Select your country</option>
+<option>Afghanistan</option>
+<option>Albania</option>
+<option>Algeria</option>
+<option>Andorra</option>
+<option>Angola</option>
+<option>Antigua and Barbuda</option>
+<option>Argentina</option>
+<option>Armenia</option>
+<option>Australia</option>
+<option>Austria</option>
+<option>Azerbaijan</option>
+<option>Bahamas</option>
+<option>Bahrain</option>
+<option>Bangladesh</option>
+<option>Barbados</option>
+<option>Belarus</option>
+<option>Belgium</option>
+<option>Belize</option>
+<option>Benin</option>
+<option>Bhutan</option>
+<option>Bolivia</option>
+<option>Bosnia and Herzegovina</option>
+<option>Botswana</option>
+<option>Brazil</option>
+<option>Brunei</option>
+<option>Bulgaria</option>
+<option>Burkina Faso</option>
+<option>Burundi</option>
+<option>Cabo Verde</option>
+<option>Cambodia</option>
+<option>Cameroon</option>
+<option>Canada</option>
+<option>Central African Republic</option>
+<option>Chad</option>
+<option>Chile</option>
+<option>China</option>
+<option>Colombia</option>
+<option>Comoros</option>
+<option>Congo</option>
+<option>Costa Rica</option>
+<option>Côte d'Ivoire</option>
+<option>Croatia</option>
+<option>Cuba</option>
+<option>Cyprus</option>
+<option>Czech Republic</option>
+<option>Democratic Republic of the Congo</option>
+<option>Denmark</option>
+<option>Djibouti</option>
+<option>Dominica</option>
+<option>Dominican Republic</option>
+<option>Ecuador</option>
+<option>Egypt</option>
+<option>El Salvador</option>
+<option>Equatorial Guinea</option>
+<option>Eritrea</option>
+<option>Estonia</option>
+<option>Eswatini</option>
+<option>Ethiopia</option>
+<option>Fiji</option>
+<option>Finland</option>
+<option>France</option>
+<option>Gabon</option>
+<option>Gambia</option>
+<option>Georgia</option>
+<option>Germany</option>
+<option>Ghana</option>
+<option>Greece</option>
+<option>Grenada</option>
+<option>Guatemala</option>
+<option>Guinea</option>
+<option>Guinea-Bissau</option>
+<option>Guyana</option>
+<option>Haiti</option>
+<option>Honduras</option>
+<option>Hungary</option>
+<option>Iceland</option>
+<option>India</option>
+<option>Indonesia</option>
+<option>Iran</option>
+<option>Iraq</option>
+<option>Ireland</option>
+<option>Israel</option>
+<option>Italy</option>
+<option>Jamaica</option>
+<option>Japan</option>
+<option>Jordan</option>
+<option>Kazakhstan</option>
+<option>Kenya</option>
+<option>Kiribati</option>
+<option>Kuwait</option>
+<option>Kyrgyzstan</option>
+<option>Laos</option>
+<option>Latvia</option>
+<option>Lebanon</option>
+<option>Lesotho</option>
+<option>Liberia</option>
+<option>Libya</option>
+<option>Liechtenstein</option>
+<option>Lithuania</option>
+<option>Luxembourg</option>
+<option>Madagascar</option>
+<option>Malawi</option>
+<option>Malaysia</option>
+<option>Maldives</option>
+<option>Mali</option>
+<option>Malta</option>
+<option>Marshall Islands</option>
+<option>Mauritania</option>
+<option>Mauritius</option>
+<option>Mexico</option>
+<option>Micronesia</option>
+<option>Moldova</option>
+<option>Monaco</option>
+<option>Mongolia</option>
+<option>Montenegro</option>
+<option>Morocco</option>
+<option>Mozambique</option>
+<option>Myanmar</option>
+<option>Namibia</option>
+<option>Nauru</option>
+<option>Nepal</option>
+<option>Netherlands</option>
+<option>New Zealand</option>
+<option>Nicaragua</option>
+<option>Niger</option>
+<option>Nigeria</option>
+<option>North Korea</option>
+<option>North Macedonia</option>
+<option>Norway</option>
+<option>Oman</option>
+<option>Pakistan</option>
+<option>Palau</option>
+<option>Palestine</option>
+<option>Panama</option>
+<option>Papua New Guinea</option>
+<option>Paraguay</option>
+<option>Peru</option>
+<option>Philippines</option>
+<option>Poland</option>
+<option>Portugal</option>
+<option>Qatar</option>
+<option>Romania</option>
+<option>Russia</option>
+<option>Rwanda</option>
+<option>Saint Kitts and Nevis</option>
+<option>Saint Lucia</option>
+<option>Saint Vincent and the Grenadines</option>
+<option>Samoa</option>
+<option>San Marino</option>
+<option>São Tomé and Príncipe</option>
+<option>Saudi Arabia</option>
+<option>Senegal</option>
+<option>Serbia</option>
+<option>Seychelles</option>
+<option>Sierra Leone</option>
+<option>Singapore</option>
+<option>Slovakia</option>
+<option>Slovenia</option>
+<option>Solomon Islands</option>
+<option>Somalia</option>
+<option>South Africa</option>
+<option>South Korea</option>
+<option>South Sudan</option>
+<option>Spain</option>
+<option>Sri Lanka</option>
+<option>Sudan</option>
+<option>Suriname</option>
+<option>Sweden</option>
+<option>Switzerland</option>
+<option>Syria</option>
+<option>Taiwan</option>
+<option>Tajikistan</option>
+<option>Tanzania</option>
+<option>Thailand</option>
+<option>Timor-Leste</option>
+<option>Togo</option>
+<option>Tonga</option>
+<option>Trinidad and Tobago</option>
+<option>Tunisia</option>
+<option>Turkey</option>
+<option>Turkmenistan</option>
+<option>Tuvalu</option>
+<option>Uganda</option>
+<option>Ukraine</option>
+<option>United Arab Emirates</option>
+<option>United Kingdom</option>
+<option>United States</option>
+<option>Uruguay</option>
+<option>Uzbekistan</option>
+<option>Vanuatu</option>
+<option>Vatican City</option>
+<option>Venezuela</option>
+<option>Vietnam</option>
+<option>Yemen</option>
+<option>Zambia</option>
+<option>Zimbabwe</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Create Password</label>
+
+<div class="password-box">
+
+<input type="password" id="pass" placeholder="Create password">
+
+<span class="show" onclick="togglePass('pass',this)">Show</span>
+
+</div>
+
+</div>
+
+<div class="field">
+
+<label>Confirm Password</label>
+
+<div class="password-box">
+
+<input type="password" id="confirm" placeholder="Confirm password">
+
+<span class="show" onclick="togglePass('confirm',this)">Show</span>
+
+</div>
+
+</div>
+
+<div class="requirements">
+
+<h3>Password Requirements</h3>
+
+<p id="r1" class="bad">✖ At least 8 characters</p>
+<p id="r2" class="bad">✖ One uppercase letter</p>
+<p id="r3" class="bad">✖ One lowercase letter</p>
+<p id="r4" class="bad">✖ One number</p>
+<p id="r5" class="bad">✖ One special character</p>
+
+</div>
+
+<div class="field">
+
+<label>Referral Code (Optional)</label>
+
+<input type="text" placeholder="Enter referral code">
+
+</div>
+
+<div class="checkbox">
+
+<input type="checkbox">
+
+<label>
+
+I agree to the
+
+<a href="terms.html">Terms of Use</a>,
+
+<a href="privacy.html">Privacy Policy</a>
+
+and
+
+<a href="cookie.html">Cookie Policy</a>.
+
+</label>
+
+</div>
+
+<button type="submit" class="btn signup">
+
+CREATE ACCOUNT
+
+</button>
+
+<a href="login.html" class="login">
+
+Already have an account? Log In
+
+</a>
+
+</form>
+
+</div>
+
+<script>
+
+function togglePass(id, el){
+
+const input = document.getElementById(id);
+
+if(input.type==="password"){
+
+input.type="text";
+
+el.innerHTML="Hide";
+
+}else{
+
+input.type="password";
+
+el.innerHTML="Show";
+
+}
+
+}
+
+const pass=document.getElementById("pass");
+
+const r1=document.getElementById("r1");
+const r2=document.getElementById("r2");
+const r3=document.getElementById("r3");
+const r4=document.getElementById("r4");
+const r5=document.getElementById("r5");
+
+pass.addEventListener("keyup",()=>{
+
+const value=pass.value;
+
+update(r1,value.length>=8);
+
+update(r2,/[A-Z]/.test(value));
+
+update(r3,/[a-z]/.test(value));
+
+update(r4,/[0-9]/.test(value));
+
+update(r5,/[^A-Za-z0-9]/.test(value));
+
+});
+
+function update(element, valid){
+
+if(valid){
+
+element.className="good";
+
+element.innerHTML="✔ "+element.innerHTML.substring(2);
+
+}else{
+
+element.className="bad";
+
+element.innerHTML="✖ "+element.innerHTML.substring(2);
+
+}
+
+}
+
+document.querySelector("form").addEventListener("submit",function(e){
+
+const password=pass.value;
+
+const confirm=document.getElementById("confirm").value;
+
+if(password!==confirm){
+
+e.preventDefault();
+
+alert("Passwords do not match.");
+
+return;
+
+}
+
+if(password.length<8 ||
+!/([A-Z])/.test(password) ||
+!/([a-z])/.test(password) ||
+!/([0-9])/.test(password) ||
+!/[^A-Za-z0-9]/.test(password)){
+
+e.preventDefault();
+
+alert("Your password does not meet the required security requirements.");
+
+return;
+
+}
+
+const agree=document.querySelector(".checkbox input");
+
+if(!agree.checked){
+
+e.preventDefault();
+
+alert("You must agree to the Terms of Use, Privacy Policy and Cookie Policy.");
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
