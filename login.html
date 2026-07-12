@@ -185,13 +185,13 @@ font-size:32px;
 
 </div>
 
-<form>
+<form id="loginForm>
 
 <div class="field">
 
 <label>Email Address</label>
 
-<input type="email" placeholder="Enter your email" required>
+<input id="email" type="email" placeholder="Enter your email" required>
 
 </div>
 
@@ -215,6 +215,26 @@ font-size:32px;
 
 </div>
 
+<div id="verifyBox" style="display:none;margin-bottom:20px;padding:15px;background:#1b2438;border-radius:10px;">
+
+<p style="margin-bottom:15px;color:#ddd;line-height:1.6;">
+
+Your email address has not been verified yet.
+
+</p>
+
+<button
+type="button"
+id="resendBtn"
+class="btn login"
+style="margin-bottom:0;">
+
+RESEND VERIFICATION EMAIL
+
+</button>
+
+</div>
+
 <button type="submit" class="btn login">
 
 LOG IN
@@ -231,7 +251,18 @@ Don't have an account? Sign Up
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+const supabaseUrl = "https://ynohexdhktetiepmbwnx.supabase.co";
+
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlub2hleGRoa3RldGllcG1id254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDU5ODcsImV4cCI6MjA5OTI4MTk4N30.bOgCv0UJxYvNSXDxCFs9_6lWfm-h5RipjLzqFIC7Miw";
+
+const client = supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
 
 function togglePassword(){
 
@@ -251,6 +282,82 @@ button.innerHTML="Show";
 }
 
 }
+
+document.getElementById("loginForm").addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+const email=document.getElementById("email").value.trim();
+
+const password=document.getElementById("password").value;
+
+const { data, error } = await client.auth.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+const { data:userData } = await client.auth.getUser();
+
+if(!userData.user.email_confirmed_at){
+
+await client.auth.signOut();
+
+document.getElementById("verifyBox").style.display="block";
+
+return;
+
+}
+
+document.getElementById("resendBtn").addEventListener("click", async function(){
+
+const email=document.getElementById("email").value.trim();
+
+if(email===""){
+
+alert("Please enter your email address first.");
+
+return;
+
+}
+
+const { error } = await client.auth.resend({
+
+type:"signup",
+
+email:email,
+
+options:{
+emailRedirectTo:window.location.origin+"/confirmed.html"
+}
+
+});
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+alert("A new verification email has been sent.");
+
+});
+
+window.location.href="dashboard.html";
+
+});
 
 </script>
 
