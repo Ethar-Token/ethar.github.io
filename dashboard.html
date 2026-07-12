@@ -190,6 +190,31 @@ th{
 
 /* ---------------- PHONE ---------------- */
 
+.leftHeader{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+.rightHeader{
+
+display:flex;
+align-items:center;
+gap:20px;
+
+}
+
+.menu{
+
+display:none;
+font-size:30px;
+cursor:pointer;
+color:#f4b400;
+
+}
+    
 @media(max-width:1000px){
 
 .cards{
@@ -220,10 +245,28 @@ body{
 }
 
 .side{
-    position:relative;
-    width:100%;
-    height:auto;
-    padding:15px;
+
+position:fixed;
+top:0;
+left:-260px;
+width:230px;
+height:100%;
+padding:20px;
+transition:.35s;
+z-index:1000;
+
+}
+
+.side.active{
+
+left:0;
+
+}
+
+.menu{
+
+display:block;
+
 }
 
 .main{
@@ -278,7 +321,29 @@ input[type="number"]{
 <body>
 <div class="side"><h2>ETHAR</h2><a>🏠 Dashboard</a><a>👛 Wallet</a><a>👤 Profile</a><a>🪙 ETHAR Token</a><a>👥 Referrals</a><a>❓ Help</a><a>ℹ️ About</a><a>💼 Careers</a></div>
 <div class="main">
-<header><h1>Dashboard</h1><div>🔔 &nbsp; $0.00 &nbsp; 👤</div></header>
+
+<header>
+
+<div class="leftHeader">
+
+<div class="menu" onclick="toggleMenu()">☰</div>
+
+<h1>Dashboard</h1>
+
+</div>
+
+<div class="rightHeader">
+
+🔔
+
+<span>$0.00</span>
+
+👤
+
+</div>
+
+</header>
+
 <div class="cards"><div class="card"><small>Prize Pool</small><h2>$1,248.42</h2></div><div class="card"><small>Your Tickets in the Draw</small><h2>12</h2></div><div class="card"><small>Total Tickets in the Draw</small><h2>42,518</h2></div><div class="card"><small>Next Draw</small><h2 id="c">00:38:24</h2></div></div>
 
 <div class="panel watchwrap">
@@ -354,6 +419,13 @@ input[type="number"]{
 </div>
 <script>
 let s=2304;setInterval(()=>{if(s>0)s--;let m=String(Math.floor((s%3600)/60)).padStart(2,'0'),sec=String(s%60).padStart(2,'0'),h=String(Math.floor(s/3600)).padStart(2,'0');c.textContent=`${h}:${m}:${sec}`;cc.textContent=`${m}:${sec}`},1000);
+
+function toggleMenu(){
+
+document.querySelector(".side").classList.toggle("active");
+
+}
+
 </script>
 
 </body>
