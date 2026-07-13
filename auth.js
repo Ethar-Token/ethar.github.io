@@ -75,17 +75,17 @@ async function loadCurrentDraw(){
     }
 
     document.getElementById("prizeAmount").textContent =
-        "$" + Number(data.prize).toFixed(2);
+        "$" + Number(data.prize_amount).toFixed(2);
 
     document.getElementById("totalTickets").textContent =
         data.total_tickets.toLocaleString();
 
     const end = new Date(data.ends_at);
 
-    document.getElementById("endsAt").textContent =
+    document.getElementById("drawDate").textContent =
         end.toUTCString().split(" ").slice(0,4).join(" ");
 
-    document.getElementById("endsAt").textContent =
+    document.getElementById("drawTime").textContent =
         end.toUTCString().split(" ")[4] + " UTC";
 
     startCountdown(end);
