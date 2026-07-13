@@ -245,5 +245,13 @@
 function toggleMenu(){document.querySelector('.side').classList.toggle('active');document.querySelector('.overlay').classList.toggle('active');m.textContent=document.querySelector('.side').classList.contains('active')?'✕':'☰';}
 function closeMenu(){document.querySelector('.side').classList.remove('active');document.querySelector('.overlay').classList.remove('active');m.textContent='☰';}
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+
+<script>
+requireLogin();
+</script>
+    
 </body>
 </html>
