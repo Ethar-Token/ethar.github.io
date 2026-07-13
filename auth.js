@@ -58,3 +58,36 @@ async function loadBalances() {
 }
 
 loadBalances();
+
+async function loadCurrentDraw(){
+
+    const { data, error } = await client
+    .from("draws")
+    .select("*")
+    .eq("status","live")
+    .single();
+
+    if(error){
+
+        console.log(error);
+        return;
+
+    }
+
+    document.getElementById("prizeAmount").textContent =
+        "$" + Number(data.prize).toFixed(2);
+
+    document.getElementById("totalTickets").textContent =
+        data.total_tickets.toLocaleString();
+
+    const end = new Date(data.ends_at);
+
+    document.getElementById("endsAt").textContent =
+        end.toUTCString().split(" ").slice(0,4).join(" ");
+
+    document.getElementById("endsAt").textContent =
+        end.toUTCString().split(" ")[4] + " UTC";
+
+    startCountdown(end);
+
+}
