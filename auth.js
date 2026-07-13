@@ -52,6 +52,9 @@ async function loadBalances() {
     document.getElementById("ticketBalance").textContent =
         data.tickets;
 
+    document.getElementById("ticketsEntered").textContent =
+    profile.tickets_entered;
+
     document.getElementById("etharBalance").textContent =
         Number(data.ethar_balance).toFixed(2) + " ETHAR";
 
@@ -76,6 +79,7 @@ async function loadCurrentDraw(){
 
     document.getElementById("prizeAmount").textContent =
         "$" + Number(data.prize_amount).toFixed(2);
+
 
     document.getElementById("totalTickets").textContent =
         data.total_tickets.toLocaleString();
