@@ -249,7 +249,7 @@ white-space:nowrap;
 
 🔔
 
-<span>$0.00</span>
+<span id="accountBalance">$0.00</span>
 
 <a href="profile.html" style="color:white;text-decoration:none;">👤</a>
 
@@ -263,7 +263,7 @@ white-space:nowrap;
 
 <small>Wallet Balance</small>
 
-<h2>$0.00</h2>
+<h2 id="accountBalance">$0.00</h2>
 
 </div>
 
@@ -271,7 +271,7 @@ white-space:nowrap;
 
 <small>Available Tickets</small>
 
-<h2>0</h2>
+<h2 id="ticketBalance">0</h2>
 
 </div>
 
@@ -444,6 +444,7 @@ alert("Your withdrawal request has been submitted.\n\nOnce the backend is connec
 
 <script>
 requireLogin();
+loadBalances();
 </script>
 
 </body>
