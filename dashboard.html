@@ -381,14 +381,14 @@ input[type="number"]{
 
 </header>
 
-<div class="cards"><div class="card"><small>Prize Pool</small><h2>$1,248.42</h2></div><div class="card"><small>Your Tickets in the Draw</small><h2>12</h2></div><div class="card"><small>Total Tickets in the Draw</small><h2>42,518</h2></div><div class="card"><small>Next Draw</small><h2 id="c">00:38:24</h2></div></div>
+<div class="cards"><div class="card"><small>Prize Pool</small><h2 id="prizeAmount">$1,248.42</h2></div><div class="card"><small>Your Tickets in the Draw</small><h2 id="ticketsEntered">12</h2></div><div class="card"><small>Total Tickets in the Draw</small><h2 id="totalTickets">42,518</h2></div><div class="card"><small>Next Draw</small><h2 id="c">00:38:24</h2></div></div>
 
 <div class="panel watchwrap">
 <div class="circle"><h2 id="cc">38:24</h2><small>Hourly Draw</small></div>
 <div>
 <h3>Next Draw</h3>
-<p><b>Date:</b> 12 Jul 2026</p>
-<p><b>Time:</b> 3:00 PM UTC</p>
+<p><b>Date:</b> <span id="drawDate">Loading...</span></p>
+<p><b>Time:</b> <span id="endsAt">Loading...</span></p>
 </div>
 
 <div style="flex:1;padding:0 20px;text-align:center;">
@@ -455,7 +455,48 @@ input[type="number"]{
 </div>
 </div>
 <script>
-let s=2304;setInterval(()=>{if(s>0)s--;let m=String(Math.floor((s%3600)/60)).padStart(2,'0'),sec=String(s%60).padStart(2,'0'),h=String(Math.floor(s/3600)).padStart(2,'0');c.textContent=`${h}:${m}:${sec}`;cc.textContent=`${m}:${sec}`},1000);
+let countdown;
+
+function startCountdown(endTime){
+
+    clearInterval(countdown);
+
+    countdown = setInterval(()=>{
+
+        const now = new Date();
+
+        let diff = endTime - now;
+
+        if(diff < 0)
+            diff = 0;
+
+        const hours =
+            Math.floor(diff/3600000);
+
+        const minutes =
+            Math.floor(diff%3600000/60000);
+
+        const seconds =
+            Math.floor(diff%60000/1000);
+
+        const h =
+            String(hours).padStart(2,"0");
+
+        const m =
+            String(minutes).padStart(2,"0");
+
+        const s =
+            String(seconds).padStart(2,"0");
+
+        document.getElementById("c").textContent =
+            `${h}:${m}:${s}`;
+
+        document.getElementById("cc").textContent =
+            `${m}:${s}`;
+
+    },1000);
+
+}
 
 function toggleMenu(){
 
@@ -480,6 +521,7 @@ document.querySelector(".overlay").classList.remove("active");
 
 <script>
 requireLogin();
+loadCurrentDraw();
 
 const ticketInput = document.getElementById("ticketInput");
 
