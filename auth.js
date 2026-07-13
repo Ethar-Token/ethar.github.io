@@ -21,3 +21,35 @@ async function requireLogin() {
     return data.session;
 
 }
+
+async function loadBalances() {
+
+    const {
+        data: { user }
+    } = await client.auth.getUser();
+
+    if (!user) return;
+
+    const { data, error } = await client
+        .from("profiles")
+        .select("account_balance, tickets, ethar_balance")
+        .eq("id", user.id)
+        .single();
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    document.getElementById("accountBalance").textContent =
+        "$" + Number(data.account_balance).toFixed(2);
+
+    document.getElementById("ticketBalance").textContent =
+        data.tickets;
+
+    document.getElementById("etharBalance").textContent =
+        Number(data.ethar_balance).toFixed(1) + " ETHAR";
+
+}
+
+loadBalances();
