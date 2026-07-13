@@ -32,7 +32,7 @@ async function loadBalances() {
 
     const { data, error } = await client
         .from("profiles")
-        .select("account_balance, tickets, ethar_balance")
+        .select("account_balance, tickets, tickets_entered, ethar_balance")
         .eq("id", user.id)
         .single();
 
@@ -66,7 +66,7 @@ async function loadCurrentDraw(){
 
     const { data, error } = await client
     .from("draws")
-    .select("*")
+    .select("prize_amount, total_tickets")
     .eq("status","live")
     .single();
 
