@@ -401,13 +401,12 @@ input[type="number"]{
 
     <div style="display:flex;justify-content:center;gap:10px;align-items:center;">
 
-        <button class="btn">−</button>
+        <button id="minusBtn" class="btn">−</button>
 
         <input id="ticketInput"
                type="number"
                value="1"
                min="1"
-               max="8"
                style="width:80px;
                       text-align:center;
                       padding:12px;
@@ -417,7 +416,7 @@ input[type="number"]{
                       color:white;
                       font-size:18px;">
 
-        <button class="btn">+</button>
+        <button id="plusBtn" class="btn">+</button>
 
     </div>
 
@@ -481,6 +480,32 @@ document.querySelector(".overlay").classList.remove("active");
 
 <script>
 requireLogin();
+
+const ticketInput = document.getElementById("ticketInput");
+
+document.getElementById("plusBtn").onclick = () => {
+
+    let value = Number(ticketInput.value);
+
+    value++;
+
+    ticketInput.value = value;
+
+};
+
+document.getElementById("minusBtn").onclick = () => {
+
+    let value = Number(ticketInput.value);
+
+    if(value > 1){
+
+        value--;
+
+    }
+
+    ticketInput.value = value;
+
+};
 
 document
 .getElementById("enterDrawBtn")
@@ -548,8 +573,8 @@ async function enterDraw(){
         default:
 
             alert("Something went wrong.");
-
-    }
+            }
+}
     
 </script>
 
