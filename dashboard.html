@@ -498,14 +498,9 @@ async function enterDraw(){
 
     }
 
-    const {
-        data:{user}
-    } = await client.auth.getUser();
-
     const { data, error } =
         await client.rpc("enter_draw",{
 
-            p_user_id:user.id,
             p_tickets:tickets
 
         });
@@ -517,25 +512,44 @@ async function enterDraw(){
 
     }
 
-    if(data==="NOT_ENOUGH_TICKETS"){
+    switch(data){
 
-        alert("You don't have enough tickets. Watch ads to earn more.");
-        return;
+        case "SUCCESS":
+
+            alert("Tickets entered successfully!");
+            loadBalances();
+            break;
+
+        case "NOT_ENOUGH_TICKETS":
+
+            alert("You don't have enough tickets. Watch ads to earn more.");
+            break;
+
+        case "NO_ACTIVE_DRAW":
+
+            alert("There is currently no active draw.");
+            break;
+
+        case "NOT_LOGGED_IN":
+
+            window.location.href="login.html";
+            break;
+
+        case "PROFILE_NOT_FOUND":
+
+            alert("Profile not found.");
+            break;
+
+        case "INVALID_AMOUNT":
+
+            alert("Invalid ticket amount.");
+            break;
+
+        default:
+
+            alert("Something went wrong.");
 
     }
-
-    if(data==="NO_ACTIVE_DRAW"){
-
-        alert("There is currently no active draw.");
-        return;
-
-    }
-
-    alert("Tickets entered successfully!");
-
-    loadBalances();
-
-}
     
 </script>
 
