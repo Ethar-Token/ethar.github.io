@@ -53,7 +53,7 @@ async function loadBalances() {
         data.tickets;
 
     document.getElementById("etharBalance").textContent =
-        Number(data.ethar_balance).toFixed(1) + " ETHAR";
+        Number(data.ethar_balance).toFixed(2) + " ETHAR";
 
 }
 
