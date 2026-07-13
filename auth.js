@@ -41,9 +41,14 @@ async function loadBalances() {
         return;
     }
 
-    document.getElementById("accountBalance").textContent =
-        "$" + Number(data.account_balance).toFixed(2);
+    const balance = "$" + Number(data.account_balance).toFixed(2);
 
+    const wallet = document.getElementById("accountBalance");
+    if (wallet) wallet.textContent = balance;
+
+    const header = document.getElementById("headerBalance");
+    if (header) header.textContent = balance;
+    
     document.getElementById("ticketBalance").textContent =
         data.tickets;
 
