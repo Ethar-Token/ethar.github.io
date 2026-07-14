@@ -371,7 +371,7 @@ No complicated rules. Just rewards.
 
 <h2>Current Prize Pool</h2>
 
-<p>$0.00</p>
+<p id="prizeAmount">$0.00</p>
 
 </div>
 
@@ -379,15 +379,15 @@ No complicated rules. Just rewards.
 
 <h2>Next Draw</h2>
 
-<p>59:59</p>
+<p id="endsAt">59:59</p>
 
 </div>
 
 <div class="card">
 
-<h2>Hourly Winners</h2>
+<h2>Tickets Entered</h2>
 
-<p>10</p>
+<p id="totalTickets">10</p>
 
 </div>
 
@@ -503,6 +503,12 @@ document.getElementById("mobileMenu").classList.toggle("active");
 }
 
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+
+<script>
+loadCurrentDraw();
 
 </body>
 </html>
