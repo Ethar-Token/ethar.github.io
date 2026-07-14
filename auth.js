@@ -49,15 +49,24 @@ async function loadBalances() {
     const header = document.getElementById("headerBalance");
     if (header) header.textContent = balance;
     
-    document.getElementById("ticketBalance").textContent =
-        data.tickets;
+    const ticket = document.getElementById("ticketBalance");
+    if(ticket){
 
-    document.getElementById("ticketsEntered").textContent =
-    profile.tickets_entered;
+       ticket.textContent = data.tickets;
 
-    document.getElementById("etharBalance").textContent =
-        Number(data.ethar_balance).toFixed(2) + " ETHAR";
+    }
 
+    const entered = document.getElementById("ticketsEntered");
+    if(entered){
+        entered.textContent = data.tickets_entered;
+    }
+
+    const ethar = document.getElementById("etharBalance");
+    if(ethar){
+        ethar.textContent =
+            Number(data.ethar_balance).toFixed(2) + " ETHAR";
+
+    }
 }
 
 loadBalances();
@@ -77,21 +86,40 @@ async function loadCurrentDraw(){
 
     }
 
-    document.getElementById("prizeAmount").textContent =
+    const prize = document.getElementById("prizeAmount");
+    if(prize){
+        prize.textContent =
         "$" + Number(data.prize_amount).toFixed(2);
+    }
 
 
-    document.getElementById("totalTickets").textContent =
+    const totalTickets = document.getElementById("totalTickets");
+    if(totalTickets){
+        tickets.textContent =
         data.total_tickets.toLocaleString();
+    }
 
     const end = new Date(data.ends_at);
 
-    document.getElementById("drawDate").textContent =
+    const drawDate = document.getElementById("drawDate");
+
+    if(drawDate){
+        drawDate.textContent =
         end.toUTCString().split(" ").slice(0,4).join(" ");
 
-    document.getElementById("drawTime").textContent =
+    }
+
+    const drawDate = document.getElementById("drawTime");
+
+    if(drawTime){
+        drawTime.textContent =
         end.toUTCString().split(" ")[4] + " UTC";
 
-    startCountdown(end);
+    }
+
+    if(typeof startCountdown === "function"){
+        
+        startCountdown(end);
+    }
 
 }
