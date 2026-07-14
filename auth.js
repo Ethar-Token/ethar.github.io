@@ -74,7 +74,7 @@ async function loadCurrentDraw(){
 
     const { data, error } = await client
     .from("draws")
-    .select("prize_amount, total_tickets, ends_at")
+    .select("prize_amount, total_tickets, ends_at, starts_at, status")
     .eq("status","live")
     .single();
 
