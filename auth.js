@@ -122,3 +122,43 @@ async function loadCurrentDraw(){
     }
 
 }
+
+let countdown;
+
+function startCountdown(endTime){
+
+    clearInterval(countdown);
+
+    countdown = setInterval(() => {
+
+        let diff = endTime - new Date();
+
+        if(diff < 0){
+            diff = 0;
+        }
+
+        const hours = String(Math.floor(diff / 3600000)).padStart(2,"0");
+        const minutes = String(Math.floor((diff % 3600000) / 60000)).padStart(2,"0");
+        const seconds = String(Math.floor((diff % 60000) / 1000)).padStart(2,"0");
+
+        // Dashboard countdown
+        const c = document.getElementById("c");
+        if(c){
+            c.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // Dashboard circle countdown
+        const cc = document.getElementById("cc");
+        if(cc){
+            cc.textContent = `${minutes}:${seconds}`;
+        }
+
+        // Homepage countdown
+        const endsAt = document.getElementById("endsAt");
+        if(endsAt){
+            endsAt.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+    },1000);
+
+}
