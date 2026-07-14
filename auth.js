@@ -69,7 +69,6 @@ async function loadBalances() {
     }
 }
 
-loadBalances();
 
 async function loadCurrentDraw(){
 
@@ -95,7 +94,7 @@ async function loadCurrentDraw(){
 
     const totalTickets = document.getElementById("totalTickets");
     if(totalTickets){
-        tickets.textContent =
+        totalTickets.textContent =
         data.total_tickets.toLocaleString();
     }
 
@@ -109,7 +108,7 @@ async function loadCurrentDraw(){
 
     }
 
-    const drawDate = document.getElementById("drawTime");
+    const drawTime = document.getElementById("drawTime");
 
     if(drawTime){
         drawTime.textContent =
