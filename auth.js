@@ -32,7 +32,7 @@ async function loadBalances() {
 
     const { data, error } = await client
         .from("profiles")
-        .select("account_balance, tickets, tickets_entered, ethar_balance")
+        .select("account_balance, tickets, tickets_entered, total_tickets_entered, ethar_balance")
         .eq("id", user.id)
         .single();
 
@@ -59,6 +59,14 @@ async function loadBalances() {
     const entered = document.getElementById("ticketsEntered");
     if(entered){
         entered.textContent = data.tickets_entered;
+    }
+
+    const totalTicketsEntered =
+        document.getElementById("totalTicketsEntered");
+
+    if(totalTicketsEntered){
+        totalTicketsEntered.textContent =
+             data.total_tickets_entered.toLocaleString();
     }
 
     const ethar = document.getElementById("etharBalance");
