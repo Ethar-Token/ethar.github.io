@@ -680,16 +680,6 @@ return;
 
 }
 
-const { data: existingPhone } = await client
-    .from("profiles")
-    .select("id")
-    .eq("phone", phone)
-    .maybeSingle();
-
-if (existingPhone) {
-    alert("This phone number is already registered.");
-    return;
-}
 
 const firstName = document.getElementById("firstName").value.trim();
 const lastName = document.getElementById("lastName").value.trim();
