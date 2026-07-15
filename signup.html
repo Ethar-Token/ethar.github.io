@@ -689,11 +689,32 @@ const dob = document.getElementById("dob").value;
 const country = document.getElementById("country").value;
 const referral = document.getElementById("referral").value.trim();
 
-const { data: existingPhone } = await client
+if (country === "Select your country") {
+    alert("Please select your country.");
+    return;
+}
+    
+const { data: existingEmail } = await client
+    .from("profiles")
+    .select("id")
+    .eq("email", email)
+    .maybeSingle();
+
+if (existingEmail) {
+    alert("This email address is already registered.");
+    return;
+}
+    
+const { data: existingPhone, error: phoneError } = await client
     .from("profiles")
     .select("id")
     .eq("phone", phone)
     .maybeSingle();
+
+if (phoneError) {
+    alert(phoneError.message);
+    return;
+}
 
 if (existingPhone) {
     alert("This phone number is already registered.");
@@ -730,7 +751,7 @@ return;
 
 }
 
-alert("Account created! Please check your email to verify your account.");
+alert("Account created successfully. Please check your email to verify your account before logging in.");
 
 window.location.href = "login.html";
 
