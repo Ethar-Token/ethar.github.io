@@ -170,3 +170,51 @@ function startCountdown(endTime){
     },1000);
 
 }
+
+async function loadReferrals(){
+
+    const { data:{user} } =
+        await client.auth.getUser();
+
+    if(!user) return;
+
+    const { data, error } = await client
+        .from("referrals")
+        .select(`
+            created_at,
+            profiles!referrals_referred_id_fkey(
+                full_name,
+                total_won
+            )
+        `)
+        .eq("referrer_id", user.id);
+
+    if(error){
+
+        console.log(error);
+        return;
+
+    }
+
+    const tbody =
+        document.getElementById("referralTable");
+
+    if(!tbody) return;
+
+    tbody.innerHTML = "";
+
+    data.forEach(r=>{
+
+        tbody.innerHTML += `
+        <tr>
+
+            <td>${r.profiles.full_name}</td>
+
+            <td>${new Date(r.created_at).toLocaleDateString()}</td>
+
+            <td>$${Number(r.profiles.total_won).toFixed(2)}</td>
+
+        </tr>`;
+    });
+
+}
