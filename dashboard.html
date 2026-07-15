@@ -381,10 +381,10 @@ input[type="number"]{
 
 </header>
 
-<div class="cards"><div class="card"><small>Prize Pool</small><h2 id="prizeAmount">$1,248.42</h2></div><div class="card"><small>Your Tickets in the Draw</small><h2 id="ticketsEntered">12</h2></div><div class="card"><small>Total Tickets in the Draw</small><h2 id="totalTickets">42,518</h2></div><div class="card"><small>Next Draw</small><h2 id="c">00:60:00</h2></div></div>
+<div class="cards"><div class="card"><small>Prize Pool</small><h2 id="prizeAmount">$1,248.42</h2></div><div class="card"><small>Your Tickets in the Draw</small><h2 id="ticketsEntered">12</h2></div><div class="card"><small>Total Tickets in the Draw</small><h2 id="totalTickets">42,518</h2></div><div class="card"><small>Next Draw</small><h2 id="c">00:00:00</h2></div></div>
 
 <div class="panel watchwrap">
-<div class="circle"><h2 id="cc">60:00</h2><small>Hourly Draw</small></div>
+<div class="circle"><h2 id="cc">00:00:00</h2><small>Daily Draw</small></div>
 <div>
 <h3>Next Draw</h3>
 <p><b>Date:</b> <span id="drawDate">Loading...</span></p>
@@ -434,7 +434,7 @@ input[type="number"]{
 </div>
 
 
-<div class="panel" style="margin-top:20px"><h2>🏆 Last Hour Winners</h2>
+<div class="panel" style="margin-top:20px"><h2>🏆 Last Draw Winners</h2>
 <table>
 <tr><th>Name</th><th>Email</th><th>Won</th></tr>
 <tr><td>Ashley</td><td>a****@gmail.com</td><td>$32</td></tr>
@@ -454,49 +454,9 @@ input[type="number"]{
 <div class="refcode"><div><b>Referral Code:</b> ETHAR8XQ21<br><small>https://ethartoken.com/?ref=ETHAR8XQ21</small></div><button class="copy">Copy Link</button></div>
 </div>
 </div>
+    
 <script>
-let countdown;
 
-function startCountdown(endTime){
-
-    clearInterval(countdown);
-
-    countdown = setInterval(()=>{
-
-        const now = new Date();
-
-        let diff = endTime - now;
-
-        if(diff < 0)
-            diff = 0;
-
-        const hours =
-            Math.floor(diff/3600000);
-
-        const minutes =
-            Math.floor(diff%3600000/60000);
-
-        const seconds =
-            Math.floor(diff%60000/1000);
-
-        const h =
-            String(hours).padStart(2,"0");
-
-        const m =
-            String(minutes).padStart(2,"0");
-
-        const s =
-            String(seconds).padStart(2,"0");
-
-        document.getElementById("c").textContent =
-            `${h}:${m}:${s}`;
-
-        document.getElementById("cc").textContent =
-            `${m}:${s}`;
-
-    },1000);
-
-}
 
 function toggleMenu(){
 
