@@ -680,6 +680,17 @@ return;
 
 }
 
+const { data: existingPhone } = await client
+    .from("profiles")
+    .select("id")
+    .eq("phone", phone)
+    .maybeSingle();
+
+if (existingPhone) {
+    alert("This phone number is already registered.");
+    return;
+}
+
 const firstName = document.getElementById("firstName").value.trim();
 const lastName = document.getElementById("lastName").value.trim();
 const email = document.getElementById("email").value.trim();
@@ -704,7 +715,7 @@ last_name: lastName,
 phone: phone,
 dob: dob,
 country: country,
-referral: referral
+referral_code: referral
 }
 
 }
