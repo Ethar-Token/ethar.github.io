@@ -316,7 +316,7 @@ white-space:nowrap;
 
 <br><br>
 
-ETHAR8XQ21
+<div id="referralCode"></div>
 
 </div>
 
@@ -326,7 +326,7 @@ ETHAR8XQ21
 
 <br><br>
 
-https://ethartoken.com/?ref=ETHAR8XQ21
+<div id="referralLink"></div>
 
 </div>
 
@@ -352,7 +352,7 @@ https://ethartoken.com/?ref=ETHAR8XQ21
 
 <small>Total Referrals</small>
 
-<h2>0</h2>
+<h2 id="totalReferrals">0</h2>
 
 </div>
 
@@ -360,7 +360,7 @@ https://ethartoken.com/?ref=ETHAR8XQ21
 
 <small>Total Earned From Referrals</small>
 
-<h2>$0.00</h2>
+<h2 id="totalReferralEarnings">$0.00</h2>
 
 </div>
 
@@ -372,29 +372,19 @@ https://ethartoken.com/?ref=ETHAR8XQ21
 
 <table>
 
+<thead>
+
 <tr>
 
 <th>Name</th>
-
-<th>Email</th>
-
 <th>Date Joined</th>
-
 <th>Total Won</th>
 
-<th>Your Earnings</th>
-
 </tr>
 
-<tr>
+</thead>
 
-<td colspan="5" style="text-align:center;color:#999;">
-
-You haven't referred anyone yet.
-
-</td>
-
-</tr>
+<tbody id="referralTable"></tbody>
 
 </table>
 
@@ -486,6 +476,7 @@ document.querySelectorAll(".btn")[1].addEventListener("click",function(){
 <script>
 requireLogin();
 loadBalances();
+loadReferrals();
 </script>
 
 </body>
