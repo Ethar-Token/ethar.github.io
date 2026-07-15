@@ -434,17 +434,15 @@ function closeMenu(){
 
 }
 
-document.querySelectorAll(".btn")[0].addEventListener("click",function(){
+document.querySelectorAll(".btn")[0].addEventListener("click", function(){
 
-    navigator.clipboard.writeText("https://ethartoken.com/?ref=ETHAR8XQ21");
+    navigator.clipboard.writeText(window.referralLink);
 
     alert("Referral link copied to clipboard!");
 
 });
 
-document.querySelectorAll(".btn")[1].addEventListener("click",function(){
-
-    const link="https://ethartoken.com/?ref=ETHAR8XQ21";
+document.querySelectorAll(".btn")[1].addEventListener("click", function(){
 
     if(navigator.share){
 
@@ -454,13 +452,13 @@ document.querySelectorAll(".btn")[1].addEventListener("click",function(){
 
             text:"Join ETHAR using my referral link and start earning rewards!",
 
-            url:link
+            url:window.referralLink
 
         });
 
     }else{
 
-        navigator.clipboard.writeText(link);
+        navigator.clipboard.writeText(window.referralLink);
 
         alert("Referral link copied. Share it with your friends!");
 
