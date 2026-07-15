@@ -173,15 +173,14 @@ function startCountdown(endTime){
 
 async function loadReferrals(){
 
-    const { data:{user} } =
-        await client.auth.getUser();
+    const {
+        data:{user}
+    } = await client.auth.getUser();
 
     if(!user) return;
 
-    // Get profile
-
-    const { data:profile, error:profileError } =
-        await client
+    // Get my referral information
+    const { data: profile, error: profileError } = await client
         .from("profiles")
         .select(`
             referral_code,
@@ -191,85 +190,60 @@ async function loadReferrals(){
         .single();
 
     if(profileError){
-
         console.log(profileError);
         return;
-
     }
 
-    // Get referrals
+    // Referral code
+    const code = document.getElementById("referralCode");
+    if(code){
+        code.textContent = profile.referral_code;
+    }
 
-    const { data, error } =
-        await client
+    // Referral link
+    const link =
+        "https://ethartoken.com/?ref=" + profile.referral_code;
+
+    const referralLink =
+        document.getElementById("referralLink");
+
+    if(referralLink){
+        referralLink.textContent = link;
+    }
+
+    // Total referral earnings
+    const earnings =
+        document.getElementById("totalReferralEarnings");
+
+    if(earnings){
+        earnings.textContent =
+            "$" + Number(profile.total_referral_earnings).toFixed(2);
+    }
+
+    // Load referrals
+    const { data, error } = await client
         .from("referrals")
         .select(`
             created_at,
             profiles!referrals_referred_id_fkey(
                 first_name,
-                last_name,
                 total_won
             )
         `)
         .eq("referrer_id", user.id);
 
     if(error){
-
         console.log(error);
         return;
-
     }
 
-    // Referral Code
-
-    const code =
-        document.getElementById("referralCode");
-
-    if(code){
-
-        code.textContent =
-            profile.referral_code;
-
-    }
-
-    // Referral Link
-
-    const link =
-        document.getElementById("referralLink");
-
-    if(link){
-
-        link.textContent =
-            "https://ethartoken.com/?ref=" +
-            profile.referral_code;
-
-    }
-
-    // Total Earned
-
-    const earned =
-        document.getElementById("totalReferralEarnings");
-
-    if(earned){
-
-        earned.textContent =
-            "$" +
-            Number(profile.total_referral_earnings).toFixed(2);
-
-    }
-
-    // Total Referrals
-
+    // Total referrals
     const total =
         document.getElementById("totalReferrals");
 
     if(total){
-
-        total.textContent =
-            data.length;
-
+        total.textContent = data.length;
     }
-
-    // Referral Table
 
     const tbody =
         document.getElementById("referralTable");
@@ -294,26 +268,18 @@ async function loadReferrals(){
     data.forEach(r=>{
 
         tbody.innerHTML += `
-
         <tr>
 
-            <td>
-                ${r.profiles.first_name}
-                ${r.profiles.last_name}
-            </td>
+            <td>${r.profiles.first_name}</td>
 
-            <td>
-                ${new Date(r.created_at).toLocaleDateString()}
-            </td>
+            <td>${new Date(r.created_at).toLocaleDateString()}</td>
 
-            <td>
-                $${Number(r.profiles.total_won).toFixed(2)}
-            </td>
+            <td>$${Number(r.profiles.total_won).toFixed(2)}</td>
 
-        </tr>
-
-        `;
-
+        </tr>`;
     });
+
+    // Update Copy/Share buttons with the real link
+    window.referralLink = link;
 
 }
