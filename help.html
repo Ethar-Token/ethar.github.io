@@ -298,7 +298,7 @@ gap:10px;
 
 <h3>How are winners selected?</h3>
 
-<p>Every hour a random draw selects winners from all tickets entered into that draw.</p>
+<p>Every day a random draw selects winners from all tickets entered into that draw.</p>
 
 </div>
 
@@ -349,16 +349,19 @@ VIEW ALL FAQs
 <label>Subject</label>
 
 <input
+id="subject"
 type="text"
 placeholder="Enter subject">
 
 <label>Message</label>
 
 <textarea
+id="message"
 placeholder="Write your message here..."></textarea>
 
 <button
-type="submit"
+id="sendBtn"
+type="button"
 class="btn">
 
 SEND MESSAGE
@@ -404,17 +407,6 @@ function closeMenu(){
 
 }
 
-document.querySelector("form").addEventListener("submit",function(e){
-
-    e.preventDefault();
-
-    alert(
-        "Thank you for contacting ETHAR Support.\n\n" +
-        "Your message has been prepared.\n\n" +
-        "When the backend is connected, this form will send directly to support@ethartoken.com."
-    );
-
-});
 
 </script>
 
@@ -422,7 +414,59 @@ document.querySelector("form").addEventListener("submit",function(e){
 <script src="auth.js"></script>
 
 <script>
+
+document.getElementById("sendBtn").addEventListener("click", sendMessage);
+
+async function sendMessage(){
+
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if(subject === "" || message === ""){
+
+        alert("Please complete all fields.");
+        return;
+
+    }
+
+    const {
+        data:{user}
+    } = await client.auth.getUser();
+
+    const { data:profile } = await client
+        .from("profiles")
+        .select("first_name,email")
+        .eq("id", user.id)
+        .single();
+
+    const { error } = await client
+        .from("support_tickets")
+        .insert({
+
+            user_id: user.id,
+            name: profile.first_name,
+            email: profile.email,
+            subject: subject,
+            message: message
+
+        });
+
+    if(error){
+
+        alert(error.message);
+        return;
+
+    }
+
+    alert("Thank you for contacting ETHAR Support. We have received your message and will respond within 2 business days.");
+
+    document.getElementById("subject").value = "";
+    document.getElementById("message").value = "";
+
+}
+    
 requireLogin();
+loadBalances();
 </script>
 
 </body>
