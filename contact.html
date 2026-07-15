@@ -264,7 +264,7 @@ For account issues, withdrawals, or technical support, please include your regis
 
 <label>Your Name</label>
 
-<input type="text" placeholder="Enter your name">
+<input id="name" type="text" placeholder="Enter your name" required>
 
 </div>
 
@@ -272,7 +272,7 @@ For account issues, withdrawals, or technical support, please include your regis
 
 <label>Email Address</label>
 
-<input type="email" placeholder="Enter your email">
+<input id="email" type="email" placeholder="Enter your email" required>
 
 </div>
 
@@ -280,7 +280,7 @@ For account issues, withdrawals, or technical support, please include your regis
 
 <label>Subject</label>
 
-<input type="text" placeholder="Subject">
+<input id="subject" type="text" placeholder="Subject" required>
 
 </div>
 
@@ -288,11 +288,11 @@ For account issues, withdrawals, or technical support, please include your regis
 
 <label>Message</label>
 
-<textarea placeholder="Write your message here..."></textarea>
+<textarea id="message" placeholder="Write your message here..." required></textarea>
 
 </div>
 
-<button class="btn">
+<button id="sendBtn" type="button" class="btn">
 
 SEND MESSAGE
 
@@ -311,6 +311,82 @@ SEND MESSAGE
 </footer>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const supabaseUrl = "https://ynohexdhktetiepmbwnx.supabase.co";
+
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlub2hleGRoa3RldGllcG1id254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDU5ODcsImV4cCI6MjA5OTI4MTk4N30.bOgCv0UJxYvNSXDxCFs9_6lWfm-h5RipjLzqFIC7Miw";
+
+const client = supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
+</script>
+
+<script>
+
+document
+.getElementById("sendBtn")
+.addEventListener("click", sendMessage);
+
+async function sendMessage(){
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const subject =
+        document.getElementById("subject").value.trim();
+
+    const message =
+        document.getElementById("message").value.trim();
+
+    if(
+        name==="" ||
+        email==="" ||
+        subject==="" ||
+        message===""){
+
+        alert("Please complete all fields.");
+        return;
+
+    }
+
+    const { error } = await client
+        .from("contact_messages")
+        .insert({
+
+            name:name,
+            email:email,
+            subject:subject,
+            message:message
+
+        });
+
+    if(error){
+
+        alert(error.message);
+        return;
+
+    }
+
+    alert(
+        "Thank you for contacting ETHAR.\n\n" +
+        "We have received your message and will respond within 2 business days."
+    );
+
+    document.getElementById("name").value="";
+    document.getElementById("email").value="";
+    document.getElementById("subject").value="";
+    document.getElementById("message").value="";
+
+}
+
+</script>
 
 </body>
 
