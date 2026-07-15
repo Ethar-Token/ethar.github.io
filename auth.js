@@ -270,7 +270,7 @@ async function loadReferrals(){
         tbody.innerHTML += `
         <tr>
 
-            <td>${r.profiles?.first_name ?? Unknown User"}</td>
+            <td>${r.profiles.first_name}</td>
 
             <td>${new Date(r.created_at).toLocaleDateString()}</td>
 
