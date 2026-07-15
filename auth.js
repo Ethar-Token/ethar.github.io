@@ -183,7 +183,7 @@ async function loadReferrals(){
         .select(`
             created_at,
             profiles!referrals_referred_id_fkey(
-                full_name,
+                first_name,
                 total_won
             )
         `)
@@ -208,7 +208,7 @@ async function loadReferrals(){
         tbody.innerHTML += `
         <tr>
 
-            <td>${r.profiles.full_name}</td>
+            <td>${r.profiles.first_name}</td>
 
             <td>${new Date(r.created_at).toLocaleDateString()}</td>
 
