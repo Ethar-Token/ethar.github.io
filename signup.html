@@ -689,6 +689,17 @@ const dob = document.getElementById("dob").value;
 const country = document.getElementById("country").value;
 const referral = document.getElementById("referral").value.trim();
 
+const { data: existingPhone } = await client
+    .from("profiles")
+    .select("id")
+    .eq("phone", phone)
+    .maybeSingle();
+
+if (existingPhone) {
+    alert("This phone number is already registered.");
+    return;
+}
+
 const { data, error } = await client.auth.signUp({
 
 email: email,
