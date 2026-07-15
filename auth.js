@@ -178,12 +178,35 @@ async function loadReferrals(){
 
     if(!user) return;
 
-    const { data, error } = await client
+    // Get profile
+
+    const { data:profile, error:profileError } =
+        await client
+        .from("profiles")
+        .select(`
+            referral_code,
+            total_referral_earnings
+        `)
+        .eq("id", user.id)
+        .single();
+
+    if(profileError){
+
+        console.log(profileError);
+        return;
+
+    }
+
+    // Get referrals
+
+    const { data, error } =
+        await client
         .from("referrals")
         .select(`
             created_at,
             profiles!referrals_referred_id_fkey(
                 first_name,
+                last_name,
                 total_won
             )
         `)
@@ -196,6 +219,58 @@ async function loadReferrals(){
 
     }
 
+    // Referral Code
+
+    const code =
+        document.getElementById("referralCode");
+
+    if(code){
+
+        code.textContent =
+            profile.referral_code;
+
+    }
+
+    // Referral Link
+
+    const link =
+        document.getElementById("referralLink");
+
+    if(link){
+
+        link.textContent =
+            "https://ethartoken.com/?ref=" +
+            profile.referral_code;
+
+    }
+
+    // Total Earned
+
+    const earned =
+        document.getElementById("totalReferralEarnings");
+
+    if(earned){
+
+        earned.textContent =
+            "$" +
+            Number(profile.total_referral_earnings).toFixed(2);
+
+    }
+
+    // Total Referrals
+
+    const total =
+        document.getElementById("totalReferrals");
+
+    if(total){
+
+        total.textContent =
+            data.length;
+
+    }
+
+    // Referral Table
+
     const tbody =
         document.getElementById("referralTable");
 
@@ -203,18 +278,42 @@ async function loadReferrals(){
 
     tbody.innerHTML = "";
 
+    if(data.length === 0){
+
+        tbody.innerHTML = `
+        <tr>
+            <td colspan="3" style="text-align:center;color:#999;">
+                You haven't referred anyone yet.
+            </td>
+        </tr>`;
+
+        return;
+
+    }
+
     data.forEach(r=>{
 
         tbody.innerHTML += `
+
         <tr>
 
-            <td>${r.profiles.first_name}</td>
+            <td>
+                ${r.profiles.first_name}
+                ${r.profiles.last_name}
+            </td>
 
-            <td>${new Date(r.created_at).toLocaleDateString()}</td>
+            <td>
+                ${new Date(r.created_at).toLocaleDateString()}
+            </td>
 
-            <td>$${Number(r.profiles.total_won).toFixed(2)}</td>
+            <td>
+                $${Number(r.profiles.total_won).toFixed(2)}
+            </td>
 
-        </tr>`;
+        </tr>
+
+        `;
+
     });
 
 }
