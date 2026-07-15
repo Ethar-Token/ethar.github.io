@@ -158,7 +158,7 @@ function startCountdown(endTime){
         // Dashboard circle countdown
         const cc = document.getElementById("cc");
         if(cc){
-            cc.textContent = `${minutes}:${seconds}`;
+            cc.textContent = `${hours}:${minutes}:${seconds}`;
         }
 
         // Homepage countdown
