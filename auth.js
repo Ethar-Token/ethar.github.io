@@ -283,3 +283,67 @@ async function loadReferrals(){
     window.referralLink = link;
 
 }
+
+async function loadWithdrawals(){
+
+    const {
+        data:{user}
+    } = await client.auth.getUser();
+
+    if(!user) return;
+
+    const { data, error } = await client
+        .from("withdrawals")
+        .select(`
+            requested_at,
+            method,
+            amount,
+            status
+        `)
+        .eq("user_id", user.id)
+        .order("requested_at",{ascending:false})
+        .limit(10);
+
+    if(error){
+        console.log(error);
+        return;
+    }
+
+    const tbody = document.getElementById("withdrawalTable");
+
+    if(!tbody) return;
+
+    tbody.innerHTML = "";
+
+    if(data.length === 0){
+
+        tbody.innerHTML = `
+        <tr>
+            <td colspan="5" style="text-align:center;color:#999;">
+                No withdrawal history.
+            </td>
+        </tr>`;
+
+        return;
+
+    }
+
+    data.forEach(w=>{
+
+        tbody.innerHTML += `
+        <tr>
+
+            <td>${new Date(w.requested_at).toLocaleDateString()}</td>
+
+            <td>Withdrawal</td>
+
+            <td>${w.method}</td>
+
+            <td>$${Number(w.amount).toFixed(2)}</td>
+
+            <td>${w.status}</td>
+
+        </tr>`;
+    });
+
+}
