@@ -320,7 +320,7 @@ async function loadWithdrawals(){
         tbody.innerHTML = `
         <tr>
             <td colspan="5" style="text-align:center;color:#999;">
-                No withdrawal history.
+                No transaction history.
             </td>
         </tr>`;
 
