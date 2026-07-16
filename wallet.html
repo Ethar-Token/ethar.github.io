@@ -347,6 +347,8 @@ REQUEST WITHDRAWAL
 
 <table>
 
+<thread>
+
 <tr>
 
 <th>Date</th>
@@ -357,15 +359,9 @@ REQUEST WITHDRAWAL
 
 </tr>
 
-<tr>
+</thread>
 
-<td colspan="5" style="text-align:center;color:#999;padding:30px;">
-
-No transactions available.
-
-</td>
-
-</tr>
+<tbody id="withdrawalTable"></tbody>
 
 </table>
 
@@ -445,6 +441,8 @@ alert("Your withdrawal request has been submitted.\n\nOnce the backend is connec
 <script>
 requireLogin();
 loadBalances();
+loadWithdrawals();
+  
 </script>
 
 </body>
