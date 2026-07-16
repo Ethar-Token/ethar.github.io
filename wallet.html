@@ -308,16 +308,18 @@ Deposits are <strong>coming soon.</strong>
 <label id="addressLabel">PayPal Email</label>
 
 <input
+id="destination"
 type="text"
 placeholder="Enter email or wallet address">
 
 <label>Amount (USD)</label>
 
 <input
+id="amount"
 type="number"
 placeholder="Minimum $5">
 
-<button class="btn">
+<button id="withdrawBtn" class="btn">
 
 REQUEST WITHDRAWAL
 
@@ -417,21 +419,74 @@ document.getElementById("menuBtn").innerHTML="☰";
 
 }
 
-document.querySelector(".btn").addEventListener("click",function(){
+document
+.getElementById("withdrawBtn")
+.addEventListener("click", requestWithdrawal);
 
-const amount=document.querySelectorAll("input")[1].value;
+async function requestWithdrawal(){
 
-if(amount==="" || Number(amount)<5){
+    const method =
+        document.getElementById("method").value;
 
-alert("Minimum withdrawal amount is $5.");
+    const destination =
+        document.getElementById("destination").value.trim();
 
-return;
+    const amount =
+        Number(document.getElementById("amount").value);
+
+    if(destination === ""){
+
+        alert("Please enter your payment destination.");
+        return;
+
+    }
+
+    if(amount < 5){
+
+        alert("Minimum withdrawal amount is $5.");
+        return;
+
+    }
+
+    const { data, error } = await client.rpc(
+        "request_withdrawal",
+        {
+            p_method: method,
+            p_destination: destination,
+            p_amount: amount
+        }
+    );
+
+    if(error){
+
+        alert(error.message);
+        return;
+
+    }
+
+    if(data === "INSUFFICIENT_FUNDS"){
+
+        alert("You do not have enough funds.");
+        return;
+
+    }
+
+    if(data === "MINIMUM_$5"){
+
+        alert("Minimum withdrawal is $5.");
+        return;
+
+    }
+
+    alert("Your withdrawal request has been submitted.");
+
+    document.getElementById("destination").value = "";
+    document.getElementById("amount").value = "";
+
+    loadBalances();
+    loadWithdrawals();
 
 }
-
-alert("Your withdrawal request has been submitted.\n\nOnce the backend is connected, this request will be sent for review.");
-
-});
 
 </script>
 
