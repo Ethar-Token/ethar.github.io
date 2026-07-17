@@ -478,21 +478,7 @@ document.querySelector(".overlay").classList.remove("active");
 
 document.querySelectorAll(".btn")[1].addEventListener("click", function(){
 
-    if(navigator.share){
-
-        navigator.share({
-
-            title:"Join ETHAR",
-
-            text:"Join ETHAR using my referral link and start earning rewards!",
-
-            url:window.referralLink
-
-        });
-
-    }else{
-
-        navigator.clipboard.writeText(window.referralLink);
+    navigator.clipboard.writeText(window.referralLink);
 
         alert("Referral link copied. Share it with your friends!");
 
