@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ETHAR - Admin Withdrawals</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0b1220;
+color:#fff;
+padding:30px;
+}
+
+h1{
+color:#f4b400;
+margin-bottom:25px;
+}
+
+.panel{
+background:#151e2f;
+padding:25px;
+border-radius:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #2d3b57;
+text-align:left;
+}
+
+th{
+color:#f4b400;
+}
+
+button{
+padding:8px 14px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+margin-right:8px;
+}
+
+.paid{
+background:#22c55e;
+color:white;
+}
+
+.reject{
+background:#ef4444;
+color:white;
+}
+
+.processing{
+color:#f4b400;
+font-weight:bold;
+}
+
+.done{
+color:#22c55e;
+font-weight:bold;
+}
+
+.rejected{
+color:#ef4444;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Withdrawal Requests</h1>
+
+<div class="panel">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Email</th>
+<th>Method</th>
+<th>Destination</th>
+<th>Amount</th>
+<th>Requested</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="withdrawalTable"></tbody>
+
+</table>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const client = supabase.createClient(
+    "https://ynohexdhktetiepmbwnx.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlub2hleGRoa3RldGllcG1id254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDU5ODcsImV4cCI6MjA5OTI4MTk4N30.bOgCv0UJxYvNSXDxCFs9_6lWfm-h5RipjLzqFIC7Miw"
+);
+
+loadWithdrawals();
+
+async function loadWithdrawals(){
+
+    const {data,error}=await client
+    .from("withdrawals")
+    .select("*")
+    .order("requested_at",{ascending:false});
+
+    if(error){
+
+        console.log(error);
+        return;
+
+    }
+
+    const tbody=document.getElementById("withdrawalTable");
+
+    tbody.innerHTML="";
+
+    data.forEach(w=>{
+
+        let buttons="-";
+
+        if(w.status==="processing"){
+
+            buttons=`
+
+<button class="paid"
+onclick="approve(${w.id})">
+
+✅ Paid
+
+</button>
+
+<button class="reject"
+onclick="rejectWithdrawal(${w.id})">
+
+❌ Reject
+
+</button>
+
+`;
+
+        }
+
+        tbody.innerHTML+=`
+
+<tr>
+
+<td>${w.name}</td>
+
+<td>${w.email}</td>
+
+<td>${w.method}</td>
+
+<td>${w.destination}</td>
+
+<td>$${Number(w.amount).toFixed(2)}</td>
+
+<td>${new Date(w.requested_at).toLocaleString()}</td>
+
+<td class="${
+w.status==="processing"
+?"processing"
+:w.status==="paid"
+?"done"
+:"rejected"
+}">
+
+${w.status}
+
+</td>
+
+<td>
+
+${buttons}
+
+</td>
+
+</tr>
+
+`;
+
+    });
+
+}
+
+async function approve(id){
+
+    if(!confirm("Mark this withdrawal as PAID?"))
+        return;
+
+    const {error}=await client.rpc(
+        "approve_withdrawal",
+        {
+            p_withdrawal_id:id
+        }
+    );
+
+    if(error){
+
+        alert(error.message);
+        return;
+
+    }
+
+    loadWithdrawals();
+
+}
+
+async function rejectWithdrawal(id){
+
+    if(!confirm("Reject this withdrawal and refund the user?"))
+        return;
+
+    const {error}=await client.rpc(
+        "reject_withdrawal",
+        {
+            p_withdrawal_id:id
+        }
+    );
+
+    if(error){
+
+        alert(error.message);
+        return;
+
+    }
+
+    loadWithdrawals();
+
+}
+
+</script>
+
+</body>
+
+</html>
