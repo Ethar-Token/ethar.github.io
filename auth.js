@@ -347,3 +347,63 @@ async function loadWithdrawals(){
     });
 
 }
+
+async function loadWinners(){
+
+    const { data, error } = await client
+        .from("draw_winners")
+        .select(`
+            prize,
+            profiles!draw_winners_user_id_fkey(
+                first_name,
+                email
+            )
+        `)
+        .order("id");
+
+    if(error){
+        console.log(error);
+        return;
+    }
+
+    const tbody = document.getElementById("winnersTable");
+
+    if(!tbody) return;
+
+    tbody.innerHTML = "";
+
+    if(data.length === 0){
+
+        tbody.innerHTML = `
+        <tr>
+            <td colspan="3" style="text-align:center;color:#999;">
+                No winners yet.
+            </td>
+        </tr>`;
+
+        return;
+    }
+
+    data.forEach(w=>{
+
+        const email = w.profiles.email;
+        const parts = email.split("@");
+
+        const hiddenEmail =
+            parts[0].substring(0,3) +
+            "****@" +
+            parts[1];
+
+        tbody.innerHTML += `
+        <tr>
+
+            <td>${w.profiles.first_name}</td>
+
+            <td>${hiddenEmail}</td>
+
+            <td>$${Number(w.prize).toFixed(2)}</td>
+
+        </tr>`;
+    });
+
+}
