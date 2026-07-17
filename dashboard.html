@@ -452,8 +452,8 @@ input[type="number"]{
 </table>
 </div>
 
-<div class="panel" style="margin-top:20px"><h2>👥 Referrals</h2><p><b>Earn 10% of their winnings for life!</b></p><p>Your Referrals: <b>0</b></p>
-<div class="refcode"><div><b>Referral Code:</b> <div id="referralCode"></div><br><small><div id="referralLink"></div></small></div><button class="copy">Copy Link</button></div>
+<div class="panel" style="margin-top:20px"><h2>👥 Referrals</h2><p><b>Earn 10% of their winnings for life!</b></p><p>Your Referrals: <b id="totalReferrals">0</b></p>
+<div class="refcode"><div><b>Referral Code: </b> id="referralCode"> <br><small><div id="referralLink"></div></small></div><button class="btn">Copy Link</button></div>
 </div>
 </div>
     
@@ -475,6 +475,28 @@ document.querySelector(".side").classList.remove("active");
 document.querySelector(".overlay").classList.remove("active");
 
 }
+
+document.querySelectorAll(".btn")[1].addEventListener("click", function(){
+
+    if(navigator.share){
+
+        navigator.share({
+
+            title:"Join ETHAR",
+
+            text:"Join ETHAR using my referral link and start earning rewards!",
+
+            url:window.referralLink
+
+        });
+
+    }else{
+
+        navigator.clipboard.writeText(window.referralLink);
+
+        alert("Referral link copied. Share it with your friends!");
+
+    }
 
 </script>
 
