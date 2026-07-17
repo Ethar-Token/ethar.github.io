@@ -130,7 +130,44 @@ const client = supabase.createClient(
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlub2hleGRoa3RldGllcG1id254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDU5ODcsImV4cCI6MjA5OTI4MTk4N30.bOgCv0UJxYvNSXDxCFs9_6lWfm-h5RipjLzqFIC7Miw"
 );
 
-loadWithdrawals();
+async function requireAdmin(){
+
+    const {
+        data:{user}
+    } = await client.auth.getUser();
+
+    if(!user){
+
+        location.href="login.html";
+        return;
+
+    }
+
+    const {data,error}=await client
+        .from("profiles")
+        .select("is_admin")
+        .eq("id",user.id)
+        .single();
+
+    if(error || !data.is_admin){
+
+        alert("Access denied.");
+
+        location.href="dashboard.html";
+
+        return;
+
+    }
+
+}
+
+(async()=>{
+
+    await requireAdmin();
+
+    loadWithdrawals();
+
+})();
 
 async function loadWithdrawals(){
 
