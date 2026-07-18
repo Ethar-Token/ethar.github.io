@@ -530,3 +530,80 @@ async function saveProfile(){
     }
 
 }
+
+document.getElementById("updatePassword").addEventListener("click", updatePassword);
+
+async function updatePassword(){
+
+    const currentPassword =
+        document.getElementById("currentPassword").value;
+
+    const newPassword =
+        document.getElementById("newPassword").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    if(!currentPassword || !newPassword || !confirmPassword){
+        alert("Please complete all password fields.");
+        return;
+    }
+
+    if(newPassword !== confirmPassword){
+        alert("New passwords do not match.");
+        return;
+    }
+
+    const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};:'",.<>/?\\|`~]).{8,}$/;
+
+    if(!passwordRegex.test(newPassword)){
+        alert(
+`Password Requirements
+
+✔ At least 8 characters
+✔ One uppercase letter
+✔ One lowercase letter
+✔ One number
+✔ One special character`
+        );
+        return;
+    }
+
+    // Verify current password
+    const {
+        data:{user}
+    } = await client.auth.getUser();
+
+    const { error: loginError } =
+        await client.auth.signInWithPassword({
+
+            email: user.email,
+            password: currentPassword
+
+        });
+
+    if(loginError){
+        alert("Current password is incorrect.");
+        return;
+    }
+
+    const { error } =
+        await client.auth.updateUser({
+
+            password: newPassword
+
+        });
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    alert("Password updated successfully.");
+
+    document.getElementById("currentPassword").value = "";
+    document.getElementById("newPassword").value = "";
+    document.getElementById("confirmPassword").value = "";
+
+}
