@@ -28,15 +28,15 @@
     </div>
     <div class='main'><header><div class='left'><div class='menu' id='m' onclick='toggleMenu()'>☰</div><h1>Profile</h1></div><div class='right'>🔔 <span id="headerBalance">$0.00</span> <a href='profile.html' style='color:#fff;text-decoration:none'>👤</a></div></header>
 <div class='panel'><h2>Profile Information</h2><div class='grid'>
-<div class='field'><label>First Name</label><input placeholder='First name'></div>
-<div class='field'><label>Last Name</label><input placeholder='Last name'></div>
-<div class='field'><label>Email</label><input type='email' placeholder='Email'></div>
-<div class='field'><label>Phone Number</label><input placeholder='+254...'></div>
-<div class='field'><label>Date of Birth</label><input type='date'></div>
+<div class='field'><label>First Name</label><input id="firstName"></div>
+<div class='field'><label>Last Name</label><input id="lastName"></div>
+<div class='field'><label>Email</label><input id="email" type='email'></div>
+<div class='field'><label>Phone Number</label><input id="phone"></div>
+<div class='field'><label>Date of Birth</label><input id="dob" type='date'></div>
 <div class="field">
 <label>Country</label>
 <select>
-<option value="">Select Country</option>
+<option value="" id="country"></option>
 <option>Afghanistan</option>
 <option>Albania</option>
 <option>Algeria</option>
@@ -235,6 +235,40 @@
 <option>Zimbabwe</option>
 </select>
 </div>
+<div class="field full">
+<label>Verification Status</label>
+<p id="kycStatus">Not Verified</p>
+</div>
+
+<div class="full">
+
+<button class="btn" onclick="window.location='verification.html'">
+VERIFY IDENTITY
+</button>
+
+<br><br>
+
+<button class="btn" onclick="logout()">
+LOG OUT
+</button>
+
+<br><br>
+
+<button
+class="btn"
+style="background:#d9534f;color:white"
+onclick="deleteAccount()">
+
+DELETE ACCOUNT
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+  
 <div class='full'><button class='btn'>SAVE CHANGES</button></div></div></div>
 <div class='panel'><h2>Security Settings</h2><div class='grid'>
 <div class='field full'><label>Current Password</label><input type='password'></div>
@@ -251,6 +285,7 @@ function closeMenu(){document.querySelector('.side').classList.remove('active');
 
 <script>
 requireLogin();
+loadProfile();
 </script>
     
 </body>
