@@ -39,19 +39,9 @@ async function sendResetLink(){
     }
 
     // Check if email exists
-    const { data, error } = await client
-        .from("profiles")
-        .select("id")
-        .eq("email", email)
-        .maybeSingle();
-
-    if(error){
-
-        alert("Something went wrong.");
-        console.log(error);
-        return;
-
-    }
+    const { data } = await client.rpc("email_exists", {
+        p_email: email
+    });
 
     if(!data){
 
