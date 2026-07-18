@@ -69,6 +69,22 @@ header{
     margin-bottom:25px;
 }
 
+.bell{
+    position:relative;
+    display:inline-block;
+    }
+
+    #notificationDot{
+    display:none;
+    position:absolute;
+    top:0;
+    right:0;
+    width:10px;
+    height:10px;
+    background:red;
+    border-radius:50%;
+}
+
 /* Cards */
 
 .cards{
@@ -371,7 +387,7 @@ input[type="number"]{
 
 <div class="rightHeader">
 
-🔔
+<span id="notificationDot" class="bell">🔔</span>
 
 <span id="headerBalance">$0.00</span>
 
@@ -505,6 +521,16 @@ loadBalances();
 loadCurrentDraw();
 loadWinners();
 loadReferrals();
+
+const { count } = await client
+    .from("notifications")
+    .select("*", { count: "exact", head: true })
+    .eq("user_id", user.id)
+    .eq("is_read", false);
+
+if(count > 0){
+    document.getElementById("notificationDot").style.display="block";
+}
 
 const ticketInput = document.getElementById("ticketInput");
 
