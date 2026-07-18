@@ -608,3 +608,77 @@ async function updatePassword(){
     document.getElementById("confirmPassword").value = "";
 
 }
+
+document
+.getElementById("notificationIcon")
+.addEventListener("click", loadNotifications);
+
+async function loadNotifications(){
+
+    const {
+        data:{user}
+    } = await client.auth.getUser();
+
+    const { data } = await client
+        .from("notifications")
+        .select("*")
+        .eq("user_id",user.id)
+        .order("is_read",{ascending:true})
+        .order("created_at",{ascending:false});
+
+    const list =
+        document.getElementById("notificationList");
+
+    list.innerHTML="";
+
+    if(data.length===0){
+
+        list.innerHTML=
+        "<div class='notificationItem'>No notifications.</div>";
+
+    }else{
+
+        data.forEach(n=>{
+
+            list.innerHTML+=`
+
+            <div class="notificationItem ${!n.is_read ? "notificationUnread":""}">
+
+                <div class="notificationTitle">
+                    ${n.title}
+                </div>
+
+                <div class="notificationMessage">
+                    ${n.message}
+                </div>
+
+                <div class="notificationTime">
+                    ${new Date(n.created_at).toLocaleString()}
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+    }
+
+    document
+    .getElementById("notificationMenu")
+    .style.display="block";
+
+    await client
+    .from("notifications")
+    .update({
+        is_read:true,
+        read_at:new Date().toISOString()
+    })
+    .eq("user_id",user.id)
+    .eq("is_read",false);
+
+    document
+    .getElementById("notificationDot")
+    .style.display="none";
+
+}
