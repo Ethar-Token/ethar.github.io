@@ -22,55 +22,6 @@ async function requireLogin() {
 
 }
 
-document
-.getElementById("resetPassword")
-.addEventListener("click", sendResetLink);
-
-async function sendResetLink(){
-
-    const email =
-        document.getElementById("email").value.trim();
-
-    if(email === ""){
-
-        alert("Please enter your email.");
-        return;
-
-    }
-
-    // Check if email exists
-    const { data } = await client.rpc("email_exists", {
-        p_email: email
-    });
-
-    if(!data){
-
-        alert("No account exists with that email address.");
-        return;
-
-    }
-
-    // Send reset email
-    const { error: resetError } =
-        await client.auth.resetPasswordForEmail(email, {
-
-            redirectTo:
-                "https://ethartoken.com/reset-password.html"
-
-        });
-
-    if(resetError){
-
-        alert(resetError.message);
-        return;
-
-    }
-
-    alert(
-        "A password reset link has been sent to your email."
-    );
-
-}
 
 async function loadBalances() {
 
