@@ -464,3 +464,69 @@ function deleteAccount(){
     );
 
 }
+
+document.getElementById("saveProfile").addEventListener("click", saveProfile);
+
+async function saveProfile(){
+
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName  = document.getElementById("lastName").value.trim();
+    const email     = document.getElementById("email").value.trim();
+    const phone     = document.getElementById("phone").value.trim();
+    const dob       = document.getElementById("dob").value;
+    const country   = document.getElementById("country").value;
+
+    if(
+        !firstName ||
+        !lastName ||
+        !email ||
+        !phone ||
+        !dob ||
+        !country
+    ){
+        alert("Please complete all fields.");
+        return;
+    }
+
+    const { data, error } = await client.rpc("update_profile",{
+
+        p_first_name:firstName,
+        p_last_name:lastName,
+        p_email:email,
+        p_phone:phone,
+        p_dob:dob,
+        p_country:country
+
+    });
+
+    if(error){
+
+        alert(error.message);
+        return;
+
+    }
+
+    switch(data){
+
+        case "SUCCESS":
+            alert("Profile updated successfully.");
+            break;
+
+        case "VERIFIED":
+            alert("Your account has already been verified. Please contact support if you need to update your personal details.");
+            break;
+
+        case "EMAIL_EXISTS":
+            alert("That email address is already in use.");
+            break;
+
+        case "PHONE_EXISTS":
+            alert("That phone number is already in use.");
+            break;
+
+        default:
+            alert("Something went wrong.");
+
+    }
+
+}
