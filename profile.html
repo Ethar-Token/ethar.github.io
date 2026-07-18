@@ -6,7 +6,33 @@
     <title>ETHAR Profile</title>
 <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap' rel='stylesheet'>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}body{background:#0b1220;color:#fff;display:flex}.overlay{display:none}.side{width:230px;background:#151e2f;height:100vh;padding:25px;position:fixed;overflow:auto;z-index:1000}.side h2{color:#f4b400;margin-bottom:20px}.side a{display:block;color:#d0d5dd;text-decoration:none;padding:12px;border-radius:8px;margin-bottom:5px}.side a:hover,.side .active{background:#f4b400;color:#111}.main{margin-left:230px;width:calc(100% - 230px);padding:30px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.left,.right{display:flex;align-items:center;gap:15px}.menu{display:none;font-size:30px;color:#f4b400;cursor:pointer}.panel{background:#151e2f;padding:25px;border-radius:15px;margin-bottom:20px}h2{color:#f4b400;margin-bottom:18px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:flex;flex-direction:column}label{margin-bottom:6px}input,select{padding:12px;background:#0b1220;color:#fff;border:1px solid #2d3b57;border-radius:8px}.full{grid-column:1/-1}.btn{background:#f4b400;color:#111;border:none;padding:14px 24px;border-radius:10px;font-weight:700;cursor:pointer}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}body{background:#0b1220;color:#fff;display:flex}
+.overlay{display:none}
+.side{width:230px;background:#151e2f;height:100vh;padding:25px;position:fixed;overflow:auto;z-index:1000}
+.side h2{color:#f4b400;margin-bottom:20px}
+.side a{display:block;color:#d0d5dd;text-decoration:none;padding:12px;border-radius:8px;margin-bottom:5px}
+.side a:hover,
+.side 
+.active{background:#f4b400;color:#111}
+.main{margin-left:230px;width:calc(100% - 230px);padding:30px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+.left,.right{display:flex;align-items:center;gap:15px}
+.menu{display:none;font-size:30px;color:#f4b400;cursor:pointer}
+.panel{background:#151e2f;padding:25px;border-radius:15px;margin-bottom:20px}h2{color:#f4b400;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column}
+.field p,
+.field input,
+.field select{
+
+padding:12px;
+background:#0b1220;
+border:1px solid #2d3b57;
+border-radius:8px;
+color:#fff;
+
+}
+label{margin-bottom:6px}input,select{padding:12px;background:#0b1220;color:#fff;border:1px solid #2d3b57;border-radius:8px}.full{grid-column:1/-1}
+.btn{background:#f4b400;color:#111;border:none;padding:14px 24px;border-radius:10px;font-weight:700;cursor:pointer}
 @media(max-width:768px){body{display:block}.menu{display:block}.overlay.active{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999}.side{left:-240px;top:0;transition:.3s}.side.active{left:0}.main{margin-left:0;width:100%;padding:15px}.grid{grid-template-columns:1fr}}
 </style>
   </head>
@@ -35,8 +61,8 @@
 <div class='field'><label>Date of Birth</label><input id="dob" type='date'></div>
 <div class="field">
 <label>Country</label>
-<select>
-<option value="" id="country"></option>
+<select  id="country">
+<option value="">Select Country</option>
 <option>Afghanistan</option>
 <option>Albania</option>
 <option>Algeria</option>
