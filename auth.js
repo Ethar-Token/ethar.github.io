@@ -407,3 +407,61 @@ async function loadWinners(){
     });
 
 }
+
+async function loadProfile(){
+
+    const {
+        data:{user}
+    } = await client.auth.getUser();
+
+    if(!user) return;
+
+    const {data,error} = await client
+        .from("profiles")
+        .select(`
+            first_name,
+            last_name,
+            email,
+            phone,
+            dob,
+            country,
+            kyc_status
+        `)
+        .eq("id",user.id)
+        .single();
+
+    if(error){
+        console.log(error);
+        return;
+    }
+
+    document.getElementById("firstName").textContent = data.first_name;
+    document.getElementById("lastName").textContent = data.last_name;
+    document.getElementById("email").textContent = data.email;
+    document.getElementById("phone").textContent = data.phone;
+    document.getElementById("dob").textContent = data.dob;
+    document.getElementById("country").textContent = data.country;
+    document.getElementById("kycStatus").textContent =
+        data.kyc_status || "Not Verified";
+
+}
+
+async function logout(){
+
+    await client.auth.signOut();
+
+    window.location.href="login.html";
+
+}
+
+function deleteAccount(){
+
+    if(!confirm(
+        "Delete your account permanently?"
+    )) return;
+
+    alert(
+        "Please contact support to permanently delete your account."
+    );
+
+}
