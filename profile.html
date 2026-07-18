@@ -249,7 +249,15 @@
 VERIFY IDENTITY
 </button>
 
-<br><br>
+</div>
+  
+<div class='panel'><h2>Security Settings</h2><div class='grid'>
+<div class='field full'><label>Current Password</label><input type='password'></div>
+<div class='field full'><label>New Password</label><input type='password'></div>
+<div class='field full'><label>Confirm Password</label><input type='password'></div>
+<div class='full'><button class='btn'>UPDATE PASSWORD</button></div></div></div></div>
+
+<div class="full">
 
 <button class="btn" onclick="logout()">
 LOG OUT
@@ -267,16 +275,7 @@ DELETE ACCOUNT
 </button>
 
 </div>
-
-</div>
-
-</div>
-  
-<div class='panel'><h2>Security Settings</h2><div class='grid'>
-<div class='field full'><label>Current Password</label><input type='password'></div>
-<div class='field full'><label>New Password</label><input type='password'></div>
-<div class='field full'><label>Confirm Password</label><input type='password'></div>
-<div class='full'><button class='btn'>UPDATE PASSWORD</button></div></div></div></div>
+    
 <script>
 function toggleMenu(){document.querySelector('.side').classList.toggle('active');document.querySelector('.overlay').classList.toggle('active');m.textContent=document.querySelector('.side').classList.contains('active')?'✕':'☰';}
 function closeMenu(){document.querySelector('.side').classList.remove('active');document.querySelector('.overlay').classList.remove('active');m.textContent='☰';}
