@@ -31,6 +31,30 @@ border-radius:8px;
 color:#fff;
 
 }
+
+.notice{
+
+background:#0b1220;
+border-left:4px solid #f4b400;
+padding:20px;
+border-radius:10px;
+line-height:1.8;
+
+}
+
+.danger{
+
+background:#d9534f;
+color:#fff;
+
+}
+
+.danger:hover{
+
+background:#c9302c;
+
+}
+  
 label{margin-bottom:6px}input,select{padding:12px;background:#0b1220;color:#fff;border:1px solid #2d3b57;border-radius:8px}.full{grid-column:1/-1}
 .btn{background:#f4b400;color:#111;border:none;padding:14px 24px;border-radius:10px;font-weight:700;cursor:pointer}
 @media(max-width:768px){body{display:block}.menu{display:block}.overlay.active{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999}.side{left:-240px;top:0;transition:.3s}.side.active{left:0}.main{margin-left:0;width:100%;padding:15px}.grid{grid-template-columns:1fr}}
@@ -264,16 +288,25 @@ label{margin-bottom:6px}input,select{padding:12px;background:#0b1220;color:#fff;
 
 <div class='full'><button class='btn'>SAVE CHANGES</button></div></div></div>
   
-<div class="field full">
-<label>Verification Status</label>
-<p id="kycStatus">Not Verified</p> <br>
-</div>
+<div class="panel">
 
-<div class="full">
+<h2>Account Verification</h2>
+
+<div class="notice">
+
+<p><strong>Status:</strong> <span id="kycStatus">Not Verified</span></p>
+
+<br>
+
+Identity verification is required before your first withdrawal.
+
+<br><br>
 
 <button class="btn" onclick="window.location='verification.html'">
 VERIFY IDENTITY
-</button> <br><br>
+</button>
+
+</div>
 
 </div>
   
@@ -283,7 +316,9 @@ VERIFY IDENTITY
 <div class='field full'><label>Confirm Password</label><input type='password'></div>
 <div class='full'><button class='btn'>UPDATE PASSWORD</button></div></div></div></div>
 
-<div>
+<div class="panel">
+
+<h2>Account Actions</h2>
 
 <button class="btn" onclick="logout()">
 LOG OUT
@@ -292,8 +327,7 @@ LOG OUT
 <br><br>
 
 <button
-class="btn"
-style="background:#d9534f;color:white"
+class="btn danger"
 onclick="deleteAccount()">
 
 DELETE ACCOUNT
