@@ -435,12 +435,12 @@ async function loadProfile(){
         return;
     }
 
-    document.getElementById("firstName").value = data.first_name;
-    document.getElementById("lastName").value = data.last_name;
-    document.getElementById("email").value = data.email;
-    document.getElementById("phone").value = data.phone;
-    document.getElementById("dob").value = data.dob;
-    document.getElementById("country").value = data.country;
+    document.getElementById("firstName").value = data.first_name || "";
+    document.getElementById("lastName").value = data.last_name || "";
+    document.getElementById("email").value = data.email || "";
+    document.getElementById("phone").value = data.phone || "";
+    document.getElementById("dob").value = data.dob || "";
+    document.getElementById("country").value = data.country || "";
     document.getElementById("kycStatus").value = data.kyc_status || "Not Verified";
 
 }
