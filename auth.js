@@ -740,7 +740,7 @@ async function sendTicketEmail(){
         .eq("user_id", user.id)
         .order("ticket_number");
 
-    await fetch("YOUR EDGE FUNCTION URL",{
+    await fetch("https://ynohexdhktetiepmbwnx.supabase.co/functions/v1/sendTicketEmail",{
 
         method:"POST",
 
