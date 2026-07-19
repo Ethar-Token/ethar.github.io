@@ -76,6 +76,73 @@ align-items:center;
 gap:20px;
 }
 
+.notificationBell{
+    position:relative;
+}
+
+.notificationMenu{
+    display:none;
+    position:absolute;
+    top:45px;
+    right:0;
+    width:360px;
+    max-height:450px;
+    overflow-y:auto;
+    background:#151e2f;
+    border:1px solid #2d3b57;
+    border-radius:12px;
+    box-shadow:0 12px 35px rgba(0,0,0,.5);
+    z-index:9999;
+}
+
+.notificationItem{
+    padding:15px;
+    border-bottom:1px solid #273247;
+    cursor:pointer;
+}
+
+.notificationItem:hover{
+    background:#1d2940;
+}
+
+.notificationUnread{
+    border-left:4px solid #f4b400;
+}
+
+.notificationTitle{
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.notificationMessage{
+    color:#ccc;
+    font-size:14px;
+}
+
+.notificationTime{
+    color:#888;
+    font-size:12px;
+    margin-top:8px;
+}
+
+#notificationIcon{
+    position:relative;
+    cursor:pointer;
+    font-size:22px;
+}
+
+#notificationDot{
+    display:none;
+    position:absolute;
+    top:2px;
+    right:-2px;
+    width:10px;
+    height:10px;
+    background:#ff2d2d;
+    border-radius:50%;
+    border:2px solid #151e2f;
+}
+
 .menu{
 display:none;
 font-size:32px;
@@ -208,72 +275,6 @@ overflow-x:auto;
 white-space:nowrap;
 }
 
-.notificationBell{
-    position:relative;
-}
-
-.notificationMenu{
-    display:none;
-    position:absolute;
-    top:45px;
-    right:0;
-    width:360px;
-    max-height:450px;
-    overflow-y:auto;
-    background:#151e2f;
-    border:1px solid #2d3b57;
-    border-radius:12px;
-    box-shadow:0 12px 35px rgba(0,0,0,.5);
-    z-index:9999;
-}
-
-.notificationItem{
-    padding:15px;
-    border-bottom:1px solid #273247;
-    cursor:pointer;
-}
-
-.notificationItem:hover{
-    background:#1d2940;
-}
-
-.notificationUnread{
-    border-left:4px solid #f4b400;
-}
-
-.notificationTitle{
-    font-weight:700;
-    margin-bottom:6px;
-}
-
-.notificationMessage{
-    color:#ccc;
-    font-size:14px;
-}
-
-.notificationTime{
-    color:#888;
-    font-size:12px;
-    margin-top:8px;
-}
-
-#notificationIcon{
-    position:relative;
-    cursor:pointer;
-    font-size:22px;
-}
-
-#notificationDot{
-    display:none;
-    position:absolute;
-    top:2px;
-    right:-2px;
-    width:10px;
-    height:10px;
-    background:#ff2d2d;
-    border-radius:50%;
-    border:2px solid #151e2f;
-}
 
 }
 
