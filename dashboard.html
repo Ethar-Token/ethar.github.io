@@ -702,6 +702,7 @@ async function enterDraw(){
         case "SUCCESS":
 
             alert("Tickets entered successfully!");
+            await sendTicketEmail();
             loadBalances();
             loadCurrentDraw();
             checkNotifications();
