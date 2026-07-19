@@ -727,6 +727,10 @@ async function sendTicketEmail(){
         data:{user}
     } = await client.auth.getUser();
 
+    const {
+        data:{session}
+    } = await client.auth.getSession();
+
     const { data: draw } = await client
         .from("draws")
         .select("id")
@@ -745,8 +749,8 @@ async function sendTicketEmail(){
         method:"POST",
 
         headers:{
-            "Content-Type":"application/json"
-            "Authorization": `Bearer ${user.access_token}`
+            "Content-Type":"application/json",
+            "Authorization": `Bearer ${session.access_token}`
         },
 
         body:JSON.stringify({
