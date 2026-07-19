@@ -95,6 +95,10 @@ gap:20px;
     z-index:9999;
 }
 
+.notificationMenu.show{
+    display:block;
+}
+
 .notificationItem{
     padding:15px;
     border-bottom:1px solid #273247;
@@ -231,6 +235,21 @@ color:#f4b400;
 
 body{
 display:block;
+}
+
+.notificationMenu{
+
+    position:fixed;
+
+    top:70px;
+    left:15px;
+    right:15px;
+
+    width:auto;
+    max-width:none;
+
+    max-height:70vh;
+
 }
 
 .menu{
@@ -569,35 +588,43 @@ async function requestWithdrawal(){
 }
 
 
-document.getElementById("notificationIcon").addEventListener("click", async () => {
+document
+.getElementById("notificationIcon")
+.addEventListener("click", async (e) => {
+
+    e.stopPropagation();
 
     const menu = document.getElementById("notificationMenu");
 
-    // If already open, close it
-    if(menu.style.display === "block"){
+    if(menu.classList.contains("show")){
 
-        menu.style.display = "none";
-        return;
+        menu.classList.remove("show");
 
-    }
+    }else{
 
-    // Otherwise open it and load notifications
-    await loadNotifications();
+        await loadNotifications();
 
-});
-
-document.addEventListener("click", e => {
-
-    const bell = document.querySelector(".notificationBell");
-
-    if(!bell.contains(e.target)){
-
-        document.getElementById("notificationMenu").style.display="none";
+        menu.classList.add("show");
 
     }
 
 });
 
+document.addEventListener("click", function(){
+
+    document
+        .getElementById("notificationMenu")
+        .classList.remove("show");
+
+});
+
+document
+.getElementById("notificationMenu")
+.addEventListener("click", function(e){
+
+    e.stopPropagation();
+
+});
 
 </script>
 
