@@ -7,6 +7,77 @@
 <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap' rel='stylesheet'>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}body{background:#0b1220;color:#fff;display:flex}
+
+.notificationBell{
+    position:relative;
+}
+
+.notificationMenu{
+    display:none;
+    position:absolute;
+    top:45px;
+    right:0;
+    width:360px;
+    max-height:450px;
+    overflow-y:auto;
+    background:#151e2f;
+    border:1px solid #2d3b57;
+    border-radius:12px;
+    box-shadow:0 12px 35px rgba(0,0,0,.5);
+    z-index:9999;
+}
+
+.notificationMenu.show{
+    display:block;
+}
+
+.notificationItem{
+    padding:15px;
+    border-bottom:1px solid #273247;
+    cursor:pointer;
+}
+
+.notificationItem:hover{
+    background:#1d2940;
+}
+
+.notificationUnread{
+    border-left:4px solid #f4b400;
+}
+
+.notificationTitle{
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.notificationMessage{
+    color:#ccc;
+    font-size:14px;
+}
+
+.notificationTime{
+    color:#888;
+    font-size:12px;
+    margin-top:8px;
+}
+
+#notificationIcon{
+    position:relative;
+    cursor:pointer;
+    font-size:22px;
+}
+
+#notificationDot{
+    display:none;
+    position:absolute;
+    top:2px;
+    right:-2px;
+    width:10px;
+    height:10px;
+    background:#ff2d2d;
+    border-radius:50%;
+    border:2px solid #151e2f;
+}
 .overlay{display:none}
 .side{width:230px;background:#151e2f;height:100vh;padding:25px;position:fixed;overflow:auto;z-index:1000}
 .side h2{color:#f4b400;margin-bottom:20px}
@@ -57,7 +128,29 @@ background:#c9302c;
   
 label{margin-bottom:6px}input,select{padding:12px;background:#0b1220;color:#fff;border:1px solid #2d3b57;border-radius:8px}.full{grid-column:1/-1}
 .btn{background:#f4b400;color:#111;border:none;padding:14px 24px;border-radius:10px;font-weight:700;cursor:pointer}
-@media(max-width:768px){body{display:block}.menu{display:block}.overlay.active{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999}.side{left:-240px;top:0;transition:.3s}.side.active{left:0}.main{margin-left:0;width:100%;padding:15px}.grid{grid-template-columns:1fr}}
+@media(max-width:768px){body{display:block}
+ .notificationMenu{
+
+    position:fixed;
+
+    top:70px;
+    left:15px;
+    right:15px;
+
+    width:auto;
+    max-width:none;
+
+    max-height:70vh;
+
+}
+.menu{display:block}
+.overlay
+.active{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999}
+.side{left:-240px;top:0;transition:.3s}
+.side.active{left:0}
+.main{margin-left:0;width:100%;padding:15px}
+.grid{grid-template-columns:1fr}
+}
 </style>
   </head>
   <body>
@@ -79,7 +172,22 @@ label{margin-bottom:6px}input,select{padding:12px;background:#0b1220;color:#fff;
 <div class='main'>
 <header>
 <div class='left'>
-<div class='menu' id='m' onclick='toggleMenu()'>☰</div><h1>Profile</h1></div><div class='right'>🔔 <span id="headerBalance">$0.00</span> <a href='profile.html' style='color:#fff;text-decoration:none'>👤</a></div>
+<div class='menu' id='m' onclick='toggleMenu()'>☰</div><h1>Profile</h1></div>
+<div class='right'>
+<div class="notificationBell">
+
+    <div id="notificationIcon">
+        🔔
+        <span id="notificationDot"></span>
+    </div>
+
+    <div id="notificationMenu" class="notificationMenu">
+        <div id="notificationList"></div>
+    </div>
+
+</div> 
+<span id="headerBalance">$0.00</span> 
+<a href='profile.html' style='color:#fff;text-decoration:none'>👤</a></div>
 </header>
 <div class='panel'><h2>Profile Information</h2><div class='grid'>
 <div class='field'><label>First Name</label><input id="firstName"></div>
@@ -349,9 +457,52 @@ function closeMenu(){document.querySelector('.side').classList.remove('active');
 <script src="auth.js"></script>
 
 <script>
+
+document
+.getElementById("notificationIcon")
+.addEventListener("click", async (e) => {
+
+    e.stopPropagation();
+
+    const menu = document.getElementById("notificationMenu");
+
+    if(menu.classList.contains("show")){
+
+        menu.classList.remove("show");
+
+    }else{
+
+        await loadNotifications();
+
+        menu.classList.add("show");
+
+    }
+
+});
+
+document.addEventListener("click", function(){
+
+    document
+        .getElementById("notificationMenu")
+        .classList.remove("show");
+
+});
+
+document
+.getElementById("notificationMenu")
+.addEventListener("click", function(e){
+
+    e.stopPropagation();
+
+});
+  
+</script>
+
+<script>
 requireLogin();
 loadBalances();
 loadProfile();
+checkNotifications();
 </script>
     
 </body>
