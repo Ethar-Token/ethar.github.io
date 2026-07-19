@@ -746,6 +746,7 @@ async function sendTicketEmail(){
 
         headers:{
             "Content-Type":"application/json"
+            "Authorization": `Bearer ${user.access_token}`
         },
 
         body:JSON.stringify({
