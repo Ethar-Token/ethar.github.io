@@ -543,13 +543,13 @@ font-size:30px;
 
 I agree to the
 
-<a href="terms.html">Terms of Use</a>,
+<a href="/terms">Terms of Use</a>,
 
-<a href="privacy.html">Privacy Policy</a>
+<a href="/privacy">Privacy Policy</a>
 
 and
 
-<a href="cookies.html">Cookie Policy</a>.
+<a href="/cookies">Cookie Policy</a>.
 
 </label>
 
@@ -561,7 +561,7 @@ CREATE ACCOUNT
 
 </button>
 
-<a href="login.html" class="login">
+<a href="/login" class="login">
 
 Already have an account? Log In
 
@@ -729,7 +729,7 @@ password: password,
 
 options:{
 
-emailRedirectTo: window.location.origin + "/confirmed.html",
+emailRedirectTo: window.location.origin + "/confirmed",
 
 data:{
 first_name: firstName,
@@ -753,7 +753,7 @@ return;
 
 alert("Account created successfully. Please check your email to verify your account before logging in.");
 
-window.location.href = "login.html";
+window.location.href = "/login";
 
 });
 </script>
