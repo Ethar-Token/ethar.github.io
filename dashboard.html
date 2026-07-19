@@ -583,16 +583,19 @@ loadCurrentDraw();
 loadWinners();
 loadReferrals();
 checkNotifications();
-loadNotifications();
 
-document.getElementById("notificationIcon").onclick = () => {
+document.getElementById("notificationIcon").onclick = async () => {
 
     const menu = document.getElementById("notificationMenu");
 
-    menu.style.display =
-        menu.style.display === "block"
-        ? "none"
-        : "block";
+    if(menu.style.display === "block"){
+
+        menu.style.display = "none";
+        return;
+
+    }
+
+    await loadNotifications();
 
 };
 
@@ -672,7 +675,7 @@ async function enterDraw(){
             loadBalances();
             loadCurrentDraw();
             checkNotifications();
-            loadNotifications();
+        
             break;
 
         case "NOT_ENOUGH_TICKETS":
