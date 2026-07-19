@@ -720,3 +720,39 @@ async function checkNotifications(){
             count > 0 ? "block" : "none";
 
 }
+
+async function sendTicketEmail(){
+
+    const {
+        data:{user}
+    } = await client.auth.getUser();
+
+    const { data: draw } = await client
+        .from("draws")
+        .select("id")
+        .eq("status","live")
+        .single();
+
+    const { data: tickets } = await client
+        .from("draw_tickets")
+        .select("ticket_number")
+        .eq("draw_id", draw.id)
+        .eq("user_id", user.id)
+        .order("ticket_number");
+
+    await fetch("YOUR EDGE FUNCTION URL",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+            user_id:user.id,
+            tickets:tickets
+        })
+
+    });
+
+}
