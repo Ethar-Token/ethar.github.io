@@ -688,9 +688,8 @@ async function loadNotifications(){
 
     }
 
-    document
-    .getElementById("notificationMenu")
-    .style.display="block";
+    const menu = document.getElementById("notificationMenu");
+    menu.style.display = "block";
 
     await client
     .from("notifications")
