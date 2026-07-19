@@ -689,14 +689,7 @@ async function loadNotifications(){
     }
 
 
-    await client
-    .from("notifications")
-    .update({
-        is_read:true,
-        read_at:new Date().toISOString()
-    })
-    .eq("user_id",user.id)
-    .eq("is_read",false);
+    await client.rpc("mark_notifications_read");
 
     document
     .getElementById("notificationDot")
