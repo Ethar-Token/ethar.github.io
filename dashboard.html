@@ -584,10 +584,11 @@ loadWinners();
 loadReferrals();
 checkNotifications();
 
-document.getElementById("notificationIcon").onclick = async () => {
+document.getElementById("notificationIcon").addEventListener("click", async () => {
 
     const menu = document.getElementById("notificationMenu");
 
+    // If already open, close it
     if(menu.style.display === "block"){
 
         menu.style.display = "none";
@@ -595,9 +596,10 @@ document.getElementById("notificationIcon").onclick = async () => {
 
     }
 
+    // Otherwise open it and load notifications
     await loadNotifications();
 
-};
+});
 
 document.addEventListener("click", e => {
 
