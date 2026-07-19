@@ -749,7 +749,7 @@ async function sendTicketEmail(){
         method:"POST",
 
         headers:{
-            "Content-Type":"application/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${session.access_token}`
         },
 
@@ -759,5 +759,4 @@ async function sendTicketEmail(){
         })
 
     });
-
 }
