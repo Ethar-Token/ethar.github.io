@@ -582,6 +582,7 @@ loadBalances();
 loadCurrentDraw();
 loadWinners();
 loadReferrals();
+checkNotifications();
 loadNotifications();
 
 document.getElementById("notificationIcon").onclick = () => {
@@ -670,6 +671,7 @@ async function enterDraw(){
             alert("Tickets entered successfully!");
             loadBalances();
             loadCurrentDraw();
+            checkNotifications();
             loadNotifications();
             break;
 
