@@ -118,6 +118,24 @@ header{
     margin-top:8px;
 }
 
+#notificationIcon{
+    position:relative;
+    cursor:pointer;
+    font-size:22px;
+}
+
+#notificationDot{
+    display:none;
+    position:absolute;
+    top:2px;
+    right:-2px;
+    width:10px;
+    height:10px;
+    background:#ff2d2d;
+    border-radius:50%;
+    border:2px solid #151e2f;
+}
+
 /* Cards */
 
 .cards{
@@ -565,6 +583,29 @@ loadCurrentDraw();
 loadWinners();
 loadReferrals();
 loadNotifications();
+
+document.getElementById("notificationIcon").onclick = () => {
+
+    const menu = document.getElementById("notificationMenu");
+
+    menu.style.display =
+        menu.style.display === "block"
+        ? "none"
+        : "block";
+
+};
+
+document.addEventListener("click", e => {
+
+    const bell = document.querySelector(".notificationBell");
+
+    if(!bell.contains(e.target)){
+
+        document.getElementById("notificationMenu").style.display="none";
+
+    }
+
+});
 
 const ticketInput = document.getElementById("ticketInput");
 
