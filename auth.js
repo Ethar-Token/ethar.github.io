@@ -611,13 +611,29 @@ async function updatePassword(){
 
 document
 .getElementById("notificationIcon")
-.addEventListener("click", loadNotifications);
+.addEventListener("click", async () => {
+
+    const menu =
+        document.getElementById("notificationMenu");
+
+    if(menu.style.display === "block"){
+
+        menu.style.display = "none";
+        return;
+
+    }
+
+    await loadNotifications();
+
+});
 
 async function loadNotifications(){
 
     const {
         data:{user}
     } = await client.auth.getUser();
+
+    if(!user) return;
 
     const { data } = await client
         .from("notifications")
@@ -680,5 +696,29 @@ async function loadNotifications(){
     document
     .getElementById("notificationDot")
     .style.display="none";
+
+}
+
+async function checkNotifications(){
+
+    const {
+        data:{user}
+    } = await client.auth.getUser();
+
+    if(!user) return;
+
+    const { count } = await client
+        .from("notifications")
+        .select("*",{
+            count:"exact",
+            head:true
+        })
+        .eq("user_id",user.id)
+        .eq("is_read",false);
+
+    document
+        .getElementById("notificationDot")
+        .style.display =
+            count > 0 ? "block" : "none";
 
 }
