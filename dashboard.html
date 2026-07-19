@@ -88,6 +88,10 @@ header{
     z-index:9999;
 }
 
+.notificationMenu.show{
+    display:block;
+}
+
 .notificationItem{
     padding:15px;
     border-bottom:1px solid #273247;
@@ -584,32 +588,41 @@ loadWinners();
 loadReferrals();
 checkNotifications();
 
-document.getElementById("notificationIcon").addEventListener("click", async () => {
+document
+.getElementById("notificationIcon")
+.addEventListener("click", async (e) => {
+
+    e.stopPropagation();
 
     const menu = document.getElementById("notificationMenu");
 
-    // If already open, close it
-    if(menu.style.display === "block"){
+    if(menu.classList.contains("show")){
 
-        menu.style.display = "none";
-        return;
+        menu.classList.remove("show");
+
+    }else{
+
+        await loadNotifications();
+
+        menu.classList.add("show");
 
     }
-
-    // Otherwise open it and load notifications
-    await loadNotifications();
 
 });
 
-document.addEventListener("click", e => {
+document.addEventListener("click", function(){
 
-    const bell = document.querySelector(".notificationBell");
+    document
+        .getElementById("notificationMenu")
+        .classList.remove("show");
 
-    if(!bell.contains(e.target)){
+});
 
-        document.getElementById("notificationMenu").style.display="none";
+document
+.getElementById("notificationMenu")
+.addEventListener("click", function(e){
 
-    }
+    e.stopPropagation();
 
 });
 
