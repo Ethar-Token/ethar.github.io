@@ -637,6 +637,8 @@ document
 
 async function loadNotifications(){
 
+    await client.rpc("cleanup_notifications");
+
     const {
         data:{user}
     } = await client.auth.getUser();
