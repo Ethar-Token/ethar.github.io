@@ -466,7 +466,11 @@ function deleteAccount(){
 
 }
 
-document.getElementById("saveProfile").addEventListener("click", saveProfile);
+const saveBtn = document.getElementById("saveProfile");
+
+if (saveBtn) {
+    saveBtn.addEventListener("click", saveProfile);
+}
 
 async function saveProfile(){
 
@@ -532,7 +536,11 @@ async function saveProfile(){
 
 }
 
-document.getElementById("updatePassword").addEventListener("click", updatePassword);
+const updatePasswordBtn = document.getElementById("updatePassword");
+
+if (updatePasswordBtn) {
+    updatePasswordBtn.addEventListener("click", updatePassword);
+}
 
 async function updatePassword(){
 
