@@ -65,6 +65,70 @@ color:#f4b400;
 display:none;
 }
 
+.cookieBanner{
+
+display:none;
+position:fixed;
+bottom:20px;
+left:20px;
+right:20px;
+background:#151e2f;
+border:1px solid #2d3b57;
+border-radius:15px;
+padding:20px;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+z-index:99999;
+box-shadow:0 15px 40px rgba(0,0,0,.45);
+
+}
+
+.cookieButtons{
+
+display:flex;
+gap:15px;
+align-items:center;
+
+}
+
+.cookieButtons a{
+
+color:#f4b400;
+text-decoration:none;
+
+}
+
+.cookieButtons button{
+
+background:#f4b400;
+color:#111;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+font-weight:700;
+cursor:pointer;
+
+}
+
+@media(max-width:768px){
+
+.cookieBanner{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.cookieButtons{
+
+width:100%;
+justify-content:space-between;
+
+}
+
+}
+
 .sidebarAd{
     display:none;
 }
@@ -563,15 +627,49 @@ document.getElementById("mobileMenu").classList.toggle("active");
 
 }
 
+if(!localStorage.getItem("cookieConsent")){
+    document.getElementById("cookieBanner").style.display="flex";
+}
+
+function acceptCookies(){
+
+    localStorage.setItem("cookieConsent","accepted");
+
+    document.getElementById("cookieBanner").style.display="none";
+
+}
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../auth.js"></script>
+<script src="auth.js"></script>
 
 <script>
 loadCurrentDraw();
 
 </script>
+
+<div id="cookieBanner" class="cookieBanner">
+
+    <div>
+
+        <strong>🍪 We value your privacy</strong><br>
+
+        ETHAR uses cookies and similar technologies to keep your account secure, improve your experience, and display relevant advertising.
+
+    </div>
+
+    <div class="cookieButtons">
+
+        <a href="/cookies">Cookie Policy</a>
+
+        <button onclick="acceptCookies()">
+            Accept All
+        </button>
+
+    </div>
+
+</div>
 
 </body>
 </html>
