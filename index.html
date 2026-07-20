@@ -802,13 +802,21 @@ if(!saved){
 
     cookieBanner.style.display="block";
 
-}else{
+} else {
 
-    const prefs=JSON.parse(saved);
+    try {
 
-    document.getElementById("analyticsCookies").checked=prefs.analytics;
+        const prefs = JSON.parse(saved);
 
-    document.getElementById("advertisingCookies").checked=prefs.advertising;
+        document.getElementById("analyticsCookies").checked = !!prefs.analytics;
+        document.getElementById("advertisingCookies").checked = !!prefs.advertising;
+
+    } catch {
+
+        localStorage.removeItem("cookiePreferences");
+        cookieBanner.style.display = "block";
+
+    }
 
 }
 
