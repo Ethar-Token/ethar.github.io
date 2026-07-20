@@ -952,21 +952,27 @@ async function enterDraw(){
 
         </div>
 
-        <div id="adArea">
+       <div id="adArea">
 
-            <script>
-  atOptions = {
-    'key' : 'dc8a942fd7c8e5cca92c92336e650023',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/dc8a942fd7c8e5cca92c92336e650023/invoke.js"></script>
+    <div id="bannerAd">
 
-           
-        </div>
+        <script>
+            atOptions = {
+                key:'dc8a942fd7c8e5cca92c92336e650023',
+                format:'iframe',
+                height:250,
+                width:300,
+                params:{}
+            };
+        </script>
+
+        <script src="https://www.highperformanceformat.com/dc8a942fd7c8e5cca92c92336e650023/invoke.js"></script>
+
+    </div>
+
+    <div id="nativeAd" style="display:none;"></div>
+
+</div>
 
         <div class="progress">
 
@@ -995,49 +1001,81 @@ const closeBtn=document.getElementById("closeSponsor");
 
 function showSponsor(){
 
-if(window.innerWidth<992){
+    if(window.innerWidth < 992){
+        return;
+    }
 
-return;
+    overlay.style.display = "flex";
+
+    document.getElementById("bannerAd").style.display = "block";
+    document.getElementById("nativeAd").style.display = "none";
+    document.getElementById("nativeAd").innerHTML = "";
+
+    closeBtn.style.display = "none";
+    bar.style.width = "0%";
+
+    let seconds = 30;
+    const total = 30;
+    let nativeLoaded = false;
+
+    timer.textContent = seconds;
+
+    const interval = setInterval(()=>{
+
+        seconds--;
+
+        timer.textContent = seconds;
+
+        bar.style.width = ((total-seconds)/total*100)+"%";
+
+        if(seconds === 15 && !nativeLoaded){
+
+            nativeLoaded = true;
+
+            document.getElementById("bannerAd").style.display = "none";
+
+            const native = document.getElementById("nativeAd");
+
+            native.style.display = "block";
+
+            native.innerHTML = `
+
+                <script async="async"
+                        data-cfasync="false"
+                        src="https://pl30441531.effectivecpmnetwork.com/787f582bd765ee86be375620d92d6a85/invoke.js"></script>
+
+                <div id="container-787f582bd765ee86be375620d92d6a85"></div>
+
+            `;
+
+        }
+
+        if(seconds <= 0){
+
+            clearInterval(interval);
+
+            timer.innerHTML = "<span style='font-size:18px'>Finished</span>";
+
+            closeBtn.style.display = "block";
+
+        }
+
+    },1000);
 
 }
+closeBtn.onclick = () => {
 
-overlay.style.display="flex";
+    overlay.style.display = "none";
 
-let seconds=30;
+    closeBtn.style.display = "none";
 
-const total=30;
+    bar.style.width = "0%";
 
-timer.textContent=seconds;
+    document.getElementById("bannerAd").style.display = "block";
 
-const interval=setInterval(()=>{
+    document.getElementById("nativeAd").style.display = "none";
 
-seconds--;
-
-timer.textContent=seconds;
-
-bar.style.width=((total-seconds)/total*100)+"%";
-
-if(seconds<=0){
-
-clearInterval(interval);
-
-timer.innerHTML="<span style='font-size:18px'>Finished</span>";
-
-closeBtn.style.display="block";
-
-}
-
-},1000);
-
-}
-
-closeBtn.onclick=()=>{
-
-overlay.style.display="none";
-
-closeBtn.style.display="none";
-
-bar.style.width="0%";
+    document.getElementById("nativeAd").innerHTML = "";
 
 };
      
