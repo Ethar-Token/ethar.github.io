@@ -144,6 +144,160 @@ header{
     border:2px solid #151e2f;
 }
 
+.sponsor-overlay{
+
+display:none;
+position:fixed;
+inset:0;
+
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(6px);
+
+justify-content:center;
+align-items:center;
+
+z-index:999999;
+
+animation:fadeIn .3s;
+
+}
+
+.sponsor-modal{
+
+width:700px;
+max-width:90%;
+
+background:#181818;
+
+border-radius:18px;
+
+padding:30px;
+
+color:white;
+
+box-shadow:0 20px 60px rgba(0,0,0,.45);
+
+}
+
+.sponsor-header{
+
+display:flex;
+justify-content:space-between;
+gap:20px;
+
+}
+
+.sponsor-header h2{
+
+margin:0;
+font-size:26px;
+
+}
+
+.sponsor-header p{
+
+opacity:.8;
+margin-top:10px;
+line-height:1.6;
+
+}
+
+#adArea{
+
+margin:25px 0;
+
+min-height:250px;
+
+border:2px dashed rgba(255,255,255,.2);
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+border-radius:14px;
+
+}
+
+.progress{
+
+height:8px;
+
+background:#303030;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin-top:10px;
+
+}
+
+#progressBar{
+
+width:0%;
+
+height:100%;
+
+background:#28a745;
+
+transition:.1s;
+
+}
+
+.timer{
+
+text-align:center;
+
+margin-top:18px;
+
+font-size:34px;
+font-weight:bold;
+
+}
+
+.close-btn{
+
+display:none;
+
+width:42px;
+height:42px;
+
+border-radius:50%;
+
+border:none;
+
+cursor:pointer;
+
+font-size:26px;
+
+background:#333;
+color:white;
+
+}
+
+.close-btn:hover{
+
+background:#555;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
 /* Cards */
 
 .cards{
@@ -563,7 +717,7 @@ input[type="number"]{
 <div class="watch">  
 <h2>🎟 WATCH AN AD & GET 1 TICKET</h2>
 
-<button class="btn">WATCH AD</button>
+<button class="btn" onclick="showSponsor()">WATCH AD</button>
 </div>
 </div>
 
@@ -778,6 +932,108 @@ async function enterDraw(){
             }
 }
     
+</script>
+
+<!-- Sponsored Modal -->
+<div id="sponsorOverlay" class="sponsor-overlay">
+
+    <div class="sponsor-modal">
+
+        <div class="sponsor-header">
+
+            <div>
+                <h2>Sponsored Content</h2>
+
+                <p>
+                    Please take a moment to view this sponsored content.
+                    If something interests you, you're welcome to explore it.
+                    Thank you for supporting ETHAR.
+                </p>
+            </div>
+
+            <button id="closeSponsor" class="close-btn">&times;</button>
+
+        </div>
+
+        <div id="adArea">
+
+            <!-- PLACE YOUR BANNER CODE HERE -->
+
+        </div>
+
+        <div class="progress">
+
+            <div id="progressBar"></div>
+
+        </div>
+
+        <div class="timer">
+
+            <span id="timerText">15</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const overlay=document.getElementById("sponsorOverlay");
+
+const timer=document.getElementById("timerText");
+
+const bar=document.getElementById("progressBar");
+
+const closeBtn=document.getElementById("closeSponsor");
+
+function showSponsor(){
+
+if(window.innerWidth<992){
+
+return;
+
+}
+
+overlay.style.display="flex";
+
+let seconds=15;
+
+const total=15;
+
+timer.textContent=seconds;
+
+const interval=setInterval(()=>{
+
+seconds--;
+
+timer.textContent=seconds;
+
+bar.style.width=((total-seconds)/total*100)+"%";
+
+if(seconds<=0){
+
+clearInterval(interval);
+
+timer.innerHTML="<span style='font-size:18px'>Finished</span>";
+
+closeBtn.style.display="block";
+
+}
+
+},1000);
+
+}
+
+closeBtn.onclick=()=>{
+
+overlay.style.display="none";
+
+closeBtn.style.display="none";
+
+bar.style.width="0%";
+
+};
+     
 </script>
 
 </body>
