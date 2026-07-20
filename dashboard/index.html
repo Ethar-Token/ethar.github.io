@@ -1038,15 +1038,16 @@ function showSponsor(){
 
             native.style.display = "block";
 
-            native.innerHTML = `
+            native.innerHTML =
+                '<div id="container-787f582bd765ee86be375620d92d6a85"></div>';
 
-                <script async="async"
-                        data-cfasync="false"
-                        src="https://pl30441531.effectivecpmnetwork.com/787f582bd765ee86be375620d92d6a85/invoke.js"></script>
+            const s = document.createElement("script");
 
-                <div id="container-787f582bd765ee86be375620d92d6a85"></div>
+            s.async = true;
+            s.setAttribute("data-cfasync","false");
+            s.src = "https://pl30441531.effectivecpmnetwork.com/787f582bd765ee86be375620d92d6a85/invoke.js";
 
-            `;
+            native.appendChild(s);
 
         }
 
@@ -1070,6 +1071,8 @@ closeBtn.onclick = () => {
     closeBtn.style.display = "none";
 
     bar.style.width = "0%";
+
+    timer.textContent = "30";
 
     document.getElementById("bannerAd").style.display = "block";
 
