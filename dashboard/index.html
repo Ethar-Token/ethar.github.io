@@ -972,15 +972,7 @@ async function enterDraw(){
     </div>
 
     <!-- Native (last 15 seconds) -->
-    <div id="nativeAd" style="display:none;">
-
-        <script async="async"
-                data-cfasync="false"
-                src="https://pl30441531.effectivecpmnetwork.com/787f582bd765ee86be375620d92d6a85/invoke.js"></script>
-
-        <div id="container-787f582bd765ee86be375620d92d6a85"></div>
-
-    </div>
+    <div id="nativeAd" style="display:none;"></div>
 
 </div>
 
@@ -992,7 +984,7 @@ async function enterDraw(){
 
         <div class="timer">
 
-            <span id="timerText">15</span>
+            <span id="timerText">30</span>
 
         </div>
 
@@ -1023,7 +1015,6 @@ function showSponsor(){
 
     let seconds = 30;
     const total = 30;
-    let nativeLoaded = false;
 
     timer.textContent = seconds;
 
@@ -1047,9 +1038,10 @@ function showSponsor(){
 
                 native.dataset.loaded = "true";
 
-                const container = document.createElement("div");
-                container.id = "container-787f582bd765ee86be375620d92d6a85";
-                native.appendChild(container);
+                native.innerHTML = `
+                    <div id="container-787f582bd765ee86be375620d92d6a85"></div>
+                `;
+
 
                 const script = document.createElement("script");
                 script.async = true;
@@ -1076,18 +1068,23 @@ function showSponsor(){
 }
 closeBtn.onclick = () => {
 
-    overlay.style.display = "none";
+    overlay.style.display="none";
 
-    closeBtn.style.display = "none";
+    closeBtn.style.display="none";
 
-    bar.style.width = "0%";
+    bar.style.width="0%";
 
-    bannerAd.style.display = "block";
-    nativeAd.style.display = "none";
+    timer.textContent="30";
 
-     timer.textContent = "30";
+    document.getElementById("bannerAd").style.display="block";
 
-    document.getElementById("nativeAd").innerHTML = "";
+    const native=document.getElementById("nativeAd");
+
+    native.style.display="none";
+
+    native.innerHTML="";
+
+    delete native.dataset.loaded;
 
 };
      
