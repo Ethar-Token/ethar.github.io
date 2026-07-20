@@ -69,18 +69,16 @@ display:none;
 
 display:none;
 position:fixed;
-
 right:25px;
 bottom:25px;
-
-width:380px;
+width:400px;
 max-width:calc(100% - 30px);
 
 background:#151e2f;
 border:1px solid #2d3b57;
 border-radius:16px;
 
-padding:22px;
+padding:24px;
 
 box-shadow:0 15px 45px rgba(0,0,0,.45);
 
@@ -92,16 +90,21 @@ z-index:99999;
 
 color:#f4b400;
 margin-bottom:10px;
-font-size:20px;
 
 }
 
 .cookieBanner p{
 
-color:#d2d2d2;
 font-size:14px;
 line-height:1.7;
-margin-bottom:18px;
+color:#d0d5dd;
+margin-bottom:20px;
+
+}
+
+.cookieBanner a{
+
+color:#f4b400;
 
 }
 
@@ -113,37 +116,76 @@ flex-wrap:wrap;
 
 }
 
-.cookieButtons button{
-
-flex:1;
-min-width:100px;
-padding:12px;
-border-radius:8px;
-border:none;
-font-weight:600;
-cursor:pointer;
-
-}
-
 .acceptBtn{
 
 background:#f4b400;
 color:#111;
+border:none;
+padding:12px 18px;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
 
 }
 
 .rejectBtn{
 
 background:#2d3b57;
-color:#fff;
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:8px;
+cursor:pointer;
 
 }
 
 .manageBtn{
 
 background:transparent;
-border:1px solid #f4b400 !important;
+border:1px solid #f4b400;
 color:#f4b400;
+padding:12px 18px;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+.cookieModal{
+
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+justify-content:center;
+align-items:center;
+z-index:100000;
+
+}
+
+.cookieBox{
+
+width:520px;
+max-width:95%;
+background:#151e2f;
+border-radius:16px;
+padding:30px;
+
+}
+
+.cookieBox h2{
+
+color:#f4b400;
+margin-bottom:10px;
+
+}
+
+.cookieRow{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 0;
+border-bottom:1px solid #2d3b57;
 
 }
 
@@ -658,97 +700,149 @@ support@ethartoken.com
 
 <div id="cookieBanner" class="cookieBanner">
 
-<h3>🍪 Cookie Preferences</h3>
+    <h3>🍪 Cookie Preferences</h3>
 
-<p>
+    <p>
+        ETHAR uses essential cookies to keep your account secure. With your permission, we also use analytics and advertising cookies. Read our <a href="/cookies">Cookie Policy</a>.
+    </p>
 
-We use essential cookies to keep ETHAR secure. With your permission, we also use analytics and advertising cookies to improve your experience.
+    <div class="cookieButtons">
 
-</p>
+        <button class="rejectBtn" onclick="rejectCookies()">
+            Reject
+        </button>
 
-<div class="cookieButtons">
+        <button class="manageBtn" onclick="openCookieModal()">
+            Manage
+        </button>
 
-<button class="acceptBtn" onclick="acceptCookies()">
-Accept
-</button>
+        <button class="acceptBtn" onclick="acceptCookies()">
+            Accept
+        </button>
 
-<button class="rejectBtn" onclick="rejectCookies()">
-Reject
-</button>
-
-<button class="manageBtn" onclick="openCookieSettings()">
-Manage
-</button>
-
-</div>
+    </div>
 
 </div>
 
+<div id="cookieModal" class="cookieModal">
+
+    <div class="cookieBox">
+
+        <h2>Cookie Preferences</h2>
+
+        <p>
+            Choose which cookies ETHAR may use. Essential cookies are always enabled.
+        </p>
+
+        <div class="cookieRow">
+
+            <div>
+
+                <strong>Essential Cookies</strong><br>
+
+                <small>Required for security and login.</small>
+
+            </div>
+
+            <input type="checkbox" checked disabled>
+
+        </div>
+
+        <div class="cookieRow">
+
+            <div>
+
+                <strong>Analytics Cookies</strong><br>
+
+                <small>Help improve ETHAR.</small>
+
+            </div>
+
+            <input id="analyticsCookies" type="checkbox">
+
+        </div>
+
+        <div class="cookieRow">
+
+            <div>
+
+                <strong>Advertising Cookies</strong><br>
+
+                <small>Used to display relevant ads.</small>
+
+            </div>
+
+            <input id="advertisingCookies" type="checkbox">
+
+        </div>
+
+        <div class="cookieButtons" style="margin-top:25px;">
+
+            <button class="rejectBtn" onclick="rejectCookies()">
+                Reject
+            </button>
+
+            <button class="acceptBtn" onclick="saveCookiePreferences()">
+                Save Preferences
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 <script>
 
-function toggleMenu(){
+const cookieBanner=document.getElementById("cookieBanner");
+const cookieModal=document.getElementById("cookieModal");
 
-document.getElementById("mobileMenu").classList.toggle("active");
-
-}
-
-if(!localStorage.getItem("cookieConsent")){
-    document.getElementById("cookieBanner").style.display="flex";
-}
-
-const saved = localStorage.getItem("cookiePreferences");
+const saved=localStorage.getItem("cookiePreferences");
 
 if(!saved){
 
-    cookieBanner.style.display="flex";
+    cookieBanner.style.display="block";
+
+}else{
+
+    const prefs=JSON.parse(saved);
+
+    document.getElementById("analyticsCookies").checked=prefs.analytics;
+
+    document.getElementById("advertisingCookies").checked=prefs.advertising;
 
 }
 
 function acceptCookies(){
 
-    localStorage.setItem(
+    localStorage.setItem("cookiePreferences",JSON.stringify({
 
-        "cookiePreferences",
+        essential:true,
+        analytics:true,
+        advertising:true
 
-        JSON.stringify({
-
-            essential:true,
-            analytics:true,
-            advertising:true
-
-        })
-
-    );
+    }));
 
     cookieBanner.style.display="none";
-
     cookieModal.style.display="none";
 
 }
 
 function rejectCookies(){
 
-    localStorage.setItem(
+    localStorage.setItem("cookiePreferences",JSON.stringify({
 
-        "cookiePreferences",
+        essential:true,
+        analytics:false,
+        advertising:false
 
-        JSON.stringify({
-
-            essential:true,
-            analytics:false,
-            advertising:false
-
-        })
-
-    );
+    }));
 
     cookieBanner.style.display="none";
-
     cookieModal.style.display="none";
 
 }
 
-function openCookieSettings(){
+function openCookieModal(){
 
     cookieModal.style.display="flex";
 
@@ -756,27 +850,20 @@ function openCookieSettings(){
 
 function saveCookiePreferences(){
 
-    localStorage.setItem(
+    localStorage.setItem("cookiePreferences",JSON.stringify({
 
-        "cookiePreferences",
+        essential:true,
+        analytics:document.getElementById("analyticsCookies").checked,
+        advertising:document.getElementById("advertisingCookies").checked
 
-        JSON.stringify({
-
-            essential:true,
-            analytics:document.getElementById("analyticsCookies").checked,
-            advertising:document.getElementById("advertisingCookies").checked
-
-        })
-
-    );
+    }));
 
     cookieBanner.style.display="none";
-
     cookieModal.style.display="none";
 
 }
 
-window.onclick=function(e){
+window.addEventListener("click",function(e){
 
     if(e.target===cookieModal){
 
@@ -784,8 +871,8 @@ window.onclick=function(e){
 
     }
 
-}
-
+});
+     
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
