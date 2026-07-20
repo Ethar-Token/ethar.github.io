@@ -65,67 +65,88 @@ color:#f4b400;
 display:none;
 }
 
-.cookieBanner{
-
-display:none;
-position:fixed;
-bottom:20px;
-left:20px;
-right:20px;
-background:#151e2f;
-border:1px solid #2d3b57;
-border-radius:15px;
-padding:20px;
-align-items:center;
-justify-content:space-between;
-gap:20px;
-z-index:99999;
-box-shadow:0 15px 40px rgba(0,0,0,.45);
-
+.cookieText{
+flex:1;
+line-height:1.6;
 }
 
-.cookieButtons{
-
-display:flex;
-gap:15px;
-align-items:center;
-
-}
-
-.cookieButtons a{
-
-color:#f4b400;
-text-decoration:none;
-
-}
-
-.cookieButtons button{
-
+.acceptBtn{
 background:#f4b400;
 color:#111;
 border:none;
 padding:12px 20px;
 border-radius:8px;
+cursor:pointer;
 font-weight:700;
+}
+
+.rejectBtn{
+
+background:transparent;
+color:#fff;
+border:1px solid #666;
+padding:12px 20px;
+border-radius:8px;
 cursor:pointer;
 
 }
 
-@media(max-width:768px){
+.manageBtn{
 
-.cookieBanner{
-
-flex-direction:column;
-align-items:flex-start;
+background:#2d3b57;
+color:#fff;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+cursor:pointer;
 
 }
 
-.cookieButtons{
+.cookieModal{
 
-width:100%;
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+justify-content:center;
+align-items:center;
+z-index:100000;
+
+}
+
+.cookieBox{
+
+background:#151e2f;
+width:95%;
+max-width:550px;
+border-radius:15px;
+padding:30px;
+
+}
+
+.cookieBox h2{
+
+margin-bottom:10px;
+color:#f4b400;
+
+}
+
+.cookieOption{
+
+display:flex;
 justify-content:space-between;
+align-items:center;
+padding:18px 0;
+border-bottom:1px solid #2d3b57;
 
 }
+
+.cookieFooter{
+
+display:flex;
+justify-content:flex-end;
+gap:15px;
+margin-top:25px;
 
 }
 
@@ -621,21 +642,95 @@ support@ethartoken.com
 
 <div id="cookieBanner" class="cookieBanner">
 
-    <div>
+    <div class="cookieText">
 
         <strong>🍪 We value your privacy</strong><br>
 
-        ETHAR uses cookies and similar technologies to keep your account secure, improve your experience, and display relevant advertising.
+        We use essential cookies to keep ETHAR secure. With your permission, we also use analytics and advertising cookies to improve your experience and display relevant ads.
 
     </div>
 
     <div class="cookieButtons">
 
-        <a href="/cookies">Cookie Policy</a>
-
-        <button onclick="acceptCookies()">
-            Accept All
+        <button class="rejectBtn" onclick="rejectCookies()">
+            Reject
         </button>
+
+        <button class="manageBtn" onclick="openCookieSettings()">
+            Manage
+        </button>
+
+        <button class="acceptBtn" onclick="acceptCookies()">
+            Accept
+        </button>
+
+    </div>
+
+</div>
+
+<div id="cookieModal" class="cookieModal">
+
+    <div class="cookieBox">
+
+        <h2>Cookie Preferences</h2>
+
+        <p>
+            Choose which cookies ETHAR may use.
+        </p>
+
+        <div class="cookieOption">
+
+            <div>
+
+                <strong>Essential Cookies</strong><br>
+
+                <small>Required for login, security and core functionality.</small>
+
+            </div>
+
+            <input type="checkbox" checked disabled>
+
+        </div>
+
+        <div class="cookieOption">
+
+            <div>
+
+                <strong>Analytics Cookies</strong><br>
+
+                <small>Help us improve ETHAR.</small>
+
+            </div>
+
+            <input id="analyticsCookies" type="checkbox">
+
+        </div>
+
+        <div class="cookieOption">
+
+            <div>
+
+                <strong>Advertising Cookies</strong><br>
+
+                <small>Allow relevant advertising.</small>
+
+            </div>
+
+            <input id="advertisingCookies" type="checkbox">
+
+        </div>
+
+        <div class="cookieFooter">
+
+            <button class="rejectBtn" onclick="rejectCookies()">
+                Reject
+            </button>
+
+            <button class="acceptBtn" onclick="saveCookiePreferences()">
+                Save Preferences
+            </button>
+
+        </div>
 
     </div>
 
@@ -653,11 +748,93 @@ if(!localStorage.getItem("cookieConsent")){
     document.getElementById("cookieBanner").style.display="flex";
 }
 
+const saved = localStorage.getItem("cookiePreferences");
+
+if(!saved){
+
+    cookieBanner.style.display="flex";
+
+}
+
 function acceptCookies(){
 
-    localStorage.setItem("cookieConsent","accepted");
+    localStorage.setItem(
 
-    document.getElementById("cookieBanner").style.display="none";
+        "cookiePreferences",
+
+        JSON.stringify({
+
+            essential:true,
+            analytics:true,
+            advertising:true
+
+        })
+
+    );
+
+    cookieBanner.style.display="none";
+
+    cookieModal.style.display="none";
+
+}
+
+function rejectCookies(){
+
+    localStorage.setItem(
+
+        "cookiePreferences",
+
+        JSON.stringify({
+
+            essential:true,
+            analytics:false,
+            advertising:false
+
+        })
+
+    );
+
+    cookieBanner.style.display="none";
+
+    cookieModal.style.display="none";
+
+}
+
+function openCookieSettings(){
+
+    cookieModal.style.display="flex";
+
+}
+
+function saveCookiePreferences(){
+
+    localStorage.setItem(
+
+        "cookiePreferences",
+
+        JSON.stringify({
+
+            essential:true,
+            analytics:document.getElementById("analyticsCookies").checked,
+            advertising:document.getElementById("advertisingCookies").checked
+
+        })
+
+    );
+
+    cookieBanner.style.display="none";
+
+    cookieModal.style.display="none";
+
+}
+
+window.onclick=function(e){
+
+    if(e.target===cookieModal){
+
+        cookieModal.style.display="none";
+
+    }
 
 }
 
