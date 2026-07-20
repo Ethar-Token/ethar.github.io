@@ -65,88 +65,104 @@ color:#f4b400;
 display:none;
 }
 
-.cookieText{
+.cookieBanner{
+
+display:none;
+position:fixed;
+
+right:25px;
+bottom:25px;
+
+width:380px;
+max-width:calc(100% - 30px);
+
+background:#151e2f;
+border:1px solid #2d3b57;
+border-radius:16px;
+
+padding:22px;
+
+box-shadow:0 15px 45px rgba(0,0,0,.45);
+
+z-index:99999;
+
+}
+
+.cookieBanner h3{
+
+color:#f4b400;
+margin-bottom:10px;
+font-size:20px;
+
+}
+
+.cookieBanner p{
+
+color:#d2d2d2;
+font-size:14px;
+line-height:1.7;
+margin-bottom:18px;
+
+}
+
+.cookieButtons{
+
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+
+}
+
+.cookieButtons button{
+
 flex:1;
-line-height:1.6;
+min-width:100px;
+padding:12px;
+border-radius:8px;
+border:none;
+font-weight:600;
+cursor:pointer;
+
 }
 
 .acceptBtn{
+
 background:#f4b400;
 color:#111;
-border:none;
-padding:12px 20px;
-border-radius:8px;
-cursor:pointer;
-font-weight:700;
+
 }
 
 .rejectBtn{
 
-background:transparent;
+background:#2d3b57;
 color:#fff;
-border:1px solid #666;
-padding:12px 20px;
-border-radius:8px;
-cursor:pointer;
 
 }
 
 .manageBtn{
 
-background:#2d3b57;
-color:#fff;
-border:none;
-padding:12px 20px;
-border-radius:8px;
-cursor:pointer;
-
-}
-
-.cookieModal{
-
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.65);
-justify-content:center;
-align-items:center;
-z-index:100000;
-
-}
-
-.cookieBox{
-
-background:#151e2f;
-width:95%;
-max-width:550px;
-border-radius:15px;
-padding:30px;
-
-}
-
-.cookieBox h2{
-
-margin-bottom:10px;
+background:transparent;
+border:1px solid #f4b400 !important;
 color:#f4b400;
 
 }
 
-.cookieOption{
+@media(max-width:768px){
 
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 0;
-border-bottom:1px solid #2d3b57;
+.cookieBanner{
+
+left:15px;
+right:15px;
+bottom:15px;
+width:auto;
 
 }
 
-.cookieFooter{
+.cookieButtons{
 
-display:flex;
-justify-content:flex-end;
-gap:15px;
-margin-top:25px;
+flex-direction:column;
+
+}
 
 }
 
