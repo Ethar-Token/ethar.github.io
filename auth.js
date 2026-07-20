@@ -13,7 +13,7 @@ async function requireLogin() {
 
     if (error || !data.session) {
 
-        window.location.href = "login.html";
+        window.location.href = "/login";
         return;
 
     }
@@ -450,7 +450,7 @@ async function logout(){
 
     await client.auth.signOut();
 
-    window.location.href="login.html";
+    window.location.href="/login";
 
 }
 
