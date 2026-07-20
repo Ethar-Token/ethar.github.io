@@ -617,10 +617,12 @@ async function updatePassword(){
 
 }
 
-document
-.getElementById("notificationIcon")
-.addEventListener("click", async () => {
+const notificationIcon = document.getElementById("notificationIcon");
 
+if(notificationIcon){
+
+    notificationIcon.addEventListener("click", async () => {
+        
     const menu =
         document.getElementById("notificationMenu");
 
@@ -632,9 +634,9 @@ document
     }
 
     await loadNotifications();
-
+    
 });
-
+}
 async function loadNotifications(){
 
     await client.rpc("cleanup_notifications");
