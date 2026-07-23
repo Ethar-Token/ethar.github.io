@@ -639,6 +639,23 @@ if(notificationIcon){
 }
 async function loadNotifications(){
 
+    const list =
+        document.getElementById("notificationList");
+
+    list.innerHTML = `
+
+    <div style="padding:35px;text-align:center;color:#ccc;">
+
+        <div class="notificationSpinner"></div>
+
+        <div style="margin-top:15px;">
+            Loading notifications...
+        </div>
+
+    </div>
+
+    `;
+
     await client.rpc("cleanup_notifications");
 
     const {
