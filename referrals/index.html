@@ -43,6 +43,33 @@ display:flex;
     position:relative;
 }
 
+.notificationSpinner{
+
+width:34px;
+height:34px;
+
+margin:auto;
+
+border:4px solid rgba(255,255,255,.15);
+
+border-top:4px solid #f4b400;
+
+border-radius:50%;
+
+animation:notificationSpin .8s linear infinite;
+
+}
+
+@keyframes notificationSpin{
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
 .notificationMenu{
     display:none;
     position:absolute;
@@ -613,6 +640,7 @@ document
     e.stopPropagation();
 
     const menu = document.getElementById("notificationMenu");
+    const list = document.getElementById("notificationList");
 
     if(menu.classList.contains("show")){
 
@@ -620,9 +648,23 @@ document
 
     }else{
 
-        await loadNotifications();
-
         menu.classList.add("show");
+
+        list.innerHTML = `
+
+        <div style="padding:35px;text-align:center;color:#ccc;">
+
+            <div class="notificationSpinner"></div>
+
+            <div style="margin-top:15px;">
+                Loading notifications...
+            </div>
+
+        </div>
+
+        `;
+
+        await loadNotifications();
 
     }
 
