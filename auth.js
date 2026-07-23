@@ -671,9 +671,7 @@ async function loadNotifications(){
         .order("is_read",{ascending:true})
         .order("created_at",{ascending:false});
 
-    const list =
-        document.getElementById("notificationList");
-
+    
     list.innerHTML="";
 
     if(data.length===0){
