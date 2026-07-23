@@ -694,6 +694,7 @@ document
     e.stopPropagation();
 
     const menu = document.getElementById("notificationMenu");
+    const list = document.getElementById("notificationList");
 
     if(menu.classList.contains("show")){
 
@@ -701,9 +702,23 @@ document
 
     }else{
 
-        await loadNotifications();
-
         menu.classList.add("show");
+
+        list.innerHTML = `
+
+        <div style="padding:35px;text-align:center;color:#ccc;">
+
+            <div class="notificationSpinner"></div>
+
+            <div style="margin-top:15px;">
+                Loading notifications...
+            </div>
+
+        </div>
+
+        `;
+
+        await loadNotifications();
 
     }
 
