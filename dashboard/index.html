@@ -53,6 +53,11 @@ body{
     color:#111;
 }
 
+.active{
+    background:#f4b400;
+    color:#111
+}
+
 /* Main */
 
 .main{
@@ -451,7 +456,7 @@ input[type="number"]{
 <body>
 <div class="overlay" onclick="closeMenu()"></div>
 <div class="side"><h2>ETHAR</h2>
-    <a href="/dashboard" onclick="closeMenu()">🏠 Dashboard</a>
+    <a class='active' href="/dashboard" onclick="closeMenu()">🏠 Dashboard</a>
     
     <a href="/wallet" onclick="closeMenu()">👛 Wallet</a>
 
