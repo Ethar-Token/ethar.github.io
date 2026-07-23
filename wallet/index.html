@@ -94,6 +94,33 @@ gap:20px;
     position:relative;
 }
 
+.notificationSpinner{
+
+width:34px;
+height:34px;
+
+margin:auto;
+
+border:4px solid rgba(255,255,255,.15);
+
+border-top:4px solid #f4b400;
+
+border-radius:50%;
+
+animation:notificationSpin .8s linear infinite;
+
+}
+
+@keyframes notificationSpin{
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
 .notificationMenu{
     display:none;
     position:absolute;
