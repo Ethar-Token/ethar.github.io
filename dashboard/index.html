@@ -615,6 +615,43 @@ input[type="number"]{
     </a>
 
 </div>
+
+<div id="appOnlySection" style="display:none;">
+
+    <div class="panel">
+
+        <h2 style="color:#f4b400;">
+            🎟 Need More Tickets?
+        </h2>
+
+        <p style="margin:15px 0;color:#ccc;line-height:1.7;">
+
+            Watch rewarded ads to earn free tickets instantly or
+            visit the Tickets page for more ways to collect tickets.
+
+        </p>
+
+        <button
+            id="watchAdBtn"
+            class="btn">
+
+            WATCH AD
+
+        </button>
+
+        <a
+            href="/tickets"
+            class="btn"
+            style="display:block;text-align:center;margin-top:15px;text-decoration:none;">
+
+            GET MORE TICKETS
+
+        </a>
+
+    </div>
+
+</div>
+    
 </div>
 
 
@@ -843,6 +880,22 @@ async function enterDraw(){
             }
 }
     
+</script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    if(window.isEtharApp){
+
+        document.getElementById("downloadAppSection").style.display="none";
+
+        document.getElementById("appOnlySection").style.display="block";
+
+    }
+
+});
+
 </script>
 
 </body>
