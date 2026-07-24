@@ -884,17 +884,13 @@ async function enterDraw(){
 
 <script>
 
-document.addEventListener("DOMContentLoaded",()=>{
+window.showAppFeatures = function(){
 
-    if(window.isEtharApp){
+    document.getElementById("downloadAppSection").style.display = "none";
 
-        document.getElementById("downloadAppSection").style.display="none";
+    document.getElementById("appOnlySection").style.display = "block";
 
-        document.getElementById("appOnlySection").style.display="block";
-
-    }
-
-});
+};
 
 </script>
 
