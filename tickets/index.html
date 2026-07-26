@@ -953,7 +953,7 @@ async function loadTicketDraws(){
             .from("ticket_entries")
             .select("*")
             .eq("draw_id", liveDraw.id)
-            .single();
+            .maybeSingle();
 
         if(entry){
 
@@ -1073,7 +1073,7 @@ async function loadSavedEntries(drawId){
         .from("ticket_entries")
         .select("*")
         .eq("draw_id", drawId)
-        .single();
+        .maybeSingle();
 
     if(!entry) return;
 
