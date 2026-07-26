@@ -1058,6 +1058,21 @@ async function loadTicketDraws(){
     }
 
 }
+
+async function loadSavedEntries(drawId){
+
+    if(!drawId) return;
+
+    const { data: entry } = await client
+        .from("ticket_entries")
+        .select("*")
+        .eq("draw_id", drawId)
+        .single();
+
+    if(!entry) return;
+
+    // restore buttons and inputs here...
+}
   
 let ticketCountdownInterval;
 
