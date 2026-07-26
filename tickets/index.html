@@ -604,11 +604,113 @@ btn.disabled=true;
 
 </script>
 
+<script>
+
+async function loadTicketDraws(){
+
+    // Current live draw
+    const { data: liveDraw } = await client
+        .from("ticket_draws")
+        .select("ends_at")
+        .eq("status","live")
+        .single();
+
+    // Last completed draw
+    const { data: completedDraw } = await client
+        .from("ticket_draws")
+        .select("*")
+        .eq("status","completed")
+        .single();
+
+    if(completedDraw){
+
+        document.getElementById("lastLuckyNumber").innerHTML =
+            completedDraw.lucky_number;
+
+        document.getElementById("lastHigherLower").innerHTML =
+            completedDraw.higher_lower;
+
+        document.getElementById("lastOddEven").innerHTML =
+            completedDraw.odd_even;
+
+        document.getElementById("lastLuckyDigit").innerHTML =
+            completedDraw.lucky_digit;
+
+        document.getElementById("lastDigitHigherLower").innerHTML =
+            completedDraw.digit_higher_lower;
+
+        document.getElementById("lastDigitOddEven").innerHTML =
+            completedDraw.digit_odd_even;
+
+        document.getElementById("lastLuckyLetter").innerHTML =
+            completedDraw.lucky_letter;
+
+        document.getElementById("lastLuckyFive").innerHTML =
+            completedDraw.lucky_five.join(" - ");
+
+    }
+
+    if(liveDraw){
+
+        startCountdown(liveDraw.ends_at);
+
+    }
+
+}
+  
+let countdownInterval;
+
+function startCountdown(endTime){
+
+    clearInterval(countdownInterval);
+
+    countdownInterval = setInterval(()=>{
+
+        const now = new Date().getTime();
+
+        const end = new Date(endTime).getTime();
+
+        const distance = end - now;
+
+        if(distance <= 0){
+
+            document.getElementById("drawCountdown").innerHTML =
+                "Drawing...";
+
+            clearInterval(countdownInterval);
+
+            setTimeout(loadTicketDraws,3000);
+
+            return;
+
+        }
+
+        const hours =
+            Math.floor(distance/(1000*60*60));
+
+        const minutes =
+            Math.floor((distance%(1000*60*60))/(1000*60));
+
+        const seconds =
+            Math.floor((distance%(1000*60))/1000);
+
+        document.getElementById("drawCountdown").innerHTML =
+            String(hours).padStart(2,"0") + ":" +
+            String(minutes).padStart(2,"0") + ":" +
+            String(seconds).padStart(2,"0");
+
+    },1000);
+
+}
+  
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../auth.js"></script>
 
 <script>
 requireLogin();
+loadTicketDraws();
 </script>
 
 </body>
