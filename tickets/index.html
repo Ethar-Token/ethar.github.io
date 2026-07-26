@@ -531,6 +531,7 @@ Open one Mystery Box every hour.
 </p>
 
 <button
+id="mysteryBtn"
 class="btn watchAdBtn"
 data-game="mystery">
 
@@ -559,18 +560,11 @@ const game = button.dataset.game;
 
 if(window.Android){
 
-    /*
-        Later we'll replace this with
-
-        window.Android.showRewardedAd(game);
-
-    */
-
-    alert("Rewarded Ad for: " + game);
+window.Android.showRewardedAd(game);
 
 }else{
 
-    alert("Rewarded Ads are only available in the ETHAR App.");
+alert("Rewarded Ads are only available in the ETHAR App.");
 
 }
 
@@ -578,20 +572,43 @@ if(window.Android){
 
 });
 
-const { data, error } = await client.rpc("open_mystery_box");
+async function mysteryBoxFinished(){
 
-if (error) {
-    alert(error.message);
-    return;
+const { data, error } =
+await client.rpc("open_mystery_box");
+
+if(error){
+
+alert(error.message);
+
+return;
+
 }
 
-alert(`🎁 You won ${data} ticket${data === 1 ? "" : "s"}!`);
+alert(
+"🎁 You won " +
+data +
+" ticket" +
+(data==1 ? "" : "s") +
+"!"
+);
 
-document.getElementById("mysteryBtn").innerHTML =
-"✅ Mystery Box Opened";
+const btn =
+document.getElementById("mysteryBtn");
 
-document.getElementById("mysteryBtn").disabled = true;
+btn.innerHTML="✅ Mystery Box Opened";
 
+btn.disabled=true;
+
+}
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../auth.js"></script>
+
+<script>
+requireLogin();
 </script>
 
 </body>
