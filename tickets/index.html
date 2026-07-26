@@ -673,7 +673,7 @@ function startCountdown(endTime){
 
         const now = new Date().getTime();
 
-        const end = new Date(endTime).getTime();
+        const end = Date.parse(endTime);
 
         const distance = end - now;
 
