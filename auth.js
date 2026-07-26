@@ -767,58 +767,68 @@ async function sendTicketEmail(){
 
 function showMessage(message){
 
-    const old = document.getElementById("etharPopup");
+    const createPopup = () => {
 
-    if(old) old.remove();
+        const old = document.getElementById("etharPopup");
+        if(old) old.remove();
 
-    const popup = document.createElement("div");
+        const popup = document.createElement("div");
 
-    popup.id = "etharPopup";
+        popup.id = "etharPopup";
 
-    popup.innerHTML = `
-        <div style="
-            position:fixed;
-            inset:0;
-            background:rgba(0,0,0,.6);
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            z-index:99999;
-        ">
+        popup.innerHTML = `
             <div style="
-                background:#151e2f;
-                color:white;
-                width:320px;
-                max-width:90%;
-                border-radius:12px;
-                padding:25px;
-                text-align:center;
-                position:relative;
+                position:fixed;
+                inset:0;
+                background:rgba(0,0,0,.6);
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                z-index:999999;
             ">
-                <button id="popupClose"
-                    style="
-                        position:absolute;
-                        top:10px;
-                        right:12px;
-                        background:none;
-                        border:none;
-                        color:white;
-                        font-size:22px;
-                        cursor:pointer;
-                    ">
-                    ×
-                </button>
+                <div style="
+                    background:#151e2f;
+                    color:#fff;
+                    width:320px;
+                    max-width:90%;
+                    border-radius:12px;
+                    padding:25px;
+                    text-align:center;
+                    position:relative;
+                ">
 
-                <div style="font-size:16px;">
-                    ${message}
+                    <button id="popupClose"
+                        style="
+                            position:absolute;
+                            top:10px;
+                            right:12px;
+                            background:none;
+                            border:none;
+                            color:#fff;
+                            font-size:22px;
+                            cursor:pointer;
+                        ">
+                        ×
+                    </button>
+
+                    <div style="font-size:16px;">
+                        ${message}
+                    </div>
+
                 </div>
-
             </div>
-        </div>
-    `;
+        `;
 
-    document.body.appendChild(popup);
+        document.body.appendChild(popup);
 
-    document.getElementById("popupClose").onclick = () => popup.remove();
+        document.getElementById("popupClose").onclick = () => popup.remove();
+
+    };
+
+    if(document.body){
+        createPopup();
+    }else{
+        window.addEventListener("DOMContentLoaded", createPopup, { once:true });
+    }
 
 }
