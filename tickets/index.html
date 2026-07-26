@@ -656,8 +656,6 @@ async function loadTicketDraws(){
 
     if(liveDraw){
 
-        console.log(liveDraw.ends_at);
-
         startCountdown(liveDraw.ends_at);
 
     }
@@ -668,20 +666,20 @@ let countdownInterval;
 
 function startCountdown(endTime){
 
-    clearInterval(countdownInterval);
+    function updateCountdown(){
 
-    countdownInterval = setInterval(()=>{
+        const now = Date.now();
 
-        const now = new Date().getTime();
-
-        const end = new Date(endTime).getTime();
+        const end = Date.parse(endTime);
 
         const distance = end - now;
+
+        console.log(distance);
 
         if(distance <= 0){
 
             document.getElementById("drawCountdown").innerHTML =
-                "Drawing...";
+            "Drawing...";
 
             clearInterval(countdownInterval);
 
@@ -691,21 +689,27 @@ function startCountdown(endTime){
 
         }
 
-        const hours =
-            Math.floor(distance/(1000*60*60));
+        const hours = Math.floor(distance / 3600000);
 
-        const minutes =
-            Math.floor((distance%(1000*60*60))/(1000*60));
+        const minutes = Math.floor((distance % 3600000) / 60000);
 
-        const seconds =
-            Math.floor((distance%(1000*60))/1000);
+        const seconds = Math.floor((distance % 60000) / 1000);
 
         document.getElementById("drawCountdown").innerHTML =
-            String(hours).padStart(2,"0") + ":" +
-            String(minutes).padStart(2,"0") + ":" +
-            String(seconds).padStart(2,"0");
 
-    },1000);
+        String(hours).padStart(2,"0") + ":" +
+
+        String(minutes).padStart(2,"0") + ":" +
+
+        String(seconds).padStart(2,"0");
+
+    }
+
+    updateCountdown();
+
+    clearInterval(countdownInterval);
+
+    countdownInterval = setInterval(updateCountdown,1000);
 
 }
   
