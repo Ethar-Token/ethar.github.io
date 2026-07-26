@@ -1097,7 +1097,10 @@ function startTicketCountdown(endTime){
 
             clearInterval(ticketCountdownInterval);
 
-            setTimeout(loadTicketDraws,3000);
+            setTimeout(async () => {
+                await loadTicketDraws();
+                await restoreEntryState();
+            },3000);
 
             return;
 
