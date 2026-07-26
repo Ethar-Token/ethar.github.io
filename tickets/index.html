@@ -1,1 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>ETHAR - Tickets</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0b1220;
+color:white;
+padding:20px;
+}
+
+h1{
+color:#f4b400;
+margin-bottom:20px;
+}
+
+.game{
+
+background:#151e2f;
+
+border-radius:15px;
+
+padding:20px;
+
+margin-bottom:20px;
+
+}
+
+.game h2{
+
+color:#f4b400;
+
+margin-bottom:10px;
+
+font-size:20px;
+
+}
+
+.game p{
+
+color:#ccc;
+
+margin-bottom:15px;
+
+line-height:1.6;
+
+}
+
+select,
+input{
+
+width:100%;
+
+padding:14px;
+
+border-radius:10px;
+
+border:1px solid #2d3b57;
+
+background:#0b1220;
+
+color:white;
+
+margin-bottom:15px;
+
+}
+
+.btn{
+
+width:100%;
+
+padding:15px;
+
+background:#f4b400;
+
+color:#111;
+
+font-weight:700;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+
+.btn:hover{
+
+opacity:.9;
+
+}
+
+.reward{
+
+margin-top:12px;
+
+color:#8bd98b;
+
+font-weight:600;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🎟 ETHAR Tickets</h1>
+
+<!-- Lucky Number -->
+
+<div class="game">
+
+<h2>Lucky Number</h2>
+
+<p>
+
+Pick one number between 1 and 100.
+
+</p>
+
+<input
+type="number"
+min="1"
+max="100"
+id="luckyNumber">
+
+<button
+class="btn">
+
+WATCH AD & PARTICIPATE
+
+</button>
+
+<div class="reward">
+
+Reward: 100 Tickets
+
+</div>
+
+</div>
+
+<!-- Higher Lower -->
+
+<div class="game">
+
+<h2>Lucky Number Higher / Lower</h2>
+
+<p>
+
+Predict whether the Lucky Number will be above or below 50.
+
+</p>
+
+<select id="higherLower">
+
+<option value="">Select</option>
+
+<option>Higher</option>
+
+<option>Lower</option>
+
+</select>
+
+<button
+class="btn">
+
+WATCH AD & PARTICIPATE
+
+</button>
+
+<div class="reward">
+
+Reward: 10 Tickets
+
+</div>
+
+</div>
+
+<!-- Odd Even -->
+
+<div class="game">
+
+<h2>Lucky Number Odd / Even</h2>
+
+<p>
+
+Predict whether the Lucky Number will be odd or even.
+
+</p>
+
+<select id="oddEven">
+
+<option value="">Select</option>
+
+<option>Odd</option>
+
+<option>Even</option>
+
+</select>
+
+<button
+class="btn">
+
+WATCH AD & PARTICIPATE
+
+</button>
+
+<div class="reward">
+
+Reward: 5 Tickets
+
+</div>
+
+</div>
+
+<!-- Lucky Digit -->
+
+<div class="game">
+
+<h2>Lucky Digit</h2>
+
+<p>
+
+Pick one digit between 0 and 9.
+
+</p>
+
+<select id="digit">
+
+<option value="">Select</option>
+
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+
+</select>
+
+<button
+class="btn">
+
+WATCH AD & PARTICIPATE
+
+</button>
+
+<div class="reward">
+
+Reward: 20 Tickets
+
+</div>
+
+</div>
+
+<!-- Digit Higher Lower -->
+
+<div class="game">
+
+<h2>Lucky Digit Higher / Lower</h2>
+
+<p>
+
+Predict whether the Lucky Digit is higher or lower than 5.
+
+</p>
+
+<select id="digitHigherLower">
+
+<option value="">Select</option>
+
+<option>Higher</option>
+
+<option>Lower</option>
+
+</select>
+
+<button
+class="btn">
+
+WATCH AD & PARTICIPATE
+
+</button>
+
+<div class="reward">
+
+Reward: 5 Tickets
+
+</div>
+
+</div>
+
+<!-- Digit Odd Even -->
+
+<div class="game">
+
+<h2>Lucky Digit Odd / Even</h2>
+
+<p>
+
+Predict whether the Lucky Digit is odd or even.
+
+</p>
+
+<select id="digitOddEven">
+
+<option value="">Select</option>
+
+<option>Odd</option>
+
+<option>Even</option>
+
+</select>
+
+<button
+class="btn">
+
+WATCH AD & PARTICIPATE
+
+</button>
+
+<div class="reward">
+
+Reward: 5 Tickets
+
+</div>
+
+</div>
+
+<!-- Lucky Letter -->
+
+<div class="game">
+
+<h2>Lucky Letter</h2>
+
+<p>
+
+Choose one letter between A and Z.
+
+</p>
+
+<select id="luckyLetter">
+
+<option value="">Select Letter</option>
+
+<option>A</option><option>B</option><option>C</option><option>D</option>
+<option>E</option><option>F</option><option>G</option><option>H</option>
+<option>I</option><option>J</option><option>K</option><option>L</option>
+<option>M</option><option>N</option><option>O</option><option>P</option>
+<option>Q</option><option>R</option><option>S</option><option>T</option>
+<option>U</option><option>V</option><option>W</option><option>X</option>
+<option>Y</option><option>Z</option>
+
+</select>
+
+<button
+class="btn watchAdBtn"
+data-game="letter">
+
+WATCH AD & PARTICIPATE
+
+</button>
+
+<div class="reward">
+
+Reward: 50 Tickets
+
+</div>
+
+</div>
+
+<!-- Lucky Five -->
+
+<div class="game">
+
+<h2>Lucky Five</h2>
+
+<p>
+
+Choose five different numbers between 1 and 100.
+
+</p>
+
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;">
+
+<input type="number" min="1" max="100" id="five1">
+<input type="number" min="1" max="100" id="five2">
+<input type="number" min="1" max="100" id="five3">
+<input type="number" min="1" max="100" id="five4">
+<input type="number" min="1" max="100" id="five5">
+
+</div>
+
+<button
+class="btn watchAdBtn"
+data-game="five">
+
+WATCH AD & PARTICIPATE
+
+</button>
+
+<div class="reward">
+
+5/5 = 500 Tickets<br>
+4/5 = 400 Tickets<br>
+3/5 = 300 Tickets<br>
+2/5 = 200 Tickets<br>
+1/5 = 100 Tickets
+
+</div>
+
+</div>
+
+<!-- Mystery Box -->
+
+<div class="game">
+
+<h2>Mystery Box</h2>
+
+<p>
+
+Open one Mystery Box every hour.
+
+</p>
+
+<button
+class="btn watchAdBtn"
+data-game="mystery">
+
+WATCH AD & OPEN BOX
+
+</button>
+
+<div class="reward">
+
+Possible Reward:
+0 - 10 Tickets
+
+</div>
+
+</div>
+
+<script>
+
+document
+.querySelectorAll(".watchAdBtn")
+.forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+const game = button.dataset.game;
+
+if(window.Android){
+
+    /*
+        Later we'll replace this with
+
+        window.Android.showRewardedAd(game);
+
+    */
+
+    alert("Rewarded Ad for: " + game);
+
+}else{
+
+    alert("Rewarded Ads are only available in the ETHAR App.");
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
