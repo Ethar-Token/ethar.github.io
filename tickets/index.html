@@ -232,7 +232,8 @@ max="100"
 id="luckyNumber">
 
 <button
-class="btn watchAdBtn">
+class="btn"
+onclick="watchLuckyNumber()">
 
 WATCH AD & PARTICIPATE
 
@@ -269,7 +270,8 @@ Predict whether the Lucky Number will be above or below 50.
 </select>
 
 <button
-class="btn watchAdBtn">
+class="btn"
+onclick="watchHigherLower()">
 
 WATCH AD & PARTICIPATE
 
@@ -306,7 +308,8 @@ Predict whether the Lucky Number will be odd or even.
 </select>
 
 <button
-class="btn watchAdBtn">
+class="btn"
+onclick="watchOddEven()">
 
 WATCH AD & PARTICIPATE
 
@@ -350,7 +353,8 @@ Pick one digit between 0 and 9.
 </select>
 
 <button
-class="btn watchAdBtn">
+class="btn"
+onclick="watchDigit()">
 
 WATCH AD & PARTICIPATE
 
@@ -387,7 +391,8 @@ Predict whether the Lucky Digit is higher or lower than 5.
 </select>
 
 <button
-class="btn watchAdBtn">
+class="btn"
+onclick="watchDigitHigherLower()">
 
 WATCH AD & PARTICIPATE
 
@@ -424,7 +429,8 @@ Predict whether the Lucky Digit is odd or even.
 </select>
 
 <button
-class="btn watchAdBtn">
+class="btn"
+onclick="watchDigitOddEven()">
 
 WATCH AD & PARTICIPATE
 
@@ -465,7 +471,8 @@ Choose one letter between A and Z.
 </select>
 
 <button
-class="btn watchAdBtn"
+class="btn"
+onclick="watchLetter()"
 data-game="letter">
 
 WATCH AD & PARTICIPATE
@@ -503,7 +510,8 @@ Choose five different numbers between 1 and 100.
 </div>
 
 <button
-class="btn watchAdBtn"
+class="btn"
+onclick="watchLuckyFive()"
 data-game="five">
 
 WATCH AD & PARTICIPATE
@@ -536,7 +544,8 @@ Open one Mystery Box every hour.
 
 <button
 id="mysteryBtn"
-class="btn watchAdBtn"
+onclick="watchMystery()"
+class="btn"
 data-game="mystery">
 
 WATCH AD & OPEN BOX
@@ -554,27 +563,59 @@ Possible Reward:
 
 <script>
 
-document
-.querySelectorAll(".watchAdBtn")
-.forEach(button=>{
+function watchLuckyNumber(){
 
-button.addEventListener("click",()=>{
-
-const game = button.dataset.game;
-
-if(window.Android){
-
-window.Android.showRewardedAd(game);
-
-}else{
-
-alert("Rewarded Ads are only available in the ETHAR App.");
+    Android.showRewardedAd("number");
 
 }
 
-});
+function watchHigherLower(){
 
-});
+    Android.showRewardedAd("higherLower");
+
+}
+
+function watchOddEven(){
+
+    Android.showRewardedAd("oddEven");
+
+}
+
+function watchDigit(){
+
+    Android.showRewardedAd("digit");
+
+}
+
+function watchDigitHigherLower(){
+
+    Android.showRewardedAd("digitHigherLower");
+
+}
+
+function watchDigitOddEven(){
+
+    Android.showRewardedAd("digitOddEven");
+
+}
+
+function watchLetter(){
+
+    Android.showRewardedAd("letter");
+
+}
+
+function watchLuckyFive(){
+
+    Android.showRewardedAd("five");
+
+}
+
+function watchMystery(){
+
+    Android.showRewardedAd("mystery");
+
+}
 
 async function mysteryBoxFinished(){
 
