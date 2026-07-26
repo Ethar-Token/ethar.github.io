@@ -133,15 +133,14 @@ font-weight:600;
 
 <h2 style="text-align:center;">Next Hourly Draw</h2>
 
-<div
-id="drawCountdown"
-style="
-font-size:42px;
-font-weight:700;
-color:#f4b400;
-text-align:center;
-margin:15px 0;">
-00:00:00
+<div id="drawCountdown" 
+    style="
+    font-size:42px;
+    font-weight:700;
+    color:#f4b400;
+    text-align:center;
+    margin:15px 0;">
+    00:00:00
 </div>
 
 <p
@@ -673,7 +672,7 @@ function startCountdown(endTime){
 
         const now = new Date().getTime();
 
-        const end = Date.parse(endTime);
+        const end = new Date(endTime).getTime();
 
         const distance = end - now;
 
