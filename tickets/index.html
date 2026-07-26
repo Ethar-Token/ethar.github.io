@@ -231,9 +231,7 @@ min="1"
 max="100"
 id="luckyNumber">
 
-<button
-class="btn"
-onclick="watchLuckyNumber()">
+<button id="numberBtn" class="btn" onclick="watchLuckyNumber()">
 
 WATCH AD & PARTICIPATE
 
@@ -269,9 +267,7 @@ Predict whether the Lucky Number will be above or below 50.
 
 </select>
 
-<button
-class="btn"
-onclick="watchHigherLower()">
+<button id="higherLowerBtn" class="btn" onclick="watchHigherLower()">
 
 WATCH AD & PARTICIPATE
 
@@ -307,9 +303,7 @@ Predict whether the Lucky Number will be odd or even.
 
 </select>
 
-<button
-class="btn"
-onclick="watchOddEven()">
+<button id="oddEvenBtn" class="btn" onclick="watchOddEven()">
 
 WATCH AD & PARTICIPATE
 
@@ -352,9 +346,7 @@ Pick one digit between 0 and 9.
 
 </select>
 
-<button
-class="btn"
-onclick="watchDigit()">
+<button id="digitBtn" class="btn" onclick="watchDigit()">
 
 WATCH AD & PARTICIPATE
 
@@ -390,10 +382,8 @@ Predict whether the Lucky Digit is higher or lower than 5.
 
 </select>
 
-<button
-class="btn"
-onclick="watchDigitHigherLower()">
-
+<button id="digitHigherLowerBtn" class="btn" onclick="watchDigitHigherLower()">
+    
 WATCH AD & PARTICIPATE
 
 </button>
@@ -428,9 +418,7 @@ Predict whether the Lucky Digit is odd or even.
 
 </select>
 
-<button
-class="btn"
-onclick="watchDigitOddEven()">
+<button id="digitOddEvenBtn" class="btn" onclick="watchDigitOddEven()">
 
 WATCH AD & PARTICIPATE
 
@@ -472,6 +460,7 @@ Choose one letter between A and Z.
 
 <button
 class="btn"
+id="letterBtn"
 onclick="watchLetter()"
 data-game="letter">
 
@@ -511,6 +500,7 @@ Choose five different numbers between 1 and 100.
 
 <button
 class="btn"
+id="fiveBtn"
 onclick="watchLuckyFive()"
 data-game="five">
 
@@ -563,103 +553,98 @@ Possible Reward:
 
 <script>
 
-function watchLuckyNumber(){
+async function adFinished(game){
 
-    Android.showRewardedAd("number");
+    const { error } = await client.rpc("ad_finished");
 
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    const btn = document.getElementById(game + "Btn");
+
+    btn.innerHTML = "ENTER";
+
+    btn.onclick = () => {
+
+        switch(game){
+
+            case "number":
+                enterLuckyNumber();
+                break;
+
+            case "higherLower":
+                enterHigherLower();
+                break;
+
+            case "oddEven":
+                enterOddEven();
+                break;
+
+            case "digit":
+                enterLuckyDigit();
+                break;
+
+            case "digitHigherLower":
+                enterDigitHigherLower();
+                break;
+
+            case "digitOddEven":
+                enterDigitOddEven();
+                break;
+
+            case "letter":
+                enterLuckyLetter();
+                break;
+
+            case "five":
+                enterLuckyFive();
+                break;
+
+            case "mystery":
+                openMysteryBox();
+                break;
+
+        }
+
+    };
 
 }
+    
 
-function watchHigherLower(){
 
-    Android.showRewardedAd("higherLower");
+async function enterLuckyNumber(){
 
-}
-
-function watchOddEven(){
-
-    Android.showRewardedAd("oddEven");
-
-}
-
-function watchDigit(){
-
-    Android.showRewardedAd("digit");
-
-}
-
-function watchDigitHigherLower(){
-
-    Android.showRewardedAd("digitHigherLower");
-
-}
-
-function watchDigitOddEven(){
-
-    Android.showRewardedAd("digitOddEven");
-
-}
-
-function watchLetter(){
-
-    Android.showRewardedAd("letter");
-
-}
-
-function watchLuckyFive(){
-
-    Android.showRewardedAd("five");
-
-}
-
-function watchMystery(){
-
-    Android.showRewardedAd("mystery");
-
-}
-
-async function luckyNumberFinished(){
-
-    const number =
-        Number(document.getElementById("luckyNumber").value);
+    const number = Number(document.getElementById("luckyNumber").value);
 
     if(number < 1 || number > 100){
-
         alert("Choose a number between 1 and 100.");
-
         return;
-
     }
 
     const { error } = await client.rpc("play_lucky_number",{
-
         p_number:number
-
     });
 
     if(error){
-
         alert(error.message);
-
         return;
-
     }
 
-    alert("✅ Entry submitted successfully.");
-
+    const btn = document.getElementById("numberBtn");
+    btn.innerHTML = "ENTERED";
+    btn.disabled = true;
 }
 
-async function higherLowerFinished(){
+async function enterHigherLower(){
 
     const prediction =
         document.getElementById("higherLower").value;
 
     if(!prediction){
-
         alert("Select Higher or Lower.");
-
         return;
-
     }
 
     const { error } = await client.rpc("play_higher_lower",{
@@ -671,21 +656,20 @@ async function higherLowerFinished(){
         return;
     }
 
-    alert("✅ Entry submitted successfully.");
+    const btn = document.getElementById("higherLowerBtn");
+    btn.innerHTML = "ENTERED";
+    btn.disabled = true;
 
 }
 
-async function oddEvenFinished(){
+async function enterOddEven(){
 
     const prediction =
         document.getElementById("oddEven").value;
 
     if(!prediction){
-
         alert("Select Odd or Even.");
-
         return;
-
     }
 
     const { error } = await client.rpc("play_odd_even",{
@@ -697,21 +681,20 @@ async function oddEvenFinished(){
         return;
     }
 
-    alert("✅ Entry submitted successfully.");
+    const btn = document.getElementById("oddEvenBtn");
+    btn.innerHTML = "ENTERED";
+    btn.disabled = true;
 
 }
 
-async function digitFinished(){
+async function enterLuckyDigit(){
 
     const digit =
         Number(document.getElementById("digit").value);
 
     if(isNaN(digit) || digit < 0 || digit > 9){
-
         alert("Choose a digit between 0 and 9.");
-
         return;
-
     }
 
     const { error } = await client.rpc("play_lucky_digit",{
@@ -723,21 +706,20 @@ async function digitFinished(){
         return;
     }
 
-    alert("✅ Entry submitted successfully.");
+    const btn = document.getElementById("digitBtn");
+    btn.innerHTML = "ENTERED";
+    btn.disabled = true;
 
 }
 
-async function digitHigherLowerFinished(){
+async function enterDigitHigherLower(){
 
     const prediction =
         document.getElementById("digitHigherLower").value;
 
     if(!prediction){
-
         alert("Select Higher or Lower.");
-
         return;
-
     }
 
     const { error } = await client.rpc("play_digit_higher_lower",{
@@ -749,21 +731,20 @@ async function digitHigherLowerFinished(){
         return;
     }
 
-    alert("✅ Entry submitted successfully.");
+    const btn = document.getElementById("digitHigherLowerBtn");
+    btn.innerHTML = "ENTERED";
+    btn.disabled = true;
 
 }
 
-async function digitOddEvenFinished(){
+async function enterDigitOddEven(){
 
     const prediction =
         document.getElementById("digitOddEven").value;
 
     if(!prediction){
-
         alert("Select Odd or Even.");
-
         return;
-
     }
 
     const { error } = await client.rpc("play_digit_odd_even",{
@@ -775,21 +756,20 @@ async function digitOddEvenFinished(){
         return;
     }
 
-    alert("✅ Entry submitted successfully.");
+    const btn = document.getElementById("digitOddEvenBtn");
+    btn.innerHTML = "ENTERED";
+    btn.disabled = true;
 
 }
 
-async function letterFinished(){
+async function enterLuckyLetter(){
 
     const letter =
         document.getElementById("luckyLetter").value;
 
     if(!letter){
-
         alert("Choose a letter.");
-
         return;
-
     }
 
     const { error } = await client.rpc("play_lucky_letter",{
@@ -801,11 +781,13 @@ async function letterFinished(){
         return;
     }
 
-    alert("✅ Entry submitted successfully.");
+    const btn = document.getElementById("letterBtn");
+    btn.innerHTML = "ENTERED";
+    btn.disabled = true;
 
 }
 
-async function luckyFiveFinished(){
+async function enterLuckyFive(){
 
     const numbers = [
 
@@ -818,19 +800,13 @@ async function luckyFiveFinished(){
     ];
 
     if(numbers.some(n => isNaN(n) || n < 1 || n > 100)){
-
         alert("Choose five numbers between 1 and 100.");
-
         return;
-
     }
 
     if(new Set(numbers).size !== 5){
-
         alert("All five numbers must be different.");
-
         return;
-
     }
 
     const { error } = await client.rpc("play_lucky_five",{
@@ -842,11 +818,13 @@ async function luckyFiveFinished(){
         return;
     }
 
-    alert("✅ Entry submitted successfully.");
+    const btn = document.getElementById("fiveBtn");
+    btn.innerHTML = "ENTERED";
+    btn.disabled = true;
 
 }
 
-async function mysteryBoxFinished(){
+async function openMysteryBox(){
 
 const { data, error } =
 await client.rpc("open_mystery_box");
@@ -870,7 +848,7 @@ data +
 const btn =
 document.getElementById("mysteryBtn");
 
-btn.innerHTML="✅ Mystery Box Opened";
+btn.innerHTML="✅ OPENED";
 
 btn.disabled=true;
 
