@@ -714,8 +714,13 @@ function startCountdown(endTime){
 <script src="../auth.js"></script>
 
 <script>
-requireLogin();
-loadTicketDraws();
+(async () => {
+
+    await requireLogin();
+
+    await loadTicketDraws();
+
+})();
 </script>
 
 </body>
