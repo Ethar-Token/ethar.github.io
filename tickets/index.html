@@ -565,7 +565,17 @@ Possible Reward:
 
 function watchLuckyNumber(){
 
-    Android.showRewardedAd("number");
+    alert(typeof Android);
+
+    if(window.Android){
+
+        Android.showRewardedAd("number");
+
+    }else{
+
+        alert("Android bridge not found");
+
+    }
 
 }
 
