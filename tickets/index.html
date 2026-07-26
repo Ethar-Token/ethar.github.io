@@ -899,7 +899,7 @@ async function loadTicketDraws(){
     // Current live draw
     const { data: liveDraw } = await client
         .from("ticket_draws")
-        .select("ends_at")
+        .select("id, ends_at")
         .eq("status","live")
         .single();
 
@@ -941,6 +941,7 @@ async function loadTicketDraws(){
     if(liveDraw){
 
         startTicketCountdown(liveDraw.ends_at);
+        await loadSavedEntries(liveDraw.id);
 
         // Restore current user's entries
 
