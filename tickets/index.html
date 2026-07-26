@@ -1063,6 +1063,8 @@ async function loadTicketDraws(){
 
 }
 
+
+
 async function loadSavedEntries(drawId){
 
     if(!drawId) return;
@@ -1076,6 +1078,45 @@ async function loadSavedEntries(drawId){
     if(!entry) return;
 
     // restore buttons and inputs here...
+}
+
+function resetButtons(){
+
+    numberBtn.innerHTML = "WATCH AD & PARTICIPATE";
+    numberBtn.disabled = false;
+    numberBtn.onclick = watchLuckyNumber;
+
+    higherLowerBtn.innerHTML = "WATCH AD & PARTICIPATE";
+    higherLowerBtn.disabled = false;
+    higherLowerBtn.onclick = watchHigherLower;
+
+    oddEvenBtn.innerHTML = "WATCH AD & PARTICIPATE";
+    oddEvenBtn.disabled = false;
+    oddEvenBtn.onclick = watchOddEven;
+
+    digitBtn.innerHTML = "WATCH AD & PARTICIPATE";
+    digitBtn.disabled = false;
+    digitBtn.onclick = watchDigit;
+
+    digitHigherLowerBtn.innerHTML = "WATCH AD & PARTICIPATE";
+    digitHigherLowerBtn.disabled = false;
+    digitHigherLowerBtn.onclick = watchDigitHigherLower;
+
+    digitOddEvenBtn.innerHTML = "WATCH AD & PARTICIPATE";
+    digitOddEvenBtn.disabled = false;
+    digitOddEvenBtn.onclick = watchDigitOddEven;
+
+    letterBtn.innerHTML = "WATCH AD & PARTICIPATE";
+    letterBtn.disabled = false;
+    letterBtn.onclick = watchLetter;
+
+    fiveBtn.innerHTML = "WATCH AD & PARTICIPATE";
+    fiveBtn.disabled = false;
+    fiveBtn.onclick = watchLuckyFive;
+
+    mysteryBtn.innerHTML = "WATCH AD & OPEN BOX";
+    mysteryBtn.disabled = false;
+    mysteryBtn.onclick = watchMystery;
 }
   
 let ticketCountdownInterval;
@@ -1098,8 +1139,8 @@ function startTicketCountdown(endTime){
             clearInterval(ticketCountdownInterval);
 
             setTimeout(async () => {
+                resetButtons();
                 await loadTicketDraws();
-                await restoreEntryState();
             },3000);
 
             return;
