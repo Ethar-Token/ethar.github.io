@@ -565,17 +565,8 @@ Possible Reward:
 
 function watchLuckyNumber(){
 
-    alert(typeof Android);
+    Android.showRewardedAd("number");
 
-    if(window.Android){
-
-        Android.showRewardedAd("number");
-
-    }else{
-
-        alert("Android bridge not found");
-
-    }
 
 }
 
@@ -624,6 +615,234 @@ function watchLuckyFive(){
 function watchMystery(){
 
     Android.showRewardedAd("mystery");
+
+}
+
+async function luckyNumberFinished(){
+
+    const number =
+        Number(document.getElementById("luckyNumber").value);
+
+    if(number < 1 || number > 100){
+
+        alert("Choose a number between 1 and 100.");
+
+        return;
+
+    }
+
+    const { error } = await client.rpc("play_lucky_number",{
+
+        p_number:number
+
+    });
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+
+    }
+
+    alert("✅ Entry submitted successfully.");
+
+}
+
+async function higherLowerFinished(){
+
+    const prediction =
+        document.getElementById("higherLower").value;
+
+    if(!prediction){
+
+        alert("Select Higher or Lower.");
+
+        return;
+
+    }
+
+    const { error } = await client.rpc("play_higher_lower",{
+        p_prediction: prediction
+    });
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    alert("✅ Entry submitted successfully.");
+
+}
+
+async function oddEvenFinished(){
+
+    const prediction =
+        document.getElementById("oddEven").value;
+
+    if(!prediction){
+
+        alert("Select Odd or Even.");
+
+        return;
+
+    }
+
+    const { error } = await client.rpc("play_odd_even",{
+        p_prediction: prediction
+    });
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    alert("✅ Entry submitted successfully.");
+
+}
+
+async function digitFinished(){
+
+    const digit =
+        Number(document.getElementById("digit").value);
+
+    if(isNaN(digit) || digit < 0 || digit > 9){
+
+        alert("Choose a digit between 0 and 9.");
+
+        return;
+
+    }
+
+    const { error } = await client.rpc("play_lucky_digit",{
+        p_digit: digit
+    });
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    alert("✅ Entry submitted successfully.");
+
+}
+
+async function digitHigherLowerFinished(){
+
+    const prediction =
+        document.getElementById("digitHigherLower").value;
+
+    if(!prediction){
+
+        alert("Select Higher or Lower.");
+
+        return;
+
+    }
+
+    const { error } = await client.rpc("play_digit_higher_lower",{
+        p_prediction: prediction
+    });
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    alert("✅ Entry submitted successfully.");
+
+}
+
+async function digitOddEvenFinished(){
+
+    const prediction =
+        document.getElementById("digitOddEven").value;
+
+    if(!prediction){
+
+        alert("Select Odd or Even.");
+
+        return;
+
+    }
+
+    const { error } = await client.rpc("play_digit_odd_even",{
+        p_prediction: prediction
+    });
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    alert("✅ Entry submitted successfully.");
+
+}
+
+async function letterFinished(){
+
+    const letter =
+        document.getElementById("luckyLetter").value;
+
+    if(!letter){
+
+        alert("Choose a letter.");
+
+        return;
+
+    }
+
+    const { error } = await client.rpc("play_lucky_letter",{
+        p_letter: letter
+    });
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    alert("✅ Entry submitted successfully.");
+
+}
+
+async function luckyFiveFinished(){
+
+    const numbers = [
+
+        Number(document.getElementById("five1").value),
+        Number(document.getElementById("five2").value),
+        Number(document.getElementById("five3").value),
+        Number(document.getElementById("five4").value),
+        Number(document.getElementById("five5").value)
+
+    ];
+
+    if(numbers.some(n => isNaN(n) || n < 1 || n > 100)){
+
+        alert("Choose five numbers between 1 and 100.");
+
+        return;
+
+    }
+
+    if(new Set(numbers).size !== 5){
+
+        alert("All five numbers must be different.");
+
+        return;
+
+    }
+
+    const { error } = await client.rpc("play_lucky_five",{
+        p_numbers: numbers
+    });
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    alert("✅ Entry submitted successfully.");
 
 }
 
