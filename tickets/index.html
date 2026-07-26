@@ -600,7 +600,11 @@ async function adFinished(game){
 
     const btn = document.getElementById(game + "Btn");
 
+    if(game === "mystery"){
+        btn.innerHTML = "OPEN";
+    }else{
     btn.innerHTML = "ENTER";
+    }
 
     btn.onclick = () => {
 
