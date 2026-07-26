@@ -594,7 +594,7 @@ async function adFinished(game){
     const { error } = await client.rpc("ad_finished");
 
     if(error){
-        alert(error.message);
+        showMessage(error.message);
         return;
     }
 
@@ -659,7 +659,7 @@ async function enterLuckyNumber(){
     const number = Number(document.getElementById("luckyNumber").value);
 
     if(number < 1 || number > 100){
-        alert("Choose a number between 1 and 100.");
+        showMessage("Choose a number between 1 and 100.");
         return;
     }
 
@@ -668,7 +668,7 @@ async function enterLuckyNumber(){
     });
 
     if(error){
-        alert(error.message);
+        showMessage(error.message);
         return;
     }
 
@@ -683,7 +683,7 @@ async function enterHigherLower(){
         document.getElementById("higherLower").value;
 
     if(!prediction){
-        alert("Select Higher or Lower.");
+        showMessage("Select Higher or Lower.");
         return;
     }
 
@@ -692,7 +692,7 @@ async function enterHigherLower(){
     });
 
     if(error){
-        alert(error.message);
+        showMessage(error.message);
         return;
     }
 
@@ -708,7 +708,7 @@ async function enterOddEven(){
         document.getElementById("oddEven").value;
 
     if(!prediction){
-        alert("Select Odd or Even.");
+        showMessage("Select Odd or Even.");
         return;
     }
 
@@ -717,7 +717,7 @@ async function enterOddEven(){
     });
 
     if(error){
-        alert(error.message);
+        showMessage(error.message);
         return;
     }
 
@@ -733,7 +733,7 @@ async function enterLuckyDigit(){
         Number(document.getElementById("digit").value);
 
     if(isNaN(digit) || digit < 0 || digit > 9){
-        alert("Choose a digit between 0 and 9.");
+        showMessage("Choose a digit between 0 and 9.");
         return;
     }
 
@@ -742,7 +742,7 @@ async function enterLuckyDigit(){
     });
 
     if(error){
-        alert(error.message);
+        showMessage(error.message);
         return;
     }
 
@@ -758,7 +758,7 @@ async function enterDigitHigherLower(){
         document.getElementById("digitHigherLower").value;
 
     if(!prediction){
-        alert("Select Higher or Lower.");
+        showMessage("Select Higher or Lower.");
         return;
     }
 
@@ -767,7 +767,7 @@ async function enterDigitHigherLower(){
     });
 
     if(error){
-        alert(error.message);
+        showMessage(error.message);
         return;
     }
 
@@ -783,7 +783,7 @@ async function enterDigitOddEven(){
         document.getElementById("digitOddEven").value;
 
     if(!prediction){
-        alert("Select Odd or Even.");
+        showMessage("Select Odd or Even.");
         return;
     }
 
@@ -792,7 +792,7 @@ async function enterDigitOddEven(){
     });
 
     if(error){
-        alert(error.message);
+        showMessage(error.message);
         return;
     }
 
@@ -808,7 +808,7 @@ async function enterLuckyLetter(){
         document.getElementById("luckyLetter").value;
 
     if(!letter){
-        alert("Choose a letter.");
+        showMessage("Choose a letter.");
         return;
     }
 
@@ -817,7 +817,7 @@ async function enterLuckyLetter(){
     });
 
     if(error){
-        alert(error.message);
+        showMessage(error.message);
         return;
     }
 
@@ -840,12 +840,12 @@ async function enterLuckyFive(){
     ];
 
     if(numbers.some(n => isNaN(n) || n < 1 || n > 100)){
-        alert("Choose five numbers between 1 and 100.");
+        showMessage("Choose five numbers between 1 and 100.");
         return;
     }
 
     if(new Set(numbers).size !== 5){
-        alert("All five numbers must be different.");
+        showMessage("All five numbers must be different.");
         return;
     }
 
@@ -854,7 +854,7 @@ async function enterLuckyFive(){
     });
 
     if(error){
-        alert(error.message);
+        showMessage(error.message);
         return;
     }
 
@@ -871,13 +871,13 @@ await client.rpc("open_mystery_box");
 
 if(error){
 
-alert(error.message);
+showMessage(error.message);
 
 return;
 
 }
 
-alert(
+showMessage(
 "🎁 You won " +
 data +
 " ticket" +
