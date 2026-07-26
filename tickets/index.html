@@ -942,6 +942,118 @@ async function loadTicketDraws(){
 
         startTicketCountdown(liveDraw.ends_at);
 
+        // Restore current user's entries
+
+        const { data: entry } = await client
+            .from("ticket_entries")
+            .select("*")
+            .eq("draw_id", liveDraw.id)
+            .single();
+
+        if(entry){
+
+            // Lucky Number
+            if(entry.lucky_number != null){
+                document.getElementById("luckyNumber").value = entry.lucky_number;
+                numberBtn.innerHTML = "ENTERED";
+                numberBtn.disabled = true;
+            }else if(entry.ads_watched > 0){
+                numberBtn.innerHTML = "ENTER";
+                numberBtn.onclick = enterLuckyNumber;
+            }
+
+            // Higher Lower
+            if(entry.higher_lower != null){
+                document.getElementById("higherLower").value = entry.higher_lower;
+                higherLowerBtn.innerHTML = "ENTERED";
+                higherLowerBtn.disabled = true;
+            }else if(entry.ads_watched > 0){
+                higherLowerBtn.innerHTML = "ENTER";
+                higherLowerBtn.onclick = enterHigherLower;
+            }
+
+            // Odd Even
+            if(entry.odd_even != null){
+                document.getElementById("oddEven").value = entry.odd_even;
+                oddEvenBtn.innerHTML = "ENTERED";
+                oddEvenBtn.disabled = true;
+            }else if(entry.ads_watched > 0){
+                oddEvenBtn.innerHTML = "ENTER";
+                oddEvenBtn.onclick = enterOddEven;
+            }
+
+            // Lucky Digit
+            if(entry.lucky_digit != null){
+                document.getElementById("digit").value = entry.lucky_digit;
+                digitBtn.innerHTML = "ENTERED";
+                digitBtn.disabled = true;
+            }else if(entry.ads_watched > 0){
+                digitBtn.innerHTML = "ENTER";
+                digitBtn.onclick = enterLuckyDigit;
+            }
+
+            // Digit Higher Lower
+            if(entry.digit_higher_lower != null){
+                document.getElementById("digitHigherLower").value = entry.digit_higher_lower;
+                digitHigherLowerBtn.innerHTML = "ENTERED";
+                digitHigherLowerBtn.disabled = true;
+            }else if(entry.ads_watched > 0){
+                digitHigherLowerBtn.innerHTML = "ENTER";
+                digitHigherLowerBtn.onclick = enterDigitHigherLower;
+            }
+
+            // Digit Odd Even
+            if(entry.digit_odd_even != null){
+                document.getElementById("digitOddEven").value = entry.digit_odd_even;
+                digitOddEvenBtn.innerHTML = "ENTERED";
+                digitOddEvenBtn.disabled = true;
+            }else if(entry.ads_watched > 0){
+                digitOddEvenBtn.innerHTML = "ENTER";
+                digitOddEvenBtn.onclick = enterDigitOddEven;
+            }
+
+            // Lucky Letter
+            if(entry.lucky_letter != null){
+                document.getElementById("luckyLetter").value = entry.lucky_letter;
+                letterBtn.innerHTML = "ENTERED";
+                letterBtn.disabled = true;
+            }else if(entry.ads_watched > 0){
+                letterBtn.innerHTML = "ENTER";
+                letterBtn.onclick = enterLuckyLetter;
+            }
+
+            // Lucky Five
+            if(entry.lucky_five != null){
+
+                document.getElementById("five1").value = entry.lucky_five[0];
+                document.getElementById("five2").value = entry.lucky_five[1];
+                document.getElementById("five3").value = entry.lucky_five[2];
+                document.getElementById("five4").value = entry.lucky_five[3];
+                document.getElementById("five5").value = entry.lucky_five[4];
+
+                fiveBtn.innerHTML = "ENTERED";
+                fiveBtn.disabled = true;
+
+            }else if(entry.ads_watched > 0){
+
+                fiveBtn.innerHTML = "ENTER";
+                fiveBtn.onclick = enterLuckyFive;
+
+            }
+
+            // Mystery Box
+            if(entry.mystery_box){
+
+                mysteryBtn.innerHTML = "OPENED";
+                mysteryBtn.disabled = true;
+
+            }else if(entry.ads_watched > 0){
+
+                mysteryBtn.innerHTML = "OPEN BOX";
+                mysteryBtn.onclick = openMysteryBox; 
+            }
+        }
+
     }
 
 }
