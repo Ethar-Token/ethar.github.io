@@ -656,7 +656,7 @@ async function loadTicketDraws(){
 
     if(liveDraw){
 
-        startCountdown(liveDraw.ends_at);
+        startTicketCountdown(liveDraw.ends_at);
 
     }
 
@@ -664,7 +664,7 @@ async function loadTicketDraws(){
   
 let countdownInterval;
 
-function startCountdown(endTime){
+function startTicketCountdown(endTime){
 
     function updateCountdown(){
 
@@ -681,7 +681,7 @@ function startCountdown(endTime){
             document.getElementById("drawCountdown").innerHTML =
             "Drawing...";
 
-            clearInterval(countdownInterval);
+            clearInterval(ticketCountdownInterval);
 
             setTimeout(loadTicketDraws,3000);
 
@@ -707,9 +707,9 @@ function startCountdown(endTime){
 
     updateCountdown();
 
-    clearInterval(countdownInterval);
+    clearInterval(ticketCountdownInterval);
 
-    countdownInterval = setInterval(updateCountdown,1000);
+    ticketCountdownInterval = setInterval(updateCountdown,1000);
 
 }
   
