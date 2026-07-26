@@ -553,6 +553,42 @@ Possible Reward:
 
 <script>
 
+function watchLuckyNumber() {
+    Android.showRewardedAd("number");
+}
+
+function watchHigherLower() {
+    Android.showRewardedAd("higherLower");
+}
+
+function watchOddEven() {
+    Android.showRewardedAd("oddEven");
+}
+
+function watchDigit() {
+    Android.showRewardedAd("digit");
+}
+
+function watchDigitHigherLower() {
+    Android.showRewardedAd("digitHigherLower");
+}
+
+function watchDigitOddEven() {
+    Android.showRewardedAd("digitOddEven");
+}
+
+function watchLetter() {
+    Android.showRewardedAd("letter");
+}
+
+function watchLuckyFive() {
+    Android.showRewardedAd("five");
+}
+
+function watchMystery() {
+    Android.showRewardedAd("mystery");
+}
+
 async function adFinished(game){
 
     const { error } = await client.rpc("ad_finished");
