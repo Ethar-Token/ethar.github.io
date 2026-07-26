@@ -578,6 +578,20 @@ if(window.Android){
 
 });
 
+const { data, error } = await client.rpc("open_mystery_box");
+
+if (error) {
+    alert(error.message);
+    return;
+}
+
+alert(`🎁 You won ${data} ticket${data === 1 ? "" : "s"}!`);
+
+document.getElementById("mysteryBtn").innerHTML =
+"✅ Mystery Box Opened";
+
+document.getElementById("mysteryBtn").disabled = true;
+
 </script>
 
 </body>
