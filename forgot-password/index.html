@@ -164,6 +164,79 @@ font-size:32px;
 
 }
 
+.etharToast{
+
+position:fixed;
+
+left:50%;
+bottom:30px;
+
+transform:translateX(-50%) translateY(80px);
+
+background:#151e2f;
+
+border:2px solid #f4b400;
+
+color:white;
+
+padding:15px 22px;
+
+border-radius:14px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-weight:600;
+
+box-shadow:0 12px 35px rgba(0,0,0,.45);
+
+opacity:0;
+
+transition:.3s;
+
+z-index:999999;
+
+}
+
+.etharToast.show{
+
+opacity:1;
+
+transform:translateX(-50%) translateY(0);
+
+}
+
+.toastIcon{
+
+font-size:20px;
+
+color:#f4b400;
+
+}
+
+.toastText{
+
+white-space:nowrap;
+
+}
+
+@media(max-width:768px){
+
+.etharToast{
+
+width:90%;
+
+justify-content:center;
+
+font-size:15px;
+
+}
+
+}
+
 </style>
 
 </head>
@@ -227,6 +300,7 @@ SEND RESET LINK
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../auth.js"></script>
 
 <script>
 
@@ -250,7 +324,7 @@ async function sendResetLink(){
 
     if(email === ""){
 
-        alert("Please enter your email.");
+        showToast("Please enter your email.");
         return;
 
     }
@@ -262,7 +336,7 @@ async function sendResetLink(){
 
     if(!data){
 
-        alert("No account exists with that email address.");
+        showToast("No account exists with that email address.", "error");
         return;
 
     }
@@ -278,12 +352,12 @@ async function sendResetLink(){
 
     if(resetError){
 
-        alert(resetError.message);
+        showToast(resetError.message, "error");
         return;
 
     }
 
-    alert(
+    showToast(
         "A password reset link has been sent to your email."
     );
     window.location.href = "/login"
