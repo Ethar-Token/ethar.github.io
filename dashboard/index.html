@@ -633,6 +633,7 @@ input[type="number"]{
 
         <button
             id="watchAdBtn"
+            onclick="watchDashboardAd()"
             class="btn">
 
             WATCH AD
@@ -892,6 +893,30 @@ window.showAppFeatures = function(){
 
 };
 
+</script>
+
+<script>
+    
+function watchDashboardAd(){
+    Android.showDashboardRewardedAd();
+}
+
+async function dashboardAdFinished(){
+
+    const { error } = await client.rpc("dashboard_ad_finished");
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    loadBalances();
+    loadCurrentDraw();
+    checkNotifications();
+
+    alert("Thanks for watching!");
+}
+    
 </script>
 
 </body>
