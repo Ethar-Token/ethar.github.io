@@ -460,8 +460,8 @@ function deleteAccount(){
         "Delete your account permanently?"
     )) return;
 
-    alert(
-        "Please contact support to permanently delete your account."
+    showToast(
+        "Please contact support to permanently delete your account.", "error"
     );
 
 }
@@ -489,7 +489,7 @@ async function saveProfile(){
         !dob ||
         !country
     ){
-        alert("Please complete all fields.");
+        showToast("Please complete all fields.", "error");
         return;
     }
 
@@ -506,7 +506,7 @@ async function saveProfile(){
 
     if(error){
 
-        alert(error.message);
+        showToast(error.message, "error");
         return;
 
     }
@@ -514,23 +514,23 @@ async function saveProfile(){
     switch(data){
 
         case "SUCCESS":
-            alert("Profile updated successfully.");
+            showToast("Profile updated successfully.");
             break;
 
         case "VERIFIED":
-            alert("Your account has already been verified. Please contact support if you need to update your personal details.");
+            showToast("Your account has already been verified. Please contact support if you need to update your personal details.", "error");
             break;
 
         case "EMAIL_EXISTS":
-            alert("That email address is already in use.");
+            showToast("That email address is already in use.", "error");
             break;
 
         case "PHONE_EXISTS":
-            alert("That phone number is already in use.");
+            showToast("That phone number is already in use.", "error");
             break;
 
         default:
-            alert("Something went wrong.");
+            showToast("Something went wrong.", "error");
 
     }
 
@@ -554,12 +554,12 @@ async function updatePassword(){
         document.getElementById("confirmPassword").value;
 
     if(!currentPassword || !newPassword || !confirmPassword){
-        alert("Please complete all password fields.");
+        showToast("Please complete all password fields.", "error");
         return;
     }
 
     if(newPassword !== confirmPassword){
-        alert("New passwords do not match.");
+        showToast("New passwords do not match.", "error");
         return;
     }
 
@@ -567,14 +567,14 @@ async function updatePassword(){
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};:'",.<>/?\\|`~]).{8,}$/;
 
     if(!passwordRegex.test(newPassword)){
-        alert(
+        showToast(
 `Password Requirements
 
 ✔ At least 8 characters
 ✔ One uppercase letter
 ✔ One lowercase letter
 ✔ One number
-✔ One special character`
+✔ One special character`, "error"
         );
         return;
     }
@@ -593,7 +593,7 @@ async function updatePassword(){
         });
 
     if(loginError){
-        alert("Current password is incorrect.");
+        showToast("Current password is incorrect.", "error");
         return;
     }
 
@@ -605,11 +605,11 @@ async function updatePassword(){
         });
 
     if(error){
-        alert(error.message);
+        showToast(error.message, "error");
         return;
     }
 
-    alert("Password updated successfully.");
+    showToast("Password updated successfully.");
 
     document.getElementById("currentPassword").value = "";
     document.getElementById("newPassword").value = "";
