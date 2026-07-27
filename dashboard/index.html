@@ -89,6 +89,79 @@ gap:15px;
 
 }
 
+.etharToast{
+
+position:fixed;
+
+left:50%;
+bottom:30px;
+
+transform:translateX(-50%) translateY(80px);
+
+background:#151e2f;
+
+border:2px solid #f4b400;
+
+color:white;
+
+padding:15px 22px;
+
+border-radius:14px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-weight:600;
+
+box-shadow:0 12px 35px rgba(0,0,0,.45);
+
+opacity:0;
+
+transition:.3s;
+
+z-index:999999;
+
+}
+
+.etharToast.show{
+
+opacity:1;
+
+transform:translateX(-50%) translateY(0);
+
+}
+
+.toastIcon{
+
+font-size:20px;
+
+color:#f4b400;
+
+}
+
+.toastText{
+
+white-space:nowrap;
+
+}
+
+@media(max-width:768px){
+
+.etharToast{
+
+width:90%;
+
+justify-content:center;
+
+font-size:15px;
+
+}
+
+}
+
 .notificationBell{
     position:relative;
 }
@@ -706,7 +779,7 @@ document.querySelector(".copy").addEventListener("click", async function(){
 
         await navigator.clipboard.writeText(link);
 
-        alert("Referral link copied to clipboard!");
+        showToast("Referral link copied to clipboard!","error");
 
     }catch(err){
 
