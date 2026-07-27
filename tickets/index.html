@@ -121,6 +121,79 @@ font-weight:600;
     font-weight:600;
 }
 
+.etharToast{
+
+position:fixed;
+
+left:50%;
+bottom:30px;
+
+transform:translateX(-50%) translateY(80px);
+
+background:#151e2f;
+
+border:2px solid #f4b400;
+
+color:white;
+
+padding:15px 22px;
+
+border-radius:14px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-weight:600;
+
+box-shadow:0 12px 35px rgba(0,0,0,.45);
+
+opacity:0;
+
+transition:.3s;
+
+z-index:999999;
+
+}
+
+.etharToast.show{
+
+opacity:1;
+
+transform:translateX(-50%) translateY(0);
+
+}
+
+.toastIcon{
+
+font-size:20px;
+
+color:#f4b400;
+
+}
+
+.toastText{
+
+white-space:nowrap;
+
+}
+
+@media(max-width:768px){
+
+.etharToast{
+
+width:90%;
+
+justify-content:center;
+
+font-size:15px;
+
+}
+
+}
+
 </style>
 
 </head>
@@ -594,7 +667,7 @@ async function adFinished(game){
     const { error } = await client.rpc("ad_finished");
 
     if(error){
-        alert(error.message);
+        showToast(error.message, "error");
         return;
     }
 
@@ -659,7 +732,7 @@ async function enterLuckyNumber(){
     const number = Number(document.getElementById("luckyNumber").value);
 
     if(number < 1 || number > 100){
-        alert("Choose a number between 1 and 100.");
+        showToast("Choose a number between 1 and 100.", "error");
         return;
     }
 
@@ -668,7 +741,7 @@ async function enterLuckyNumber(){
     });
 
     if(error){
-        alert(error.message);
+        showToast(error.message, "error");
         return;
     }
 
@@ -683,7 +756,7 @@ async function enterHigherLower(){
         document.getElementById("higherLower").value;
 
     if(!prediction){
-        alert("Select Higher or Lower.");
+        showToast("Select Higher or Lower.", "error");
         return;
     }
 
@@ -692,7 +765,7 @@ async function enterHigherLower(){
     });
 
     if(error){
-        alert(error.message);
+        showToast(error.message, "error");
         return;
     }
 
@@ -708,7 +781,7 @@ async function enterOddEven(){
         document.getElementById("oddEven").value;
 
     if(!prediction){
-        alert("Select Odd or Even.");
+        showToast("Select Odd or Even.", "error");
         return;
     }
 
@@ -717,7 +790,7 @@ async function enterOddEven(){
     });
 
     if(error){
-        alert(error.message);
+        showToast(error.message, "error");
         return;
     }
 
@@ -733,7 +806,7 @@ async function enterLuckyDigit(){
         Number(document.getElementById("digit").value);
 
     if(isNaN(digit) || digit < 0 || digit > 9){
-        alert("Choose a digit between 0 and 9.");
+        showToast("Choose a digit between 0 and 9.", "error");
         return;
     }
 
@@ -742,7 +815,7 @@ async function enterLuckyDigit(){
     });
 
     if(error){
-        alert(error.message);
+        showToast(error.message, "error");
         return;
     }
 
@@ -758,7 +831,7 @@ async function enterDigitHigherLower(){
         document.getElementById("digitHigherLower").value;
 
     if(!prediction){
-        alert("Select Higher or Lower.");
+        showToast("Select Higher or Lower.", "error");
         return;
     }
 
@@ -767,7 +840,7 @@ async function enterDigitHigherLower(){
     });
 
     if(error){
-        alert(error.message);
+        showToast(error.message, "error");
         return;
     }
 
@@ -783,7 +856,7 @@ async function enterDigitOddEven(){
         document.getElementById("digitOddEven").value;
 
     if(!prediction){
-        alert("Select Odd or Even.");
+        showToast("Select Odd or Even.", "error");
         return;
     }
 
@@ -792,7 +865,7 @@ async function enterDigitOddEven(){
     });
 
     if(error){
-        alert(error.message);
+        showToast(error.message, "error");
         return;
     }
 
@@ -808,7 +881,7 @@ async function enterLuckyLetter(){
         document.getElementById("luckyLetter").value;
 
     if(!letter){
-        alert("Choose a letter.");
+        showToast("Choose a letter.", "error");
         return;
     }
 
@@ -817,7 +890,7 @@ async function enterLuckyLetter(){
     });
 
     if(error){
-        alert(error.message);
+        showToast(error.message, "error");
         return;
     }
 
@@ -840,12 +913,12 @@ async function enterLuckyFive(){
     ];
 
     if(numbers.some(n => isNaN(n) || n < 1 || n > 100)){
-        alert("Choose five numbers between 1 and 100.");
+        showToast("Choose five numbers between 1 and 100.", "error");
         return;
     }
 
     if(new Set(numbers).size !== 5){
-        alert("All five numbers must be different.");
+        showToast("All five numbers must be different.", "error");
         return;
     }
 
@@ -854,7 +927,7 @@ async function enterLuckyFive(){
     });
 
     if(error){
-        alert(error.message);
+        showToast(error.message, "error");
         return;
     }
 
@@ -871,13 +944,13 @@ await client.rpc("open_mystery_box");
 
 if(error){
 
-alert(error.message);
+showToast(error.message, "error");
 
 return;
 
 }
 
-alert(
+showToast(
 "🎁 You won " +
 data +
 " ticket" +
