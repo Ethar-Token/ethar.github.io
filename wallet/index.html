@@ -90,6 +90,79 @@ align-items:center;
 gap:20px;
 }
 
+.etharToast{
+
+position:fixed;
+
+left:50%;
+bottom:30px;
+
+transform:translateX(-50%) translateY(80px);
+
+background:#151e2f;
+
+border:2px solid #f4b400;
+
+color:white;
+
+padding:15px 22px;
+
+border-radius:14px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-weight:600;
+
+box-shadow:0 12px 35px rgba(0,0,0,.45);
+
+opacity:0;
+
+transition:.3s;
+
+z-index:999999;
+
+}
+
+.etharToast.show{
+
+opacity:1;
+
+transform:translateX(-50%) translateY(0);
+
+}
+
+.toastIcon{
+
+font-size:20px;
+
+color:#f4b400;
+
+}
+
+.toastText{
+
+white-space:nowrap;
+
+}
+
+@media(max-width:768px){
+
+.etharToast{
+
+width:90%;
+
+justify-content:center;
+
+font-size:15px;
+
+}
+
+}
+
 .notificationBell{
     position:relative;
 }
@@ -633,14 +706,14 @@ async function requestWithdrawal(){
 
     if(destination === ""){
 
-        alert("Please enter your payment destination.");
+        showToast("Please enter your payment destination.", "error");
         return;
 
     }
 
     if(amount < 5){
 
-        alert("Minimum withdrawal amount is $5.");
+        showToast("Minimum withdrawal amount is $5.", "error");
         return;
 
     }
@@ -656,26 +729,26 @@ async function requestWithdrawal(){
 
     if(error){
 
-        alert(error.message);
+        showToast(error.message, "error");
         return;
 
     }
 
     if(data === "INSUFFICIENT_FUNDS"){
 
-        alert("You do not have enough funds.");
+        showToast("You do not have enough funds.", "error");
         return;
 
     }
 
     if(data === "MINIMUM_$5"){
 
-        alert("Minimum withdrawal is $5.");
+        showToast("Minimum withdrawal is $5.", "error");
         return;
 
     }
 
-    alert("Your withdrawal request has been submitted.");
+    showToast("Your withdrawal request has been submitted.");
 
     document.getElementById("destination").value = "";
     document.getElementById("amount").value = "";
