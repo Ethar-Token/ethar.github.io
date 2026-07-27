@@ -227,6 +227,79 @@ font-size:30px;
 
 }
 
+.etharToast{
+
+position:fixed;
+
+left:50%;
+bottom:30px;
+
+transform:translateX(-50%) translateY(80px);
+
+background:#151e2f;
+
+border:2px solid #f4b400;
+
+color:white;
+
+padding:15px 22px;
+
+border-radius:14px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-weight:600;
+
+box-shadow:0 12px 35px rgba(0,0,0,.45);
+
+opacity:0;
+
+transition:.3s;
+
+z-index:999999;
+
+}
+
+.etharToast.show{
+
+opacity:1;
+
+transform:translateX(-50%) translateY(0);
+
+}
+
+.toastIcon{
+
+font-size:20px;
+
+color:#f4b400;
+
+}
+
+.toastText{
+
+white-space:nowrap;
+
+}
+
+@media(max-width:768px){
+
+.etharToast{
+
+width:90%;
+
+justify-content:center;
+
+font-size:15px;
+
+}
+
+}
+
 </style>
 
 </head>
@@ -586,6 +659,7 @@ Already have an account? Log In
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../auth.js"></script>
 
 <script>
 
@@ -669,7 +743,7 @@ const confirm = document.getElementById("confirm").value;
 
 if(password !== confirm){
 
-alert("Passwords do not match.");
+showToast("Passwords do not match.", "error");
 return;
 
 }
@@ -680,7 +754,7 @@ if(password.length < 8 ||
 !/([0-9])/.test(password) ||
 !/[^A-Za-z0-9]/.test(password)){
 
-alert("Your password does not meet the required security requirements.");
+showToast("Your password does not meet the required security requirements.", "error");
 return;
 
 }
@@ -689,7 +763,7 @@ const agree = document.querySelector(".checkbox input");
 
 if(!agree.checked){
 
-alert("You must agree to the Terms of Use, Privacy Policy and Cookie Policy.");
+showToast("You must agree to the Terms of Use, Privacy Policy and Cookie Policy.", "error");
 return;
 
 }
@@ -704,7 +778,7 @@ const country = document.getElementById("country").value;
 const referral = document.getElementById("referral").value.trim();
 
 if (country === "Select your country") {
-    alert("Please select your country.");
+    showToast("Please select your country.", "error");
     return;
 }
     
@@ -715,7 +789,7 @@ const { data: existingEmail } = await client
     .maybeSingle();
 
 if (existingEmail) {
-    alert("This email address is already registered.");
+    showToast("This email address is already registered.", "error");
     return;
 }
     
@@ -726,12 +800,12 @@ const { data: existingPhone, error: phoneError } = await client
     .maybeSingle();
 
 if (phoneError) {
-    alert(phoneError.message);
+    showToast(phoneError.message, "error");
     return;
 }
 
 if (existingPhone) {
-    alert("This phone number is already registered.");
+    showToast("This phone number is already registered.", "error");
     return;
 }
 
@@ -760,12 +834,12 @@ referral_code: referral
 
 if(error){
 
-alert(error.message);
+showToast(error.message, "error");
 return;
 
 }
 
-alert("Account created successfully. Please check your email to verify your account before logging in.");
+showToast("Account created successfully. Please check your email to verify your account before logging in.");
 
 window.location.href = "/login";
 
