@@ -783,7 +783,7 @@ document.querySelector(".copy").addEventListener("click", async function(){
 
     }catch(err){
 
-        alert("Unable to copy referral link.");
+        showToast("Unable to copy referral link.","error");
 
     }
 
@@ -892,7 +892,7 @@ async function enterDraw(){
 
     if(tickets <= 0){
 
-        alert("Enter at least one ticket.");
+        showToast("Enter at least one ticket.","error");
         return;
 
     }
@@ -906,7 +906,7 @@ async function enterDraw(){
 
     if(error){
 
-        alert(error.message);
+        showToast(error.message, "error");
         return;
 
     }
@@ -915,7 +915,7 @@ async function enterDraw(){
 
         case "SUCCESS":
 
-            alert("Tickets entered successfully!");
+            showToast("Tickets entered successfully!");
             await sendTicketEmail();
             loadBalances();
             loadCurrentDraw();
@@ -925,12 +925,12 @@ async function enterDraw(){
 
         case "NOT_ENOUGH_TICKETS":
 
-            alert("You don't have enough tickets. Watch ads to earn more.");
+            showToast("You don't have enough tickets. Watch ads to earn more.","error");
             break;
 
         case "NO_ACTIVE_DRAW":
 
-            alert("There is currently no active draw.");
+            showToast("There is currently no active draw.","error");
             break;
 
         case "NOT_LOGGED_IN":
@@ -940,17 +940,17 @@ async function enterDraw(){
 
         case "PROFILE_NOT_FOUND":
 
-            alert("Profile not found.");
+            showToast("Profile not found.","error");
             break;
 
         case "INVALID_AMOUNT":
 
-            alert("Invalid ticket amount.");
+            showToast("Invalid ticket amount.","error");
             break;
 
         default:
 
-            alert("Something went wrong.");
+            showToast("Something went wrong.","error");
             }
 }
     
@@ -979,7 +979,7 @@ async function dashboardAdFinished(){
     const { error } = await client.rpc("dashboard_ad_finished");
 
     if(error){
-        alert(error.message);
+        showToast(error.message, "error");
         return;
     }
 
