@@ -195,6 +195,31 @@ margin-bottom:15px;
 transform:translateY(-2px);
 }
 
+.signupSpinner{
+    display:inline-block;
+    width:17px;
+    height:17px;
+    margin-right:8px;
+    vertical-align:-3px;
+    border:2px solid rgba(17,17,17,.3);
+    border-top-color:#111;
+    border-radius:50%;
+    animation:signupSpin .7s linear infinite;
+}
+
+@keyframes signupSpin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+button[type="submit"]:disabled{
+    cursor:not-allowed;
+    opacity:.75;
+    transform:none !important;
+}
+
+
 .login{
 display:block;
 text-align:center;
@@ -342,7 +367,7 @@ font-size:15px;
 
 <label>Email Address</label>
 
-<input id="email" type="email" placeholder="Enter email address">
+<input id="email" type="email" name="email" autocomplete="username" placeholder="Enter email address">
 
 </div>
 
@@ -580,7 +605,7 @@ font-size:15px;
 
 <div class="password-box">
 
-<input type="password" id="pass" placeholder="Create password">
+<input type="password" id="pass" name="password" autocomplete="new-password" placeholder="Create password">
 
 <span class="show" onclick="togglePass('pass',this)">Show</span>
 
@@ -738,6 +763,8 @@ document.getElementById("signupForm").addEventListener("submit", async function(
 
 e.preventDefault();
 
+const signupButton = document.querySelector("#signupForm button[type='submit']");
+
 const password = pass.value;
 const confirm = document.getElementById("confirm").value;
 
@@ -781,6 +808,9 @@ if (country === "Select your country") {
     showToast("Please select your country.", "error");
     return;
 }
+
+signupButton.disabled = true; 
+signupButton.innerHTML = ` <span class="signupSpinner"></span> CREATING ACCOUNT... `;
     
 const { data: existingEmail } = await client
     .from("profiles")
@@ -789,6 +819,9 @@ const { data: existingEmail } = await client
     .maybeSingle();
 
 if (existingEmail) {
+
+    signupButton.disabled = false; 
+    signupButton.innerHTML = "SIGN UP";
     showToast("This email address is already registered.", "error");
     return;
 }
@@ -800,11 +833,17 @@ const { data: existingPhone, error: phoneError } = await client
     .maybeSingle();
 
 if (phoneError) {
+
+    signupButton.disabled = false; 
+    signupButton.innerHTML = "SIGN UP";
     showToast(phoneError.message, "error");
     return;
 }
 
 if (existingPhone) {
+
+    signupButton.disabled = false; 
+    signupButton.innerHTML = "SIGN UP";
     showToast("This phone number is already registered.", "error");
     return;
 }
@@ -833,6 +872,9 @@ referral_code: referral
 });
 
 if(error){
+
+signupButton.disabled = false; 
+signupButton.innerHTML = "SIGN UP";
 
 showToast(error.message, "error");
 return;
