@@ -261,7 +261,7 @@ bottom:30px;
 
 transform:translateX(-50%) translateY(80px);
 
-width:max-content; 
+width:fit-content; 
 max-width:calc(100vw - 40px);
 
 background:#151e2f;
@@ -319,20 +319,6 @@ white-space:normal;
 overflow-wrap:anywhere;
 word-break:break-word;
 line-height:1.45;
-
-}
-
-@media(max-width:600px){
-
-.etharToast{
-
-width:auto;
-max-width:calc(100vw - 30px);
-padding:12px 15px;
-font-size:14px;
-gap:9px;
-
-}
 
 }
 
@@ -783,6 +769,8 @@ const phone = document.getElementById("phone").value.trim();
 const dob = document.getElementById("dob").value;
 const country = document.getElementById("country").value;
 const referral = document.getElementById("referral").value.trim();
+const password = pass.value;
+const confirm = document.getElementById("confirm").value;
 
 
 
@@ -804,8 +792,7 @@ if (country === "Select your country") {
     return;
 }
 
-const password = pass.value;
-const confirm = document.getElementById("confirm").value;
+
 
 if(password !== confirm){
 
