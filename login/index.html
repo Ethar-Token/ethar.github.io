@@ -141,6 +141,32 @@ transition:.3s;
 margin-bottom:15px;
 }
 
+
+.login:disabled{
+    cursor:not-allowed;
+    opacity:.75;
+    transform:none !important;
+}
+
+.loginSpinner{
+    display:inline-block;
+    width:17px;
+    height:17px;
+    margin-right:8px;
+    vertical-align:-3px;
+    border:2px solid rgba(17,17,17,.3);
+    border-top-color:#111;
+    border-radius:50%;
+    animation:loginSpin .7s linear infinite;
+}
+
+@keyframes loginSpin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
 .login{
 background:#f4b400;
 color:#111;
@@ -278,7 +304,7 @@ font-size:15px;
 
 <label>Email Address</label>
 
-<input id="email" type="email" placeholder="Enter your email" required>
+<input id="email" type="email" name="email" autocomplete="username" placeholder="Enter your email" required>
 
 </div>
 
@@ -288,7 +314,7 @@ font-size:15px;
 
 <div class="password-box">
 
-<input type="password" id="password" placeholder="Enter your password" required>
+<input type="password" id="password" name="password" autocomplete="current-password" placeholder="Enter your password" required>
 
 <span class="show" onclick="togglePassword()">Show</span>
 
@@ -375,9 +401,15 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
 e.preventDefault();
 
+const loginButton = document.querySelector(".login[type='submit']");
+
 const email=document.getElementById("email").value.trim();
 
 const password=document.getElementById("password").value;
+
+/* Show loading state */ 
+loginButton.disabled = true; 
+loginButton.innerHTML = ` <span class="loginSpinner"></span> LOGGING IN... `;
 
 const { data, error } = await client.auth.signInWithPassword({
 
@@ -400,6 +432,9 @@ const { data:userData } = await client.auth.getUser();
 if(!userData.user.email_confirmed_at){
 
 await client.auth.signOut();
+
+loginButton.disabled = false; 
+loginButton.innerHTML = "LOG IN";
 
 document.getElementById("verifyBox").style.display="block";
 
