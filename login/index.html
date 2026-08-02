@@ -414,7 +414,7 @@ const email=document.getElementById("email").value.trim();
 
 const password=document.getElementById("password").value;
 
-/* Show loading state */ 
+ 
 loginButton.disabled = true; 
 loginButton.innerHTML = ` <span class="loginSpinner"></span> LOGGING IN... `;
 
@@ -427,6 +427,9 @@ password:password
 });
 
 if(error){
+
+loginButton.disabled = false; 
+loginButton.innerHTML = "LOG IN";
 
 showToast(error.message, "error");
 
