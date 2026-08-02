@@ -261,21 +261,24 @@ bottom:30px;
 
 transform:translateX(-50%) translateY(80px);
 
+width:max-content; 
+max-width:calc(100vw - 30px);
+
 background:#151e2f;
 
 border:2px solid #f4b400;
 
 color:white;
 
-padding:15px 22px;
+padding:14px 18px;
 
 border-radius:14px;
 
 display:flex;
 
-align-items:center;
+align-items:flex-start;
 
-gap:12px;
+gap:10px;
 
 font-weight:600;
 
@@ -299,27 +302,34 @@ transform:translateX(-50%) translateY(0);
 
 .toastIcon{
 
+flex:0 0 auto;
+
 font-size:20px;
 
 color:#f4b400;
+line-height:1.4;
 
 }
 
 .toastText{
 
-white-space:nowrap;
+min-width:0;
+white-space:normal;
+overflow-wrap:anywhere;
+word-break:break-word;
+line-height:1.45;
 
 }
 
-@media(max-width:768px){
+@media(max-width:600px){
 
 .etharToast{
 
-width:90%;
-
-justify-content:center;
-
-font-size:15px;
+width:calc(100vw - 30px);
+max-width:none;
+padding:13px 16px;
+font-size:14px;
+gap:9px;
 
 }
 
@@ -765,6 +775,34 @@ e.preventDefault();
 
 const signupButton = document.querySelector("#signupForm button[type='submit']");
 
+const firstName = document.getElementById("firstName").value.trim();
+const lastName = document.getElementById("lastName").value.trim();
+const email = document.getElementById("email").value.trim();
+const phone = document.getElementById("phone").value.trim();
+const dob = document.getElementById("dob").value;
+const country = document.getElementById("country").value;
+const referral = document.getElementById("referral").value.trim();
+
+
+
+if( 
+    firstName === "" || 
+    lastName === "" || 
+    email === "" || 
+    phone === "" || 
+    dob === "" ||
+    password === "" ||
+    confirm === ""
+){ 
+    showToast( "Please complete all required fields.", "error" ); 
+    return; 
+}
+
+if (country === "Select your country") {
+    showToast("Please select your country.", "error");
+    return;
+}
+
 const password = pass.value;
 const confirm = document.getElementById("confirm").value;
 
@@ -795,19 +833,6 @@ return;
 
 }
 
-
-const firstName = document.getElementById("firstName").value.trim();
-const lastName = document.getElementById("lastName").value.trim();
-const email = document.getElementById("email").value.trim();
-const phone = document.getElementById("phone").value.trim();
-const dob = document.getElementById("dob").value;
-const country = document.getElementById("country").value;
-const referral = document.getElementById("referral").value.trim();
-
-if (country === "Select your country") {
-    showToast("Please select your country.", "error");
-    return;
-}
 
 signupButton.disabled = true; 
 signupButton.innerHTML = ` <span class="signupSpinner"></span> CREATING ACCOUNT... `;
