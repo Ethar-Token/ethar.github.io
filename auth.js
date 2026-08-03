@@ -78,6 +78,36 @@ async function loadBalances() {
     }
 }
 
+async function loadTotalEtharDistributed(){
+
+    const { data, error } = await client
+        .from("profiles")
+        .select("ethar_balance");
+
+    if(error){
+
+        console.error("Failed to load total ETHAR distributed:", error);
+        return;
+
+    }
+
+    const total = (data || []).reduce(
+        (sum, profile) => sum + Number(profile.ethar_balance || 0),
+        0
+    );
+
+    const element =
+        document.getElementById("totalEtharDistributed");
+
+    if(element){
+
+        element.textContent =
+            Number(total).toLocaleString() + " ETHAR";
+
+    }
+
+}
+
 
 async function loadCurrentDraw(){
 
@@ -150,11 +180,6 @@ function startCountdown(endTime){
         const minutes = String(Math.floor((diff % 3600000) / 60000)).padStart(2,"0");
         const seconds = String(Math.floor((diff % 60000) / 1000)).padStart(2,"0");
 
-        // Dashboard countdown
-        const c = document.getElementById("c");
-        if(c){
-            c.textContent = `${hours}:${minutes}:${seconds}`;
-        }
 
         // Dashboard circle countdown
         const cc = document.getElementById("cc");
