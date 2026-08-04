@@ -835,12 +835,18 @@ return;
 signupButton.disabled = true; 
 signupButton.innerHTML = ` <span class="signupSpinner"></span> CREATING ACCOUNT... `;
     
-const { data: existingEmail } = await client
-    .from("profiles")
-    .select("id")
-    .eq("email", email)
-    .maybeSingle();
+const { data: existingEmail, error: emailError } = 
+    await client.rpc("email_exists", {
+        p_email: email
+    });
 
+if (emailError) {
+    signupButton.disabled = false;
+    signupButton.innerHTML = "SIGN UP";
+    showToast(emailError.message, "error");
+    return;
+}
+   
 if (existingEmail) {
 
     signupButton.disabled = false; 
@@ -849,11 +855,11 @@ if (existingEmail) {
     return;
 }
     
-const { data: existingPhone, error: phoneError } = await client
-    .from("profiles")
-    .select("id")
-    .eq("phone", phone)
-    .maybeSingle();
+const { data: existingPhone, error: phoneError } = 
+    await client.rpc("phone_exists", {
+         p_phone: phone
+    });
+    
 
 if (phoneError) {
 
@@ -906,7 +912,9 @@ return;
 
 showToast("Account created successfully. Please check your email to verify your account before logging in.");
 
-window.location.href = "/login";
+setTimeout(() => {
+    window.location.href = "/login";
+}, 4000);
 
 });
 </script>
