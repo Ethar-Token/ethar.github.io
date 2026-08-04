@@ -811,6 +811,7 @@ document.querySelector(".copy").addEventListener("click", async function(){
 <script>
 requireLogin();
 loadBalances();
+loadTotalEtharDistributed();
 loadCurrentDraw();
 loadWinners();
 loadReferrals();
@@ -932,6 +933,7 @@ async function enterDraw(){
             showToast("Tickets entered successfully!");
             await sendTicketEmail();
             loadBalances();
+            loadTotalEtharDistributed();
             loadCurrentDraw();
             checkNotifications();
         
