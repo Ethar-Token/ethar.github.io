@@ -775,7 +775,10 @@ const signupButton = document.querySelector("#signupForm button[type='submit']")
 const firstName = document.getElementById("firstName").value.trim();
 const lastName = document.getElementById("lastName").value.trim();
 const email = document.getElementById("email").value.trim();
-const phone = document.getElementById("phone").value.trim();
+let phone = document.getElementById("phone").value.trim();
+
+// Remove spaces, brackets, dashes and other formatting characters
+phone = phone.replace(/[\s()\-]/g, "");
 const dob = document.getElementById("dob").value;
 const country = document.getElementById("country").value;
 const referral = document.getElementById("referral").value.trim();
@@ -795,6 +798,18 @@ if(
 ){ 
     showToast( "Please complete all required fields.", "error" ); 
     return; 
+}
+
+
+// Must start with + followed by country code and digits
+if (!/^\+[1-9]\d{7,14}$/.test(phone)) {
+
+    showToast(
+        "Please enter your phone number with + and the country code.",
+        "error"
+    );
+
+    return;
 }
 
 if (country === "Select your country") {
@@ -835,7 +850,7 @@ return;
 signupButton.disabled = true; 
 signupButton.innerHTML = ` <span class="signupSpinner"></span> CREATING ACCOUNT... `;
     
-const { data: existingEmail, error: emailError } = 
+const { data: emailExists, error: emailError } = 
     await client.rpc("email_exists", {
         p_email: email
     });
@@ -847,7 +862,7 @@ if (emailError) {
     return;
 }
    
-if (existingEmail) {
+if (emailExists) {
 
     signupButton.disabled = false; 
     signupButton.innerHTML = "SIGN UP";
@@ -855,7 +870,7 @@ if (existingEmail) {
     return;
 }
     
-const { data: existingPhone, error: phoneError } = 
+const { data: phoneExists, error: phoneError } = 
     await client.rpc("phone_exists", {
          p_phone: phone
     });
@@ -869,7 +884,7 @@ if (phoneError) {
     return;
 }
 
-if (existingPhone) {
+if (phoneExists) {
 
     signupButton.disabled = false; 
     signupButton.innerHTML = "SIGN UP";
