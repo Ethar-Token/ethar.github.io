@@ -503,7 +503,10 @@ async function saveProfile(){
     const firstName = document.getElementById("firstName").value.trim();
     const lastName  = document.getElementById("lastName").value.trim();
     const email     = document.getElementById("email").value.trim();
-    const phone     = document.getElementById("phone").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+
+    // Remove spaces, brackets, dashes and other formatting characters
+    phone = phone.replace(/[\s()\-]/g, "");
     const dob       = document.getElementById("dob").value;
     const country   = document.getElementById("country").value;
 
@@ -513,9 +516,20 @@ async function saveProfile(){
         !email ||
         !phone ||
         !dob ||
-        !country
+        !country === "Select Country"
     ){
         showToast("Please complete all fields.", "error");
+        return;
+    }
+
+    // Must start with + followed by country code and digits
+    if (!/^\+[1-9]\d{7,14}$/.test(phone)) {
+
+        showToast(
+            "Please enter your phone number with + and the country code.",
+            "error"
+        );
+
         return;
     }
 
