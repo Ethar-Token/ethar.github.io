@@ -80,21 +80,19 @@ async function loadBalances() {
 
 async function loadTotalEtharDistributed(){
 
-    const { data, error } = await client
-        .from("profiles")
-        .select("ethar_balance");
+    const { data, error } = await client.rpc(
+        "get_total_ethar_distributed"
+    );
 
     if(error){
 
-        console.error("Failed to load total ETHAR distributed:", error);
+        console.error(
+            "Failed to load total ETHAR distributed:",
+            error
+        );
+
         return;
-
     }
-
-    const total = (data || []).reduce(
-        (sum, profile) => sum + Number(profile.ethar_balance || 0),
-        0
-    );
 
     const element =
         document.getElementById("totalEtharDistributed");
@@ -102,7 +100,7 @@ async function loadTotalEtharDistributed(){
     if(element){
 
         element.textContent =
-            Number(total).toLocaleString() + " ETHAR";
+            Number(data).toLocaleString() + " ETHAR";
 
     }
 
