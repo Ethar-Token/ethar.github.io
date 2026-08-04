@@ -73,7 +73,10 @@ async function loadBalances() {
     const ethar = document.getElementById("etharBalance");
     if(ethar){
         ethar.textContent =
-            Number(data.ethar_balance).toFixed(2) + " ETHAR";
+            Number(data.ethar_balance).toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }) + " ETHAR";
 
     }
 }
