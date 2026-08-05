@@ -4,7 +4,7 @@
 
 <head>
 
-```
+
 <script>
     if (window.matchMedia("(min-width: 992px)").matches) {
         (function (s) {
@@ -147,13 +147,13 @@
     }
 
 </style>
-```
+
 
 </head>
 
 <body>
 
-```
+
 <div class="card">
 
     <div class="logo">
@@ -223,40 +223,89 @@
     const supabaseUrl = "https://ynohexdhktetiepmbwnx.supabase.co";
 
     const supabaseKey =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5bm9oZXhkaGt0ZXRpZXBtYndueCIsInJlZiI6Inlub2hleGRoa3RldGllcG1id254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDU5ODcsImV4cCI6MjA5OTI4MTk4N30.bOgCv0UJYvNSXDxCFs9_6lWfm-h5RipjLzqFIC7Miw";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5bm9oZXhkaGt0ZXRpZXBtYndueCIsInJlZiI6Inlub2hleGRoa3RldGllcG1id254Iiwicm9sIjoiZXNzIiwiaWF0IjoxNzgzNzA1OTg3LCJleHAiOjIwOTkyODE5ODd9.bOgCv0UJvNSXDxCFs9_6lWfm-h5RipjLzqFIC7Miw";
 
     const client = supabase.createClient(
         supabaseUrl,
         supabaseKey
     );
 
+
     async function checkVerification() {
 
         const successState = document.getElementById("successState");
         const errorState = document.getElementById("errorState");
 
+
+        /*
+         * Check whether Supabase returned an authentication error
+         * in the URL.
+         */
+
+        const queryParams = new URLSearchParams(
+            window.location.search
+        );
+
+        const hashParams = new URLSearchParams(
+            window.location.hash.substring(1)
+        );
+
+
+        const errorCode =
+            queryParams.get("error_code") ||
+            hashParams.get("error_code");
+
+        const errorDescription =
+            queryParams.get("error_description") ||
+            hashParams.get("error_description");
+
+
+        if (errorCode || errorDescription) {
+
+            errorState.classList.remove("hidden");
+            return;
+
+        }
+
+
+        /*
+         * Supabase automatically processes the verification
+         * code from the URL when the client is created.
+         */
+
         const {
             data,
             error
-        } = await client.auth.getUser();
+        } = await client.auth.getSession();
+
 
         if (
             !error &&
             data &&
-            data.user &&
-            data.user.email_confirmed_at
+            data.session &&
+            data.session.user &&
+            data.session.user.email_confirmed_at
         ) {
+
             successState.classList.remove("hidden");
             return;
+
         }
 
+
+        /*
+         * No valid verification session was created.
+         */
+
         errorState.classList.remove("hidden");
+
     }
+
 
     checkVerification();
 
 </script>
-```
+
 
 </body>
 
