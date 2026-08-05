@@ -358,12 +358,37 @@ color:#111;
 
 }
 
-.downloadBtn.disabled{
-pointer-events:none;
-opacity:.5;
-cursor:not-allowed;
+.appDownload{
+    padding:70px 8%;
+    text-align:center;
 }
 
+.appDownload h2{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.appDownload p{
+    color:#bfbfbf;
+    margin-bottom:30px;
+}
+
+.appDownloadButtons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.appDownloadBtn{
+    min-width:220px;
+}
+
+.appDownloadBtn.disabled{
+    pointer-events:none;
+    opacity:.5;
+    cursor:not-allowed;
+}
 
 .stats{
 
@@ -563,29 +588,35 @@ No complicated rules. Just rewards.
 
 </div>
 
-<section>
-    
-<div class="buttons">
 
-<a
-    href="https://play.google.com/store/apps/details?id=com.ethartoken.app"
-    class="btn secondary downloadBtn"
->
-    Google Play
-</a>
-
-<a
-    href="https://ethartoken.com/downloads/ETHAR.apk"
-    class="btn secondary downloadBtn"
-    download
->
-    Download APK
-</a>
-
-</div>
-
-    
 </section>
+
+<section class="appDownload">
+
+    <h2>Get the ETHAR App</h2>
+
+    <p>
+        Download the ETHAR app or get it from Google Play.
+    </p>
+
+    <div class="appDownloadButtons">
+
+        <a
+            href="https://play.google.com/store/apps/details?id=com.ethartoken.app"
+            class="btn primary appDownloadBtn"
+        >
+            Google Play
+        </a>
+
+        <a
+            href="https://ethartoken.com/downloads/ETHAR.apk"
+            class="btn secondary appDownloadBtn"
+            download
+        >
+            Download APK
+        </a>
+
+    </div>
 
 </section>
 
@@ -925,14 +956,24 @@ window.addEventListener("click",function(e){
      
 </script>
 
-<script> 
-document.querySelectorAll(".downloadBtn").forEach(function(button){ 
-    button.addEventListener("click", function(){ 
-    button.classList.add("disabled"); setTimeout(function(){ 
-    button.classList.remove("disabled"); 
-    }, 5000); 
-    }); 
-}); 
+<script>
+
+document.querySelectorAll(".appDownloadBtn").forEach(function(button){
+
+    button.addEventListener("click", function(){
+
+        button.classList.add("disabled");
+
+        setTimeout(function(){
+
+            button.classList.remove("disabled");
+
+        }, 5000);
+
+    });
+
+});
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
