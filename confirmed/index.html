@@ -223,7 +223,7 @@
     const supabaseUrl = "https://ynohexdhktetiepmbwnx.supabase.co";
 
     const supabaseKey =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5bm9oZXhkaGt0ZXRpZXBtYndueCIsInJlZiI6Inlub2hleGRoa3RldGllcG1id254Iiwicm9sIjoiZXNzIiwiaWF0IjoxNzgzNzA1OTg3LCJleHAiOjIwOTkyODE5ODd9.bOgCv0UJvNSXDxCFs9_6lWfm-h5RipjLzqFIC7Miw";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlub2hleGRoa3RldGllcG1id254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDU5ODcsImV4cCI6MjA5OTI4MTk4N30.bOgCv0UJxYvNSXDxCFs9_6lWfm-h5RipjLzqFIC7Miw";
 
     const client = supabase.createClient(
         supabaseUrl,
@@ -231,78 +231,112 @@
     );
 
 
-    async function checkVerification() {
 
-        const successState = document.getElementById("successState");
-        const errorState = document.getElementById("errorState");
+async function checkVerification() {
 
-
-        /*
-         * Check whether Supabase returned an authentication error
-         * in the URL.
-         */
-
-        const queryParams = new URLSearchParams(
-            window.location.search
-        );
-
-        const hashParams = new URLSearchParams(
-            window.location.hash.substring(1)
-        );
+    const successState = document.getElementById("successState");
+    const errorState = document.getElementById("errorState");
 
 
-        const errorCode =
-            queryParams.get("error_code") ||
-            hashParams.get("error_code");
-
-        const errorDescription =
-            queryParams.get("error_description") ||
-            hashParams.get("error_description");
+    const queryParams = new URLSearchParams(
+        window.location.search
+    );
 
 
-        if (errorCode || errorDescription) {
+    const errorCode =
+        queryParams.get("error_code");
 
-            errorState.classList.remove("hidden");
-            return;
-
-        }
-
-
-        /*
-         * Supabase automatically processes the verification
-         * code from the URL when the client is created.
-         */
-
-        const {
-            data,
-            error
-        } = await client.auth.getSession();
+    const errorDescription =
+        queryParams.get("error_description");
 
 
-        if (
-            !error &&
-            data &&
-            data.session &&
-            data.session.user &&
-            data.session.user.email_confirmed_at
-        ) {
+    /*
+     * Supabase returned an actual verification error.
+     */
 
-            successState.classList.remove("hidden");
-            return;
-
-        }
-
-
-        /*
-         * No valid verification session was created.
-         */
+    if (errorCode || errorDescription) {
 
         errorState.classList.remove("hidden");
+        return;
 
     }
 
 
-    checkVerification();
+    /*
+     * A successful email confirmation can arrive with
+     * a "code" in the URL.
+     */
+
+    const code = queryParams.get("code");
+
+
+    if (code) {
+
+        const {
+            error
+        } = await client.auth.exchangeCodeForSession(code);
+
+
+        if (!error) {
+
+            const {
+                data: userData,
+                error: userError
+            } = await client.auth.getUser();
+
+
+            if (
+                !userError &&
+                userData &&
+                userData.user &&
+                userData.user.email_confirmed_at
+            ) {
+
+                successState.classList.remove("hidden");
+                return;
+
+            }
+
+        }
+
+    }
+
+
+    /*
+     * Also check an existing authenticated session.
+     */
+
+    const {
+        data: sessionData,
+        error: sessionError
+    } = await client.auth.getSession();
+
+
+    if (
+        !sessionError &&
+        sessionData &&
+        sessionData.session &&
+        sessionData.session.user &&
+        sessionData.session.user.email_confirmed_at
+    ) {
+
+        successState.classList.remove("hidden");
+        return;
+
+    }
+
+
+    /*
+     * No successful verification was detected.
+     */
+
+    errorState.classList.remove("hidden");
+
+}
+
+
+checkVerification();
+
 
 </script>
 
