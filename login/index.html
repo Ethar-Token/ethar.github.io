@@ -428,8 +428,23 @@ password:password
 
 if(error){
 
-loginButton.disabled = false; 
-loginButton.innerHTML = "LOG IN";
+    loginButton.disabled = false;
+    loginButton.innerHTML = "LOG IN";
+
+    if(
+        error.message.toLowerCase().includes("email not confirmed") ||
+        error.message.toLowerCase().includes("email not verified")
+    ){
+
+        document.getElementById("verifyBox").style.display = "block";
+
+        showToast(
+            "Please verify your email address before logging in.",
+            "error"
+        );
+
+        return;
+    }
 
 showToast(error.message, "error");
 
