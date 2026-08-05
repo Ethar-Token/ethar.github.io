@@ -902,6 +902,16 @@ document
 
 async function enterDraw(){
 
+    const enterDrawBtn =
+        document.getElementById("enterDrawBtn");
+    
+    enterDrawBtn.disabled = true;
+
+    setTimeout(() => {
+        enterDrawBtn.disabled = false;
+
+     }, 3000);
+
     const tickets =
         Number(document.getElementById("ticketInput").value);
 
