@@ -1,178 +1,262 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
+```
 <script>
-if (window.matchMedia("(min-width: 992px)").matches) {
-    (function(s){
-        s.dataset.zone = '11350641';
-        s.src = 'https://nap5k.com/tag.min.js';
-    })(
-        [document.documentElement, document.body]
-            .filter(Boolean)
-            .pop()
-            .appendChild(document.createElement('script'))
-    );
-}
+    if (window.matchMedia("(min-width: 992px)").matches) {
+        (function (s) {
+            s.dataset.zone = "11350641";
+            s.src = "https://nap5k.com/tag.min.js";
+        })(
+            [document.documentElement, document.body]
+                .filter(Boolean)
+                .pop()
+                .appendChild(document.createElement("script"))
+        );
+    }
 </script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Email Verified | ETHAR</title>
+<title>Email Verification | ETHAR</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Poppins, sans-serif;
+    }
 
-body{
-background:#0b1220;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-padding:20px;
-color:#fff;
-}
+    body {
+        background: #0b1220;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        color: #fff;
+    }
 
-.card{
-width:100%;
-max-width:550px;
-background:#151e2f;
-padding:45px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 20px 40px rgba(0,0,0,.35);
-}
+    .card {
+        width: 100%;
+        max-width: 550px;
+        background: #151e2f;
+        padding: 45px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
+    }
 
-.logo{
-font-size:42px;
-font-weight:700;
-color:#f4b400;
-margin-bottom:25px;
-}
+    .logo {
+        font-size: 42px;
+        font-weight: 700;
+        color: #f4b400;
+        margin-bottom: 25px;
+    }
 
-.success{
-width:110px;
-height:110px;
-margin:0 auto 25px;
-border-radius:50%;
-background:#1f9d55;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:55px;
-color:#fff;
-}
+    .icon {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto 25px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 55px;
+        color: #fff;
+    }
 
-h1{
-font-size:30px;
-margin-bottom:15px;
-}
+    .success {
+        background: #1f9d55;
+    }
 
-p{
-color:#cfcfcf;
-line-height:1.8;
-margin-bottom:30px;
-}
+    .error {
+        background: #c0392b;
+    }
 
-.btn{
-display:block;
-width:100%;
-padding:16px;
-background:#f4b400;
-color:#111;
-text-decoration:none;
-font-weight:700;
-font-size:17px;
-border-radius:10px;
-transition:.3s;
-}
+    h1 {
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
 
-.btn:hover{
-background:#ffd54d;
-}
+    p {
+        color: #cfcfcf;
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
 
-.note{
-margin-top:25px;
-font-size:14px;
-color:#999;
-line-height:1.7;
-}
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 16px;
+        background: #f4b400;
+        color: #111;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 17px;
+        border-radius: 10px;
+        transition: .3s;
+    }
 
-@media(max-width:600px){
+    .btn:hover {
+        background: #ffd54d;
+    }
 
-.card{
-padding:30px 25px;
-}
+    .note {
+        margin-top: 25px;
+        font-size: 14px;
+        color: #999;
+        line-height: 1.7;
+    }
 
-.logo{
-font-size:34px;
-}
+    .hidden {
+        display: none;
+    }
 
-.success{
-width:90px;
-height:90px;
-font-size:45px;
-}
+    @media (max-width: 600px) {
 
-h1{
-font-size:24px;
-}
+        .card {
+            padding: 30px 25px;
+        }
 
-}
+        .logo {
+            font-size: 34px;
+        }
+
+        .icon {
+            width: 90px;
+            height: 90px;
+            font-size: 45px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+    }
 
 </style>
+```
 
 </head>
 
 <body>
 
+```
 <div class="card">
 
-<div class="logo">
+    <div class="logo">
+        ETHAR
+    </div>
 
-ETHAR
+    <!-- Success State -->
+    <div id="successState" class="hidden">
+
+        <div class="icon success">
+            ✓
+        </div>
+
+        <h1>
+            Email Verified Successfully!
+        </h1>
+
+        <p>
+            Your email address has been confirmed and your ETHAR account is now active.
+
+            You can now log in and begin watching ads, earning tickets,
+            entering daily draws, and collecting ETHAR tokens.
+        </p>
+
+        <a href="/login" class="btn">
+            LOGIN TO YOUR ACCOUNT
+        </a>
+
+        <div class="note">
+            If you did not create this account, you can safely ignore this email.
+        </div>
+
+    </div>
+
+    <!-- Error State -->
+    <div id="errorState" class="hidden">
+
+        <div class="icon error">
+            ✕
+        </div>
+
+        <h1>
+            Verification Link Invalid or Expired
+        </h1>
+
+        <p>
+            This email verification link is no longer valid.
+            It may have expired or already been used.
+        </p>
+
+        <a href="/login" class="btn">
+            GO TO LOGIN
+        </a>
+
+        <div class="note">
+            You can request a new verification email from the login page.
+        </div>
+
+    </div>
 
 </div>
 
-<div class="success">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-✓
+<script>
 
-</div>
+    const supabaseUrl = "https://ynohexdhktetiepmbwnx.supabase.co";
 
-<h1>Email Verified Successfully!</h1>
+    const supabaseKey =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5bm9oZXhkaGt0ZXRpZXBtYndueCIsInJlZiI6Inlub2hleGRoa3RldGllcG1id254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDU5ODcsImV4cCI6MjA5OTI4MTk4N30.bOgCv0UJYvNSXDxCFs9_6lWfm-h5RipjLzqFIC7Miw";
 
-<p>
+    const client = supabase.createClient(
+        supabaseUrl,
+        supabaseKey
+    );
 
-Your email address has been confirmed and your ETHAR account is now active.
+    async function checkVerification() {
 
-You can now log in and begin watching ads, earning tickets, entering daily draws, and collecting ETHAR tokens.
+        const successState = document.getElementById("successState");
+        const errorState = document.getElementById("errorState");
 
-</p>
+        const {
+            data,
+            error
+        } = await client.auth.getUser();
 
-<a href="/login" class="btn">
+        if (
+            !error &&
+            data &&
+            data.user &&
+            data.user.email_confirmed_at
+        ) {
+            successState.classList.remove("hidden");
+            return;
+        }
 
-LOGIN TO YOUR ACCOUNT
+        errorState.classList.remove("hidden");
+    }
 
-</a>
+    checkVerification();
 
-<div class="note">
-
-If you did not create this account, you can safely ignore this email.
-
-</div>
-
-</div>
+</script>
+```
 
 </body>
 
