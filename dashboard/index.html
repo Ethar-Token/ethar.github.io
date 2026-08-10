@@ -905,12 +905,9 @@ async function enterDraw(){
     const enterDrawBtn =
         document.getElementById("enterDrawBtn");
     
-    enterDrawBtn.disabled = true;
-
-    setTimeout(() => {
-        enterDrawBtn.disabled = false;
-
-     }, 3000);
+    if(enterDrawBtn.disabled){
+        return;
+    }
 
     const tickets =
         Number(document.getElementById("ticketInput").value);
@@ -921,6 +918,16 @@ async function enterDraw(){
         return;
 
     }
+
+    enterDrawBtn.disabled = true;
+
+    const originalText =
+        enterDrawBtn.innerHTML;
+
+    enterDrawBtn.innerHTML =
+        "ENTERING DRAW...";
+
+    try{
 
     const { data, error } =
         await client.rpc("enter_draw",{
@@ -978,7 +985,19 @@ async function enterDraw(){
 
             showToast("Something went wrong.","error");
             }
-}
+} finally {
+        enterDrawBtn.innerHTML =
+            originalText;
+
+        setTimeout(() => {
+
+            enterDrawBtn.disabled = false;
+
+        },3000);
+
+    }
+
+}    
     
 </script>
 
