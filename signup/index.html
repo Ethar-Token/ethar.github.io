@@ -704,6 +704,14 @@ const client = supabase.createClient(
     supabaseKey
 );
 
+// Automatically fill referral code from URL
+const urlParams = new URLSearchParams(window.location.search);
+const referralCode = urlParams.get("ref");
+
+if (referralCode) {
+    document.getElementById("referral").value = referralCode;
+}
+
 function togglePass(id, el){
 
 const input = document.getElementById(id);
