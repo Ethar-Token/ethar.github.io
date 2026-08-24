@@ -229,7 +229,7 @@ async function loadReferrals(){
 
     // Referral link
     const link =
-        "https://ethartoken.com/?ref=" + profile.referral_code;
+        "https://ethartoken.com/signup/?ref=" + profile.referral_code;
 
     const referralLink =
         document.getElementById("referralLink");
