@@ -650,7 +650,6 @@ input[type="number"]{
 </div>
 
 </header>
-
 <style>
 .ad-container {
     width: 728px;
@@ -794,7 +793,7 @@ input[type="number"]{
 
 </div>
     
-</div>
+</div> <br>
 
 <script>
 if (window.innerWidth <= 767) {
@@ -830,26 +829,22 @@ if (window.innerWidth <= 767) {
 <tbody id="winnersTable"></tbody>
 
 </table>
-</div>
+</div> <br>
 
 <script>
 if (window.innerWidth <= 767) {
-
-    window.atOptions = {
-        'key' : 'f15a01fd59c1f566cb474f8b5d85ef10',
-        'format' : 'iframe',
-        'height' : 50,
-        'width' : 320,
-        'params' : {}
-    };
-
-    const bannerScript2 = document.createElement("script");
-
-    bannerScript2.src =
-        "https://www.highrevenueformat.com/f15a01fd59c1f566cb474f8b5d85ef10/invoke.js";
-
-    document.getElementById("mobileBanner2")
-        .appendChild(bannerScript2);
+    document.write(`
+        <script>
+        atOptions = {
+          'key' : 'f15a01fd59c1f566cb474f8b5d85ef10',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+        <\/script>
+        <script src="https://www.highrevenueformat.com/f15a01fd59c1f566cb474f8b5d85ef10/invoke.js"><\/script>
+    `);
 }
 </script>
 
