@@ -155,9 +155,130 @@ padding:30px 15px;
 
 }
 
+.mobile-banner {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .mobile-banner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 15px 0;
+        overflow: hidden;
+    }
+}
+
+/* Desktop side ads */
+
+.desktop-ads {
+    display: none;
+}
+
+@media (min-width: 1200px) {
+
+    .desktop-ads {
+        display: flex;
+        position: absolute;
+        top: 150px;
+        align-items: flex-start;
+        z-index: 10;
+    }
+
+    .left-ad {
+        left: 20px;
+        width: 160px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .right-ad {
+        right: 20px;
+        width: 300px;
+        min-height: 150px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+}
+
 </style>
 
 </head>
+
+<!-- LEFT DESKTOP AD -->
+
+<div class="desktop-ads left-ad">
+
+    <script>
+      atOptions = {
+        'key' : 'd967e28f3a296dc88a0e629d3d9b3d15',
+        'format' : 'iframe',
+        'height' : 600,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+
+    <script src="https://www.highrevenueformat.com/d967e28f3a296dc88a0e629d3d9b3d15/invoke.js"></script>
+
+
+    <script>
+      atOptions = {
+        'key' : 'c109969cb53187f8ee41ecb7aea65d80',
+        'format' : 'iframe',
+        'height' : 300,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+    <script src="https://www.highrevenueformat.com/c109969cb53187f8ee41ecb7aea65d80/invoke.js"></script>
+
+</div>
+
+<!-- RIGHT DESKTOP NATIVE AD -->
+
+<div class="desktop-ads right-ad">
+
+    <script async="async" data-cfasync="false"
+        src="https://pl31235972.profitableratecpmnetwork.com/f719afe2dcacea80de174953ae5c62da/invoke.js">
+    </script>
+
+    <div id="container-f719afe2dcacea80de174953ae5c62da"></div>
+
+    <script async="async" data-cfasync="false" 
+        src="https://pl30441531.profitableratecpmnetwork.com/787f582bd765ee86be375620d92d6a85/invoke.js">
+    </script>
+    
+    <div id="container-787f582bd765ee86be375620d92d6a85"></div>
+
+    <script>
+      atOptions = {
+        'key' : '70ccb9ae06bbdd5298ddc605668369ef',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+      };
+    </script>
+    <script src="https://www.highrevenueformat.com/70ccb9ae06bbdd5298ddc605668369ef/invoke.js"></script>
+
+    <script>
+      atOptions = {
+        'key' : 'dc8a942fd7c8e5cca92c92336e650023',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+      };
+    </script>
+    <script src="https://www.highrevenueformat.com/dc8a942fd7c8e5cca92c92336e650023/invoke.js"></script>
+
+</div>
 
 <body>
 
@@ -176,6 +297,46 @@ ETHAR
 Help us build the future of rewards and digital innovation.
 
 </p>
+    
+<style>
+.ad-container {
+    width: 728px;
+    height: 90px;
+    margin: 0;
+    overflow: hidden;    
+    transform-origin: top left;
+}
+
+@media (max-width: 767px) {
+    .ad-container {
+        width: 320px;
+        height: 50px;
+    }
+
+    .ad-container iframe {
+        transform: scale(0.4395);
+        transform-origin: top left;
+        width: 728px !important;
+        height: 90px !important;
+    }
+}
+</style>
+
+<div class="ad-container">
+
+    <script>
+      atOptions = {
+        'key' : '08b3e0f70a2aa368598746b3c7a998cc',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+
+    <script src="https://www.highrevenueformat.com/08b3e0f70a2aa368598746b3c7a998cc/invoke.js"></script>
+
+</div>
 
 <div class="panel">
 
@@ -224,6 +385,23 @@ support@ethartoken.com
 </div>
 
 </div>
+
+<script>
+if (window.innerWidth <= 767) {
+    document.write(`
+        <script>
+        atOptions = {
+          'key' : '8a5a2a428462459edf6bf755d2fe2cf3',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+        <\/script>
+        <script src="https://www.highrevenueformat.com/8a5a2a428462459edf6bf755d2fe2cf3/invoke.js"><\/script>
+    `);
+}
+</script>
 
 <footer>
 
