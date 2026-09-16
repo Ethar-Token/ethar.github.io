@@ -291,6 +291,22 @@ label{margin-bottom:6px}input,select{padding:12px;background:#0b1220;color:#fff;
 .main{margin-left:0;width:100%;padding:15px}
 .grid{grid-template-columns:1fr}
 }
+
+.mobile-banner {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .mobile-banner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 15px 0;
+        overflow: hidden;
+    }
+}
+    
 </style>
   </head>
   <body>
@@ -342,6 +358,47 @@ label{margin-bottom:6px}input,select{padding:12px;background:#0b1220;color:#fff;
 <span id="headerBalance">$0.00</span> 
 <a href='/profile' style='color:#fff;text-decoration:none'>👤</a></div>
 </header>
+
+<style>
+.ad-container {
+    width: 728px;
+    height: 90px;
+    margin: 0;
+    overflow: hidden;    
+    transform-origin: top left;
+}
+
+@media (max-width: 767px) {
+    .ad-container {
+        width: 320px;
+        height: 50px;
+    }
+
+    .ad-container iframe {
+        transform: scale(0.4395);
+        transform-origin: top left;
+        width: 728px !important;
+        height: 90px !important;
+    }
+}
+</style>
+
+<div class="ad-container">
+
+    <script>
+      atOptions = {
+        'key' : '08b3e0f70a2aa368598746b3c7a998cc',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+
+    <script src="https://www.highrevenueformat.com/08b3e0f70a2aa368598746b3c7a998cc/invoke.js"></script>
+
+</div>
+    
 <div class='panel'><h2>Profile Information</h2><div class='grid'>
 <div class='field'><label>First Name</label><input id="firstName"></div>
 <div class='field'><label>Last Name</label><input id="lastName"></div>
@@ -551,7 +608,24 @@ label{margin-bottom:6px}input,select{padding:12px;background:#0b1220;color:#fff;
 </select>
 </div>
 
-<div class='full'><button id="saveProfile" class='btn'>SAVE CHANGES</button></div></div></div>
+<div class='full'><button id="saveProfile" class='btn'>SAVE CHANGES</button></div></div></div> <br>
+
+<script>
+if (window.innerWidth <= 767) {
+    document.write(`
+        <script>
+        atOptions = {
+          'key' : '8a5a2a428462459edf6bf755d2fe2cf3',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+        <\/script>
+        <script src="https://www.highrevenueformat.com/8a5a2a428462459edf6bf755d2fe2cf3/invoke.js"><\/script>
+    `);
+}
+</script>
   
 <div class="panel">
 
@@ -579,7 +653,24 @@ VERIFY IDENTITY
 <div class='field full'><label>Current Password</label><input id="currentPassword" type='password'></div>
 <div class='field full'><label>New Password</label><input id="newPassword" type='password'></div>
 <div class='field full'><label>Confirm Password</label><input id="confirmPassword" type='password'></div>
-<div class='full'><button id="updatePassword" class='btn'>UPDATE PASSWORD</button></div></div></div>
+<div class='full'><button id="updatePassword" class='btn'>UPDATE PASSWORD</button></div></div></div> <br>
+
+<script>
+if (window.innerWidth <= 767) {
+    document.write(`
+        <script>
+        atOptions = {
+          'key' : 'f15a01fd59c1f566cb474f8b5d85ef10',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+        <\/script>
+        <script src="https://www.highrevenueformat.com/f15a01fd59c1f566cb474f8b5d85ef10/invoke.js"><\/script>
+    `);
+}
+</script>
 
 <div class="panel">
 
