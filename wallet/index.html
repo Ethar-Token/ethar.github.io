@@ -465,6 +465,21 @@ white-space:nowrap;
 
 }
 
+.mobile-banner {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .mobile-banner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 15px 0;
+        overflow: hidden;
+    }
+}
+
 </style>
 
 </head>
@@ -640,7 +655,7 @@ placeholder="Minimum $5">
 
 REQUEST WITHDRAWAL
 
-</button>
+</button> <br>
 
 <script>
 if (window.innerWidth <= 767) {
@@ -703,8 +718,6 @@ if (window.innerWidth <= 767) {
 
 </div>
 
-</div>
-
 <script>
 if (window.innerWidth <= 767) {
     document.write(`
@@ -721,6 +734,8 @@ if (window.innerWidth <= 767) {
     `);
 }
 </script>
+
+</div>
 
 <script>
 
