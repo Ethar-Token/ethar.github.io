@@ -567,6 +567,81 @@ font-size:14px;
 
 }
 
+
+/* OTHER PLATFORMS */
+
+.other-platforms {
+    padding: 70px 8%;
+    text-align: center;
+}
+
+.other-platforms h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.other-platforms-intro {
+    color: #bfbfbf;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+}
+
+.platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: auto;
+    text-align: left;
+}
+
+.platform-card {
+    background: #181a25;
+    border: 1px solid #2a2c36;
+    border-radius: 15px;
+    padding: 30px;
+    transition: .3s;
+}
+
+.platform-card:hover {
+    border-color: #f4b400;
+    transform: translateY(-5px);
+}
+
+.platform-card h3 {
+    color: #f4b400;
+    font-size: 23px;
+    margin-bottom: 15px;
+}
+
+.platform-card p {
+    color: #c9c9c9;
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+.platform-card a {
+    display: inline-block;
+    color: #f4b400;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.platform-card a:hover {
+    color: #ffd65c;
+}
+
+@media (max-width: 600px) {
+    .other-platforms h2 {
+        font-size: 30px;
+    }
+
+    .platform-card {
+        padding: 25px;
+    }
+}
+
 </style>
 
 </head>
@@ -851,6 +926,61 @@ if (window.innerWidth <= 767) {
     `);
 }
 </script>
+
+
+<section class="other-platforms">
+
+    <h2>Our Other Platforms</h2>
+
+    <p class="other-platforms-intro">
+        ETHAR is home to more than one digital initiative.
+        Explore our other platforms, each created to serve
+        different interests and online experiences.
+    </p>
+
+    <div class="platforms-grid">
+
+        <div class="platform-card">
+
+            <h3>Anonymous</h3>
+
+            <p>
+                Anonymous is a platform for sharing confessions,
+                personal experiences, secrets and thoughts without
+                revealing your identity. Read stories from others
+                or share something you have never felt comfortable
+                saying publicly.
+            </p>
+
+            <a href="https://anonymous.ethartoken.com/">
+                Explore Anonymous →
+            </a>
+
+        </div>
+
+        <div class="platform-card">
+
+            <h3>ETHAR Tasks</h3>
+
+           
+<p>
+    ETHAR Microtasks is an online earning platform where users
+    can sign up for free, complete small tasks and earn money.
+    Choose from available tasks, complete them and watch your
+    earnings grow with each completed task.
+</p>
+
+
+            <a href="https://tasks.ethartoken.com/">
+                Explore ETHAR Tasks →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 <footer class="footer">
 
